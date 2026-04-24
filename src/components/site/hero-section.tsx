@@ -4,14 +4,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import WearingVarImage from "../../../WEARING VAR.avif";
 
-const heroLinks = [
-  { label: "HOME", href: "#top" },
-  { label: "SERVICES", href: "#services" },
-  { label: "PROJECTS", href: "#projects" },
-  { label: "TEAM", href: "#team" },
-  { label: "CONTACT", href: "#contact" },
-];
-
 export function HeroSection() {
   const { scrollY } = useScroll();
   const yOne = useTransform(scrollY, [0, 600], [0, -90]);
@@ -30,52 +22,11 @@ export function HeroSection() {
 
       <div className="relative mx-auto max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mx-auto mb-5 w-fit rounded-full border border-sky-200 bg-white/85 px-5 py-2 text-[11px] font-semibold uppercase tracking-[0.35em] text-sky-700 shadow-sm backdrop-blur dark:border-white/10 dark:bg-slate-950/80 dark:text-cyan-200"
-        >
-          Landing page template
-        </motion.div>
-
-        <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.05 }}
           className="overflow-hidden rounded-4xl border border-slate-200 bg-white shadow-[0_30px_80px_rgba(15,23,42,0.12)] dark:border-white/10 dark:bg-slate-950/90"
         >
-          <div className="border-b border-slate-200 bg-white/95 px-5 py-4 backdrop-blur dark:border-white/10 dark:bg-slate-950/95 sm:px-8">
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-3">
-                <div className="grid h-11 w-11 place-items-center rounded-full border border-slate-200 bg-slate-50 text-sm font-semibold text-slate-950 dark:border-white/10 dark:bg-white/5 dark:text-white">
-                  A
-                </div>
-                <div>
-                  <p className="text-sm font-semibold tracking-[0.24em] text-slate-950 dark:text-white">AGORM</p>
-                  <p className="text-[11px] uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400">Tech Organisation</p>
-                </div>
-              </div>
-
-              <div className="hidden items-center gap-7 lg:flex">
-                {heroLinks.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href}
-                    className="text-[11px] font-medium uppercase tracking-[0.3em] text-slate-500 transition-colors hover:text-sky-700 dark:text-slate-300 dark:hover:text-cyan-200"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-
-              <div className="hidden items-center gap-2 sm:flex">
-                <span className="h-3 w-3 rounded-full border border-white/50 bg-slate-950 dark:bg-slate-100" />
-                <span className="h-3 w-3 rounded-full border border-white/50 bg-blue-600 dark:bg-blue-500" />
-                <span className="h-3 w-3 rounded-full border border-white/50 bg-sky-400 dark:bg-cyan-300" />
-              </div>
-            </div>
-          </div>
-
           <div className="grid gap-10 px-5 py-8 sm:px-8 sm:py-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:px-10 lg:py-12">
             <div className="relative z-10 max-w-xl">
               <motion.p
