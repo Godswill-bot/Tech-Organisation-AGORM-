@@ -1,3 +1,7 @@
+import type { StaticImageData } from "next/image";
+import GodswillImage from "../../Godswill.jpg";
+import AyoImage from "../../Ayo.png";
+
 export type Service = {
   title: string;
   description: string;
@@ -19,9 +23,11 @@ export type TeamMember = {
   name: string;
   role: string;
   bio: string;
+  phone: string;
   linkedin: string;
   github: string;
   email: string;
+  image?: StaticImageData;
 };
 
 export const services: Service[] = [
@@ -110,33 +116,39 @@ export const teamMembers: TeamMember[] = [
     name: "Godswill Nwafor",
     role: "Full-stack Developer",
     bio: "Builds resilient web architectures and API ecosystems optimized for scale.",
-    linkedin: "https://www.linkedin.com/in/godswill-nwafor",
+    phone: "+234 9064071165",
+    linkedin: "https://www.linkedin.com/in/godswill-nwafor-10a863394/",
     github: "https://github.com/godswill",
-    email: "mailto:godswill@agorm.io",
+    email: "mailto:gnwafor580@gmail.com",
+    image: GodswillImage,
   },
   {
     name: "Omoyowho Miracle",
     role: "Mobile Engineer",
     bio: "Designs and ships polished mobile products with excellent runtime performance.",
-    linkedin: "https://www.linkedin.com/in/omoyowho-miracle",
-    github: "https://github.com/omoyowho",
-    email: "mailto:miracle@agorm.io",
+    phone: "+234 803 376 8018",
+    linkedin: "",
+    github: "",
+    email: "mailto:miracleomoyowho@gmail.com",
   },
   {
-    name: "Oreoluwa Olaiya",
+    name: "Oreoluwa Emmanuel",
     role: "UI/UX Designer",
     bio: "Creates expressive interfaces that balance visual identity, clarity, and usability.",
-    linkedin: "https://www.linkedin.com/in/oreoluwa-olaiya",
-    github: "https://github.com/oreoluwa",
-    email: "mailto:oreoluwa@agorm.io",
+    phone: "+234 816 732 3730",
+    linkedin: "",
+    github: "",
+    email: "mailto:emmanuelolaiya027@gmail.com",
   },
   {
-    name: "Fatona Ayomide",
+    name: "Fatona Ayomide (DEEN)",
     role: "Product Engineer",
     bio: "Bridges strategy and engineering to deliver high-impact digital experiences.",
+    phone: "+234 901 814 9337",
     linkedin: "https://www.linkedin.com/in/fatona-ayomide",
     github: "https://github.com/fatona",
-    email: "mailto:ayomide@agorm.io",
+    email: "",
+    image: AyoImage,
   },
 ];
 
