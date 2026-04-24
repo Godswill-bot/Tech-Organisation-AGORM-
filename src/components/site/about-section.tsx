@@ -19,7 +19,7 @@ const points = [
 export function AboutSection() {
   return (
     <section id="about" className="px-5 py-20 sm:px-8 sm:py-28">
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto max-w-7xl">
         <SectionReveal>
           <SectionTitle
             eyebrow="About AGORM"
@@ -31,9 +31,9 @@ export function AboutSection() {
         <div className="grid gap-5 md:grid-cols-3">
           {points.map((point, index) => (
             <SectionReveal key={point.title} delay={index * 0.08}>
-              <article className="h-full rounded-2xl border border-slate-200 bg-slate-50 p-6 transition-transform duration-300 hover:-translate-y-1 hover:border-cyan-400/60 dark:border-white/10 dark:bg-white/3 dark:hover:border-cyan-300/40">
+              <article className="h-full rounded-2xl border border-slate-300/70 bg-white/90 p-6 shadow-[0_14px_38px_rgba(15,23,42,0.08)] transition-transform duration-300 hover:-translate-y-1 hover:border-cyan-400/60 dark:border-white/10 dark:bg-white/3 dark:shadow-none dark:hover:border-cyan-300/40">
                 <h3 className="text-lg font-semibold text-slate-950 dark:text-white">{point.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{point.body}</p>
+                <p className="mt-3 text-sm leading-7 text-slate-700 dark:text-slate-300">{point.body}</p>
               </article>
             </SectionReveal>
           ))}

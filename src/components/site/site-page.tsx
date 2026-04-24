@@ -12,11 +12,11 @@ import { ServicesSection } from "@/components/site/services-section";
 import { TeamSection } from "@/components/site/team-section";
 
 export function SitePage() {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [theme, setTheme] = useState<"dark" | "light">("light");
 
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("agorm-theme");
-    const nextTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "dark";
+    const nextTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "light";
 
     setTheme(nextTheme);
     document.documentElement.dataset.theme = nextTheme;

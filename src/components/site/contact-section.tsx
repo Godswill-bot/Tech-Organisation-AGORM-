@@ -6,7 +6,7 @@ import { teamMembers } from "@/data/site-content";
 export function ContactSection() {
   return (
     <section id="contact" className="px-5 pb-24 pt-20 sm:px-8 sm:pb-28 sm:pt-28">
-      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_1.15fr]">
+      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_1.15fr]">
         <SectionReveal>
           <SectionTitle
             eyebrow="Contact"
@@ -14,9 +14,9 @@ export function ContactSection() {
             description="Tell us what you are building and we will design a plan that moves your product from idea to impact."
           />
 
-          <div className="mt-8 space-y-4 rounded-2xl border border-slate-200 bg-slate-50 p-6 dark:border-white/10 dark:bg-white/3">
+          <div className="mt-8 space-y-4 rounded-2xl border border-slate-300/70 bg-white/90 p-6 shadow-[0_16px_42px_rgba(15,23,42,0.08)] dark:border-white/10 dark:bg-white/3 dark:shadow-none">
             {teamMembers.map((member) => (
-              <div key={member.name} className="rounded-xl border border-slate-300 bg-slate-100 p-4 dark:border-white/10 dark:bg-slate-950/30">
+              <div key={member.name} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-slate-950/30 dark:shadow-none">
                 <p className="text-sm font-medium text-slate-950 dark:text-white">{member.name}</p>
                 <p className="mt-2 flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300">
                   <Phone size={18} className="text-cyan-600 dark:text-cyan-200" /> {member.phone}
@@ -45,10 +45,10 @@ export function ContactSection() {
         </SectionReveal>
 
         <SectionReveal delay={0.12}>
-          <form className="rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8 dark:border-white/10 dark:bg-slate-900/70" aria-label="Contact form">
+          <form className="rounded-2xl border border-slate-300/80 bg-white p-6 shadow-[0_20px_46px_rgba(15,23,42,0.1)] sm:p-8 dark:border-white/10 dark:bg-slate-900/70 dark:shadow-none" aria-label="Contact form">
             <div className="space-y-5">
               <div>
-                <label htmlFor="name" className="mb-2 block text-sm text-slate-700 dark:text-slate-200">
+                <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-800 dark:text-slate-200">
                   Name
                 </label>
                 <input
@@ -56,13 +56,13 @@ export function ContactSection() {
                   name="name"
                   type="text"
                   required
-                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition-colors placeholder:text-slate-400 focus:border-cyan-400 focus:shadow-[0_0_0_3px_rgb(6,182,212,0.1)] dark:border-white/15 dark:bg-slate-950/80 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-cyan-300"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition-colors placeholder:text-slate-500 focus:border-cyan-500 focus:shadow-[0_0_0_3px_rgb(6,182,212,0.14)] dark:border-white/15 dark:bg-slate-950/80 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-cyan-300"
                   placeholder="Your name"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="mb-2 block text-sm text-slate-700 dark:text-slate-200">
+                <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-800 dark:text-slate-200">
                   Email
                 </label>
                 <input
@@ -70,13 +70,13 @@ export function ContactSection() {
                   name="email"
                   type="email"
                   required
-                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition-colors placeholder:text-slate-400 focus:border-cyan-400 focus:shadow-[0_0_0_3px_rgb(6,182,212,0.1)] dark:border-white/15 dark:bg-slate-950/80 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-cyan-300"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition-colors placeholder:text-slate-500 focus:border-cyan-500 focus:shadow-[0_0_0_3px_rgb(6,182,212,0.14)] dark:border-white/15 dark:bg-slate-950/80 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-cyan-300"
                   placeholder="you@company.com"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="mb-2 block text-sm text-slate-700 dark:text-slate-200">
+                <label htmlFor="message" className="mb-2 block text-sm font-medium text-slate-800 dark:text-slate-200">
                   Message
                 </label>
                 <textarea
@@ -84,7 +84,7 @@ export function ContactSection() {
                   name="message"
                   rows={5}
                   required
-                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition-colors placeholder:text-slate-400 focus:border-cyan-400 focus:shadow-[0_0_0_3px_rgb(6,182,212,0.1)] dark:border-white/15 dark:bg-slate-950/80 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-cyan-300"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition-colors placeholder:text-slate-500 focus:border-cyan-500 focus:shadow-[0_0_0_3px_rgb(6,182,212,0.14)] dark:border-white/15 dark:bg-slate-950/80 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-cyan-300"
                   placeholder="What are you building?"
                 />
               </div>
