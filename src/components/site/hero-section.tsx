@@ -33,7 +33,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
-                className="mb-4 text-[11px] uppercase tracking-[0.36em] text-slate-500 dark:text-cyan-200"
+                className="mb-4 text-[11px] uppercase tracking-[0.36em] text-slate-700 dark:text-cyan-200"
               >
                 Digital & innovation
               </motion.p>
@@ -71,16 +71,16 @@ export function HeroSection() {
                 </a>
                 <a
                   href="#projects"
-                  className="agorm-pill-muted rounded-full border border-slate-300 px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-700 transition-colors duration-300 hover:border-sky-500 hover:text-sky-700 dark:border-white/20 dark:text-slate-100 dark:hover:border-cyan-300 dark:hover:text-cyan-100"
+                  className="agorm-pill-muted rounded-full border border-slate-400 bg-white/95 px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-800 transition-colors duration-300 hover:border-slate-500 hover:bg-white dark:border-white/20 dark:bg-transparent dark:text-slate-100 dark:hover:border-cyan-300 dark:hover:text-cyan-100"
                 >
                   View Projects
                 </a>
               </motion.div>
 
-              <div className="mt-10 grid max-w-md grid-cols-3 gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">
-                <div className="agorm-pill-muted rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-white/10 dark:bg-white/5">Strategy</div>
-                <div className="agorm-pill-muted rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-white/10 dark:bg-white/5">Design</div>
-                <div className="agorm-pill-muted rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-white/10 dark:bg-white/5">Engineering</div>
+              <div className="mt-10 grid max-w-md grid-cols-3 gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-700 dark:text-slate-400">
+                <div className="agorm-pill-muted rounded-2xl border border-slate-300 bg-white px-4 py-3 shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">Strategy</div>
+                <div className="agorm-pill-muted rounded-2xl border border-slate-300 bg-white px-4 py-3 shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">Design</div>
+                <div className="agorm-pill-muted rounded-2xl border border-slate-300 bg-white px-4 py-3 shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">Engineering</div>
               </div>
             </div>
 
