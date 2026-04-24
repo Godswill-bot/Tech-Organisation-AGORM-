@@ -92,7 +92,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 18, rotate: -4 }}
                 animate={{ opacity: 1, y: 0, rotate: -4 }}
                 transition={{ duration: 0.9, delay: 0.16 }}
-                className="hero-octagon absolute right-0 top-0 h-80 w-56 overflow-hidden border-[6px] border-slate-300 bg-slate-200 shadow-[0_25px_60px_rgba(15,23,42,0.12)] lg:h-104 lg:w-72 dark:border-sky-900 dark:bg-slate-950"
+                className="hero-octagon absolute right-0 top-0 h-80 w-56 overflow-hidden border-[6px] border-slate-300 bg-white/95 shadow-[0_25px_60px_rgba(15,23,42,0.08)] lg:h-104 lg:w-72 dark:border-slate-700 dark:bg-slate-950 dark:shadow-[0_25px_60px_rgba(0,0,0,0.3)]"
               >
                 <Image
                   src={WearingVarImage}
@@ -108,12 +108,12 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 18, rotate: 4 }}
                 animate={{ opacity: 1, y: 0, rotate: 4 }}
                 transition={{ duration: 0.9, delay: 0.24 }}
-                className="hero-octagon absolute bottom-12 left-6 h-52 w-52 overflow-hidden border-[6px] border-slate-200 bg-[linear-gradient(145deg,#0f172a_0%,#1d4ed8_45%,#38bdf8_100%)] shadow-[0_20px_40px_rgba(15,23,42,0.18)] dark:border-white/10"
+                className="hero-octagon absolute bottom-12 left-6 h-52 w-52 overflow-hidden border-[6px] border-slate-300 bg-white shadow-[0_20px_40px_rgba(15,23,42,0.12)] dark:border-white/10 dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-900"
               >
-                <div className="flex h-full w-full items-center justify-center p-6 text-center text-white">
+                <div className="flex h-full w-full items-center justify-center p-6 text-center dark:text-white">
                   <div>
-                    <p className="text-[10px] uppercase tracking-[0.34em] text-white/70">AGORM</p>
-                    <p className="mt-3 text-2xl font-semibold leading-tight">Future-facing systems</p>
+                    <p className="text-[10px] uppercase tracking-[0.34em] text-slate-600 dark:text-white/70">AGORM</p>
+                    <p className="mt-3 text-2xl font-semibold leading-tight text-slate-900 dark:text-white">Future-facing systems</p>
                   </div>
                 </div>
               </motion.div>
