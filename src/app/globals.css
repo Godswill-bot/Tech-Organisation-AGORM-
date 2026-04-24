@@ -100,7 +100,39 @@ h6 {
 
 [data-theme="light"] p.text-slate-300,
 [data-theme="light"] span.text-slate-300 {
-  color: #64748b;
+  color: #334155;
+}
+
+[data-theme="light"] .text-slate-800,
+[data-theme="light"] span.text-slate-800 {
+  color: #1e293b;
+}
+
+[data-theme="light"] .text-foreground {
+  color: #0f172a;
+}
+
+[data-theme="light"] .agorm-pill {
+  border-color: rgb(148 163 184 / 0.22) !important;
+  background-color: rgb(255 255 255 / 0.82) !important;
+  color: #0f172a !important;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+}
+
+[data-theme="light"] .agorm-pill:hover {
+  border-color: rgb(6 182 212 / 0.35) !important;
+  background-color: rgb(255 255 255 / 0.94) !important;
+}
+
+[data-theme="light"] .agorm-pill-muted {
+  border-color: rgb(226 232 240 / 0.8) !important;
+  background-color: rgb(248 250 252 / 0.92) !important;
+  color: #334155 !important;
+}
+
+[data-theme="light"] .agorm-pill-muted:hover {
+  border-color: rgb(6 182 212 / 0.25) !important;
+  color: #0f172a !important;
 }
 
 [data-theme="light"] p.text-slate-400,

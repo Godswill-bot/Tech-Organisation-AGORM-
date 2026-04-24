@@ -17,10 +17,15 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
       ? "text-sm text-slate-300 transition-colors duration-300 hover:text-white"
       : "text-sm text-slate-700 transition-colors duration-300 hover:text-slate-950";
 
+  const headerClass =
+    theme === "dark"
+      ? "fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-background/70 backdrop-blur-xl transition-colors duration-500"
+      : "fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur-xl transition-colors duration-500";
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-background/70 backdrop-blur-xl transition-colors duration-500">
+    <header className={headerClass}>
       <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
-        <a href="#top" className="text-lg font-semibold tracking-[0.22em] text-foreground">
+        <a href="#top" className="text-lg font-semibold tracking-[0.22em] text-slate-950 dark:text-foreground">
           AGORM
         </a>
 
@@ -37,14 +42,14 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
           <button
             type="button"
             onClick={onToggleTheme}
-            className="rounded-full border border-white/15 p-2 text-foreground transition-colors duration-300 hover:border-cyan-300/50 hover:bg-cyan-300/10"
+            className="rounded-full border border-white/15 bg-white/5 p-2 text-foreground transition-colors duration-300 hover:border-cyan-300/50 hover:bg-cyan-300/10 dark:bg-transparent"
             aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
           >
             {theme === "dark" ? <SunMedium size={16} /> : <MoonStar size={16} />}
           </button>
           <a
             href="#contact"
-            className="rounded-full border border-cyan-300/40 px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-cyan-200 transition-all duration-300 hover:border-cyan-200 hover:bg-cyan-300/10"
+            className="rounded-full border border-cyan-300/40 bg-cyan-50 px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-cyan-700 transition-all duration-300 hover:border-cyan-200 hover:bg-cyan-100 dark:border-cyan-300/40 dark:bg-transparent dark:text-cyan-200 dark:hover:bg-cyan-300/10"
           >
             Start a Project
           </a>
@@ -67,14 +72,14 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.25 }}
-            className="border-t border-white/10 bg-background/95 px-5 py-4 md:hidden"
+            className="border-t border-white/10 bg-background/95 px-5 py-4 md:hidden dark:border-slate-200/80 dark:bg-white/95"
           >
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-foreground"
+                  className="text-sm text-foreground dark:text-slate-700"
                   onClick={() => setOpen(false)}
                 >
                   {link.label}
@@ -83,7 +88,7 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
               <button
                 type="button"
                 onClick={onToggleTheme}
-                className="mt-2 inline-flex items-center gap-2 text-left text-sm text-foreground"
+                className="mt-2 inline-flex items-center gap-2 text-left text-sm text-foreground dark:text-slate-700"
               >
                 {theme === "dark" ? <SunMedium size={16} /> : <MoonStar size={16} />}
                 {theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}

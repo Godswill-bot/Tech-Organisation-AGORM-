@@ -114,22 +114,22 @@ export function HeroSection() {
               >
                 <a
                   href="#contact"
-                  className="rounded-full bg-slate-950 px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-300 hover:scale-[1.03] hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100"
+                  className="agorm-pill rounded-full bg-slate-950 px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-300 hover:scale-[1.03] hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100"
                 >
                   Read More
                 </a>
                 <a
                   href="#projects"
-                  className="rounded-full border border-slate-300 px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-700 transition-colors duration-300 hover:border-sky-500 hover:text-sky-700 dark:border-white/20 dark:text-slate-100 dark:hover:border-cyan-300 dark:hover:text-cyan-100"
+                  className="agorm-pill-muted rounded-full border border-slate-300 px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-700 transition-colors duration-300 hover:border-sky-500 hover:text-sky-700 dark:border-white/20 dark:text-slate-100 dark:hover:border-cyan-300 dark:hover:text-cyan-100"
                 >
                   View Projects
                 </a>
               </motion.div>
 
               <div className="mt-10 grid max-w-md grid-cols-3 gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">
-                <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-white/10 dark:bg-white/5">Strategy</div>
-                <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-white/10 dark:bg-white/5">Design</div>
-                <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-white/10 dark:bg-white/5">Engineering</div>
+                <div className="agorm-pill-muted rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-white/10 dark:bg-white/5">Strategy</div>
+                <div className="agorm-pill-muted rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-white/10 dark:bg-white/5">Design</div>
+                <div className="agorm-pill-muted rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-white/10 dark:bg-white/5">Engineering</div>
               </div>
             </div>
 
