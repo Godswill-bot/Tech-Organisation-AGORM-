@@ -20,7 +20,7 @@ export function HeroSection() {
         className="pointer-events-none absolute -right-28 top-28 h-96 w-96 rounded-full bg-blue-700/20 blur-3xl dark:bg-indigo-600/20"
       />
 
-      <div className="relative mx-auto max-w-6xl">
+      <div className="relative mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}

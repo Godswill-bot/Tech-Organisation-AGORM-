@@ -24,7 +24,7 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
 
   return (
     <header className={headerClass}>
-      <nav className="mx-auto flex h-18 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
+      <nav className="mx-auto flex h-18 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
         <a href="#top" className="flex flex-col leading-none">
           <span className="text-lg font-semibold tracking-[0.22em] text-slate-950 dark:text-foreground">AGORM</span>
           <span className="mt-1 text-[10px] uppercase tracking-[0.24em] text-slate-500 dark:text-slate-400">Tech Organisation</span>
