@@ -65,7 +65,7 @@ export function HeroSection() {
               >
                 <a
                   href="#contact"
-                  className="agorm-pill rounded-full bg-slate-950 px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-300 hover:scale-[1.03] hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100"
+                  className="agorm-pill rounded-full bg-slate-900 px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-300 hover:scale-[1.03] hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100"
                 >
                   Read More
                 </a>
@@ -92,7 +92,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 18, rotate: -4 }}
                 animate={{ opacity: 1, y: 0, rotate: -4 }}
                 transition={{ duration: 0.9, delay: 0.16 }}
-                className="hero-octagon absolute right-0 top-0 h-80 w-56 overflow-hidden border-[6px] border-slate-950 bg-slate-950 shadow-[0_25px_60px_rgba(15,23,42,0.24)] lg:h-104 lg:w-72 dark:border-sky-900"
+                className="hero-octagon absolute right-0 top-0 h-80 w-56 overflow-hidden border-[6px] border-slate-300 bg-slate-200 shadow-[0_25px_60px_rgba(15,23,42,0.12)] lg:h-104 lg:w-72 dark:border-sky-900 dark:bg-slate-950"
               >
                 <Image
                   src={WearingVarImage}
