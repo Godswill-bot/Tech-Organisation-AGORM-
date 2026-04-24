@@ -45,6 +45,10 @@ h6 {
   box-sizing: border-box;
 }
 
+.hero-octagon {
+  clip-path: polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%);
+}
+
 /* Light mode overrides for section components */
 [data-theme="light"] article {
   border-color: rgb(226 232 240 / 0.15);
