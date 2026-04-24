@@ -23,6 +23,7 @@ export type TeamMember = {
   name: string;
   role: string;
   bio: string;
+  expertise: string[];
   phone: string;
   linkedin: string;
   github: string;
@@ -105,8 +106,9 @@ export const projects: Project[] = [
 export const teamMembers: TeamMember[] = [
   {
     name: "Godswill Nwafor",
-    role: "Full-stack Developer",
-    bio: "Builds resilient web architectures and API ecosystems optimized for scale.",
+    role: "Full-Stack Developer",
+    bio: "Builds resilient web architectures and API ecosystems designed for scale, reliability, and maintainability.",
+    expertise: ["Web application engineering", "API development", "Scalable architecture"],
     phone: "+234 9064071165",
     linkedin: "https://www.linkedin.com/in/godswill-nwafor-10a863394/",
     github: "https://github.com/godswill",
@@ -115,8 +117,9 @@ export const teamMembers: TeamMember[] = [
   },
   {
     name: "Omoyowho Miracle",
-    role: "Mobile Engineer",
-    bio: "Designs and ships polished mobile products with excellent runtime performance.",
+    role: "Data Engineer and Data Analyst",
+    bio: "Designs dependable data workflows, transforms complex datasets into actionable insights, and supports business decision-making with analytical precision.",
+    expertise: ["Data engineering", "Data analysis", "Reporting and insights"],
     phone: "+234 803 376 8018",
     linkedin: "",
     github: "",
@@ -124,8 +127,9 @@ export const teamMembers: TeamMember[] = [
   },
   {
     name: "Oreoluwa Emmanuel",
-    role: "UI/UX Designer",
-    bio: "Creates expressive interfaces that balance visual identity, clarity, and usability.",
+    role: "UI/UX Designer, Deep Learning and Machine Learning Specialist",
+    bio: "Designs intuitive digital experiences and applies deep learning and machine learning expertise to build intelligent, user-centered solutions.",
+    expertise: ["UI/UX design", "Deep learning", "Machine learning"],
     phone: "+234 816 732 3730",
     linkedin: "",
     github: "",
@@ -133,8 +137,9 @@ export const teamMembers: TeamMember[] = [
   },
   {
     name: "Fatona Ayomide (DEEN)",
-    role: "Product Engineer",
-    bio: "Bridges strategy and engineering to deliver high-impact digital experiences.",
+    role: "Robotics Engineer",
+    bio: "Develops intelligent robotic systems and hardware-driven solutions that bridge automation, precision, and practical engineering delivery.",
+    expertise: ["Robotics engineering", "Automation systems", "Hardware integration"],
     phone: "+234 901 814 9337",
     linkedin: "https://www.linkedin.com/in/fatona-ayomide",
     github: "https://github.com/fatona",
