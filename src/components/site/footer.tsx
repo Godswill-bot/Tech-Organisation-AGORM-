@@ -10,7 +10,7 @@ const links = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-slate-300/75 bg-white/70 px-5 py-10 backdrop-blur-sm dark:border-white/10 dark:bg-transparent sm:px-8">
+    <footer className="agorm-footer border-t border-slate-300/75 bg-white/70 px-5 py-10 backdrop-blur-sm dark:border-white/10 dark:bg-transparent sm:px-8">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-lg font-semibold tracking-[0.2em] text-slate-950 dark:text-white">AGORM</p>

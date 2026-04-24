@@ -50,11 +50,39 @@ h6 {
 }
 
 [data-theme="dark"] .agorm-project-card {
-  background-color: rgb(2 6 23 / 0.94) !important;
-  border-color: rgb(51 65 85 / 0.9) !important;
+  background-color: rgba(2, 6, 23, 0.94) !important;
+  border-color: rgba(51, 65, 85, 0.9) !important;
 }
 
 [data-theme="dark"] .agorm-team-card {
-  background-color: rgb(2 6 23 / 0.92) !important;
-  border-color: rgb(51 65 85 / 0.9) !important;
+  background-color: rgba(2, 6, 23, 0.92) !important;
+  border-color: rgba(51, 65, 85, 0.9) !important;
+}
+
+[data-theme="dark"] .agorm-hero-card {
+  background-color: rgba(2, 6, 23, 0.94) !important;
+  border-color: rgba(51, 65, 85, 0.9) !important;
+}
+
+[data-theme="dark"] .agorm-hero-chip {
+  background-color: rgba(15, 23, 42, 0.8) !important;
+  border-color: rgba(51, 65, 85, 0.9) !important;
+}
+
+[data-theme="dark"] .agorm-about-card,
+[data-theme="dark"] .agorm-service-card,
+[data-theme="dark"] .agorm-contact-list-card,
+[data-theme="dark"] .agorm-contact-form-card {
+  background-color: rgba(2, 6, 23, 0.92) !important;
+  border-color: rgba(51, 65, 85, 0.9) !important;
+}
+
+[data-theme="dark"] .agorm-contact-person-card {
+  background-color: rgba(15, 23, 42, 0.78) !important;
+  border-color: rgba(51, 65, 85, 0.9) !important;
+}
+
+[data-theme="dark"] .agorm-footer {
+  background-color: rgba(2, 6, 23, 0.88) !important;
+  border-color: rgba(51, 65, 85, 0.9) !important;
 }

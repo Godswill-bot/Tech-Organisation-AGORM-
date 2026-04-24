@@ -14,9 +14,9 @@ export function ContactSection() {
             description="Tell us what you are building and we will design a plan that moves your product from idea to impact."
           />
 
-          <div className="mt-8 space-y-4 rounded-2xl border border-slate-300/70 bg-white/90 p-6 shadow-[0_16px_42px_rgba(15,23,42,0.08)] dark:border-white/10 dark:bg-white/3 dark:shadow-none">
+          <div className="agorm-contact-list-card mt-8 space-y-4 rounded-2xl border border-slate-300/70 bg-white/90 p-6 shadow-[0_16px_42px_rgba(15,23,42,0.08)] dark:border-white/10 dark:bg-white/3 dark:shadow-none">
             {teamMembers.map((member) => (
-              <div key={member.name} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-slate-950/30 dark:shadow-none">
+              <div key={member.name} className="agorm-contact-person-card rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-white/10 dark:bg-slate-950/30 dark:shadow-none">
                 <p className="text-sm font-medium text-slate-950 dark:text-white">{member.name}</p>
                 <p className="mt-2 flex items-center gap-3 text-sm text-slate-700 dark:text-slate-300">
                   <Phone size={18} className="text-cyan-600 dark:text-cyan-200" /> {member.phone}
@@ -45,7 +45,7 @@ export function ContactSection() {
         </SectionReveal>
 
         <SectionReveal delay={0.12}>
-          <form className="rounded-2xl border border-slate-300/80 bg-white p-6 shadow-[0_20px_46px_rgba(15,23,42,0.1)] sm:p-8 dark:border-white/10 dark:bg-slate-900/70 dark:shadow-none" aria-label="Contact form">
+          <form className="agorm-contact-form-card rounded-2xl border border-slate-300/80 bg-white p-6 shadow-[0_20px_46px_rgba(15,23,42,0.1)] sm:p-8 dark:border-white/10 dark:bg-slate-900/70 dark:shadow-none" aria-label="Contact form">
             <div className="space-y-5">
               <div>
                 <label htmlFor="name" className="mb-2 block text-sm font-medium text-slate-800 dark:text-slate-200">

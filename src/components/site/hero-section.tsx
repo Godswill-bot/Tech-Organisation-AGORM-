@@ -25,7 +25,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.05 }}
-          className="overflow-hidden rounded-4xl border border-slate-200 bg-white shadow-[0_30px_80px_rgba(15,23,42,0.12)] dark:border-white/10 dark:bg-slate-950/90"
+          className="agorm-hero-card overflow-hidden rounded-4xl border border-slate-200 bg-white shadow-[0_30px_80px_rgba(15,23,42,0.12)] dark:border-white/10 dark:bg-slate-950/90"
         >
           <div className="grid gap-10 px-5 py-8 sm:px-8 sm:py-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:px-10 lg:py-12">
             <div className="relative z-10 max-w-xl">
@@ -78,9 +78,9 @@ export function HeroSection() {
               </motion.div>
 
               <div className="mt-10 grid max-w-md grid-cols-3 gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-700 dark:text-slate-400">
-                <div className="agorm-pill-muted rounded-2xl border border-slate-300 bg-white px-4 py-3 shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">Strategy</div>
-                <div className="agorm-pill-muted rounded-2xl border border-slate-300 bg-white px-4 py-3 shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">Design</div>
-                <div className="agorm-pill-muted rounded-2xl border border-slate-300 bg-white px-4 py-3 shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">Engineering</div>
+                <div className="agorm-hero-chip agorm-pill-muted rounded-2xl border border-slate-300 bg-white px-4 py-3 shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">Strategy</div>
+                <div className="agorm-hero-chip agorm-pill-muted rounded-2xl border border-slate-300 bg-white px-4 py-3 shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">Design</div>
+                <div className="agorm-hero-chip agorm-pill-muted rounded-2xl border border-slate-300 bg-white px-4 py-3 shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">Engineering</div>
               </div>
             </div>
 
@@ -108,7 +108,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 18, rotate: 4 }}
                 animate={{ opacity: 1, y: 0, rotate: 4 }}
                 transition={{ duration: 0.9, delay: 0.24 }}
-                className="hero-octagon absolute bottom-12 left-6 h-52 w-52 overflow-hidden border-[6px] border-slate-300 bg-white shadow-[0_20px_40px_rgba(15,23,42,0.12)] dark:border-white/10 dark:bg-gradient-to-br dark:from-slate-800 dark:to-slate-900"
+                className="hero-octagon absolute bottom-12 left-6 h-52 w-52 overflow-hidden border-[6px] border-slate-300 bg-white shadow-[0_20px_40px_rgba(15,23,42,0.12)] dark:border-white/10 dark:bg-linear-to-br dark:from-slate-800 dark:to-slate-900"
               >
                 <div className="flex h-full w-full items-center justify-center p-6 text-center dark:text-white">
                   <div>
