@@ -15,8 +15,12 @@ export function SitePage() {
   const [theme, setTheme] = useState<"dark" | "light">("light");
 
   useEffect(() => {
+    const savedPreference = window.localStorage.getItem("agorm-theme-user-set");
     const savedTheme = window.localStorage.getItem("agorm-theme");
-    const nextTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "light";
+    const nextTheme =
+      savedPreference === "true" && (savedTheme === "light" || savedTheme === "dark")
+        ? savedTheme
+        : "light";
 
     setTheme(nextTheme);
     document.documentElement.dataset.theme = nextTheme;
@@ -26,6 +30,7 @@ export function SitePage() {
     if (theme) {
       document.documentElement.dataset.theme = theme;
       window.localStorage.setItem("agorm-theme", theme);
+      window.localStorage.setItem("agorm-theme-user-set", "true");
     }
   }, [theme]);
 

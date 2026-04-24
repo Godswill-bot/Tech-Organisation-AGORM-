@@ -48,3 +48,13 @@ h6 {
 .hero-octagon {
   clip-path: polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%);
 }
+
+[data-theme="dark"] .agorm-project-card {
+  background-color: rgb(2 6 23 / 0.94) !important;
+  border-color: rgb(51 65 85 / 0.9) !important;
+}
+
+[data-theme="dark"] .agorm-team-card {
+  background-color: rgb(2 6 23 / 0.92) !important;
+  border-color: rgb(51 65 85 / 0.9) !important;
+}

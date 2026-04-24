@@ -73,9 +73,9 @@ export function ProjectsSection() {
               <button
                 type="button"
                 onClick={() => setSelectedProject(project)}
-                className="group relative h-full w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/60 dark:border-white/10 dark:bg-slate-900/60 dark:hover:border-cyan-300/40"
+                className="agorm-project-card group relative h-full w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/60 dark:border-white/10 dark:bg-slate-950/90 dark:hover:border-cyan-300/40"
               >
-                <div className={`pointer-events-none absolute inset-0 opacity-20 dark:opacity-70 bg-linear-to-br ${project.gradient}`} />
+                <div className={`pointer-events-none absolute inset-0 opacity-20 dark:opacity-12 bg-linear-to-br ${project.gradient}`} />
                 <div className="relative">
                   <p className="text-xs uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-200/95">{project.category}</p>
                   <h3 className="mt-2 text-xl font-semibold text-slate-950 dark:text-white">{project.title}</h3>
