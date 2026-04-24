@@ -65,49 +65,40 @@ export const services: Service[] = [
 
 export const projects: Project[] = [
   {
-    id: "edu-flow",
-    title: "EduFlow LMS",
-    category: "Education",
-    summary: "A learning platform designed for institutions delivering hybrid education at scale.",
+    id: "swies-digital-system",
+    title: "SWIES Digital System",
+    category: "Internal Platform",
+    summary: "A streamlined digital operations platform for coordinating workflows, records, and team activity.",
     challenge:
-      "Fragmented class workflows and low learner engagement across distributed campuses.",
+      "Manual processes and scattered information made day-to-day operations difficult to track.",
     solution:
-      "Built a modular LMS with role-based dashboards, realtime sessions, and automated reporting.",
-    impact: "Reduced admin workload by 42% and improved completion rates by 31%.",
+      "Created a centralized digital system with structured workflows, accessible records, and clear task visibility.",
+    impact: "Improved operational visibility and reduced repetitive coordination work across teams.",
     gradient: "from-cyan-500/30 via-blue-500/20 to-violet-600/40",
   },
   {
-    id: "threadline",
-    title: "Threadline Commerce",
-    category: "Fashion",
-    summary: "An omnichannel commerce experience for a fast-moving fashion brand.",
-    challenge: "High cart abandonment and disconnected in-store and online inventory visibility.",
+    id: "ai-hepatitis-predictor",
+    title: "AI Hepatitis Predictor",
+    category: "Health Care",
+    summary: "An AI-assisted health tool designed to help assess hepatitis risk from patient data patterns.",
+    challenge:
+      "Early screening support was needed to help surface potential risk indicators faster for clinical review.",
     solution:
-      "Delivered a headless storefront with inventory sync, personalized campaigns, and smart checkout.",
-    impact: "Increased conversion by 24% and repeat purchases by 19% in 3 months.",
+      "Built a predictive interface that processes patient inputs and produces risk-focused analysis for decision support.",
+    impact: "Improved speed of preliminary assessment and supports more informed clinical follow-up.",
     gradient: "from-fuchsia-500/25 via-indigo-500/20 to-sky-500/35",
   },
   {
-    id: "opscore",
-    title: "OpsCore Suite",
-    category: "Business",
-    summary: "Internal operations platform streamlining workflows for growing enterprises.",
-    challenge: "Multiple manual tools slowed down teams and introduced process errors.",
+    id: "credit-scoring-system",
+    title: "Credit Scoring System",
+    category: "Ecommerce",
+    summary: "A credit decisioning system for ecommerce businesses evaluating customer trust and repayment risk.",
+    challenge:
+      "Merchants needed a reliable way to judge creditworthiness without slowing down the checkout or lending flow.",
     solution:
-      "Engineered a unified dashboard with workflow automation and actionable analytics.",
-    impact: "Cut cycle time by 37% and improved operational visibility across departments.",
+      "Developed a scoring engine that combines transaction signals and customer data into simple risk bands.",
+    impact: "Helps ecommerce teams make faster credit decisions and reduce avoidable exposure.",
     gradient: "from-blue-500/30 via-indigo-500/20 to-purple-600/35",
-  },
-  {
-    id: "pulseai",
-    title: "PulseAI Assist",
-    category: "Startup Product",
-    summary: "AGORM internal AI assistant for product teams and customer operations.",
-    challenge: "Decision-making speed suffered due to scattered data and repetitive support tasks.",
-    solution:
-      "Created an AI workspace with semantic search, summaries, and workflow-triggered actions.",
-    impact: "Saved 16+ team hours weekly and shortened response times by 53%.",
-    gradient: "from-violet-500/30 via-purple-500/20 to-blue-600/35",
   },
 ];
 

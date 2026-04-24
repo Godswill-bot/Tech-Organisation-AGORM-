@@ -73,14 +73,14 @@ export function ProjectsSection() {
               <button
                 type="button"
                 onClick={() => setSelectedProject(project)}
-                className="group relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-slate-900/60 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/40"
+                className="group relative h-full w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/60 dark:border-white/10 dark:bg-slate-900/60 dark:hover:border-cyan-300/40"
               >
-                <div className={`pointer-events-none absolute inset-0 opacity-70 bg-gradient-to-br ${project.gradient}`} />
+                <div className={`pointer-events-none absolute inset-0 opacity-20 dark:opacity-70 bg-gradient-to-br ${project.gradient}`} />
                 <div className="relative">
-                  <p className="text-xs uppercase tracking-[0.18em] text-cyan-200/95">{project.category}</p>
-                  <h3 className="mt-2 text-xl font-semibold text-white">{project.title}</h3>
-                  <p className="mt-4 text-sm leading-7 text-slate-200/90">{project.summary}</p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-cyan-100">
+                  <p className="text-xs uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-200/95">{project.category}</p>
+                  <h3 className="mt-2 text-xl font-semibold text-slate-950 dark:text-white">{project.title}</h3>
+                  <p className="mt-4 text-sm leading-7 text-slate-700 dark:text-slate-200/90">{project.summary}</p>
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-cyan-600 dark:text-cyan-100">
                     View details <ExternalLink size={16} className="transition-transform group-hover:translate-x-1" />
                   </span>
                 </div>
