@@ -51,7 +51,7 @@ function TeamProfileModal({
                 className="h-full min-h-90 w-full object-cover lg:min-h-190"
               />
             ) : (
-              <div className="grid min-h-90 place-items-center text-sm uppercase tracking-[0.2em] text-slate-400 lg:min-h-190">
+              <div className="grid min-h-90 place-items-center text-sm uppercase tracking-[0.2em] text-slate-600 dark:text-slate-400 lg:min-h-190">
                 Image unavailable
               </div>
             )}
@@ -67,7 +67,7 @@ function TeamProfileModal({
               <p className="mt-6 text-base leading-8 text-slate-700 dark:text-slate-300">{member.bio}</p>
 
               <div className="mt-8">
-                <p className="text-xs uppercase tracking-[0.24em] text-slate-600 dark:text-slate-400">Core Expertise</p>
+                <p className="text-xs uppercase tracking-[0.24em] text-slate-700 dark:text-slate-400">Core Expertise</p>
                 <div className="mt-4 flex flex-wrap gap-3">
                   {member.expertise.map((item) => (
                     <span
@@ -86,7 +86,7 @@ function TeamProfileModal({
                 href={`tel:${member.phone.replace(/\s+/g, "")}`}
                 className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:border-cyan-400 hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:text-white"
               >
-                <span className="block text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Phone</span>
+                <span className="block text-xs uppercase tracking-[0.18em] text-slate-700 dark:text-slate-400">Phone</span>
                 <span className="mt-1 block wrap-break-word">{member.phone}</span>
               </a>
               {member.email ? (
@@ -94,7 +94,7 @@ function TeamProfileModal({
                   href={member.email}
                   className="rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm font-medium text-slate-800 transition-colors hover:border-cyan-400 hover:text-slate-900 dark:border-white/10 dark:bg-white/5 dark:text-slate-200 dark:hover:text-white"
                 >
-                  <span className="block text-xs uppercase tracking-[0.18em] text-slate-600 dark:text-slate-400">Email</span>
+                  <span className="block text-xs uppercase tracking-[0.18em] text-slate-700 dark:text-slate-400">Email</span>
                   <span className="mt-1 block wrap-break-word">{member.email.replace("mailto:", "")}</span>
                 </a>
               ) : null}

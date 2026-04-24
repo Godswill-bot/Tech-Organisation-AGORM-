@@ -56,7 +56,7 @@ export function ContactSection() {
                   name="name"
                   type="text"
                   required
-                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition-colors placeholder:text-slate-500 focus:border-cyan-500 focus:shadow-[0_0_0_3px_rgb(6,182,212,0.14)] dark:border-white/15 dark:bg-slate-950/80 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-cyan-300"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition-colors placeholder:text-slate-600 focus:border-cyan-500 focus:shadow-[0_0_0_3px_rgb(6,182,212,0.14)] dark:border-white/15 dark:bg-slate-950/80 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-cyan-300"
                   placeholder="Your name"
                 />
               </div>
@@ -70,7 +70,7 @@ export function ContactSection() {
                   name="email"
                   type="email"
                   required
-                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition-colors placeholder:text-slate-500 focus:border-cyan-500 focus:shadow-[0_0_0_3px_rgb(6,182,212,0.14)] dark:border-white/15 dark:bg-slate-950/80 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-cyan-300"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition-colors placeholder:text-slate-600 focus:border-cyan-500 focus:shadow-[0_0_0_3px_rgb(6,182,212,0.14)] dark:border-white/15 dark:bg-slate-950/80 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-cyan-300"
                   placeholder="you@company.com"
                 />
               </div>
@@ -84,7 +84,7 @@ export function ContactSection() {
                   name="message"
                   rows={5}
                   required
-                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition-colors placeholder:text-slate-500 focus:border-cyan-500 focus:shadow-[0_0_0_3px_rgb(6,182,212,0.14)] dark:border-white/15 dark:bg-slate-950/80 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-cyan-300"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-950 outline-none transition-colors placeholder:text-slate-600 focus:border-cyan-500 focus:shadow-[0_0_0_3px_rgb(6,182,212,0.14)] dark:border-white/15 dark:bg-slate-950/80 dark:text-white dark:placeholder:text-slate-500 dark:focus:border-cyan-300"
                   placeholder="What are you building?"
                 />
               </div>
