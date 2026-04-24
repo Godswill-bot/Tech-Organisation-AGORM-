@@ -43,7 +43,11 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
           <button
             type="button"
             onClick={onToggleTheme}
-            className="rounded-full border border-white/15 bg-white/5 p-2 text-foreground transition-colors duration-300 hover:border-cyan-300/50 hover:bg-cyan-300/10 dark:bg-transparent"
+            className={
+              theme === "dark"
+                ? "rounded-full border border-white/15 bg-transparent p-2 text-foreground transition-colors duration-300 hover:border-cyan-300/50 hover:bg-cyan-300/10"
+                : "rounded-full border border-slate-300 bg-white p-2 text-slate-700 transition-colors duration-300 hover:border-cyan-400 hover:bg-cyan-50 hover:text-slate-950"
+            }
             aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
           >
             {theme === "dark" ? <SunMedium size={16} /> : <MoonStar size={16} />}
@@ -73,14 +77,18 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.25 }}
-            className="border-t border-white/10 bg-background/95 px-5 py-4 md:hidden dark:border-slate-200/80 dark:bg-white/95"
+            className={
+              theme === "dark"
+                ? "border-t border-white/10 bg-background/95 px-5 py-4 md:hidden"
+                : "border-t border-slate-200/80 bg-white/95 px-5 py-4 md:hidden"
+            }
           >
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="text-sm text-foreground dark:text-slate-700"
+                  className={theme === "dark" ? "text-sm text-foreground" : "text-sm text-slate-700"}
                   onClick={() => setOpen(false)}
                 >
                   {link.label}
@@ -89,7 +97,7 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
               <button
                 type="button"
                 onClick={onToggleTheme}
-                className="mt-2 inline-flex items-center gap-2 text-left text-sm text-foreground dark:text-slate-700"
+                className={theme === "dark" ? "mt-2 inline-flex items-center gap-2 text-left text-sm text-foreground" : "mt-2 inline-flex items-center gap-2 text-left text-sm text-slate-700"}
               >
                 {theme === "dark" ? <SunMedium size={16} /> : <MoonStar size={16} />}
                 {theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
