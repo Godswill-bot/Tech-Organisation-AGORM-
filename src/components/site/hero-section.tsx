@@ -65,13 +65,13 @@ export function HeroSection() {
               >
                 <a
                   href="#contact"
-                  className="agorm-pill rounded-full bg-slate-900 px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-300 hover:scale-[1.03] hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100"
+                  className="agorm-pill rounded-full bg-slate-900 px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-300 hover:scale-[1.03] hover:bg-slate-800 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700"
                 >
                   Read More
                 </a>
                 <a
                   href="#projects"
-                  className="agorm-pill-muted rounded-full border border-slate-400 bg-white/95 px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-800 transition-colors duration-300 hover:border-slate-500 hover:bg-white dark:border-white/20 dark:bg-transparent dark:text-slate-100 dark:hover:border-cyan-300 dark:hover:text-cyan-100"
+                  className="agorm-pill-muted rounded-full border border-slate-400 bg-white/95 px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-800 transition-colors duration-300 hover:border-slate-500 hover:bg-white dark:border-slate-600 dark:bg-slate-900/80 dark:text-slate-100 dark:hover:border-cyan-300 dark:hover:bg-slate-800 dark:hover:text-cyan-100"
                 >
                   View Projects
                 </a>
@@ -84,7 +84,7 @@ export function HeroSection() {
               </div>
             </div>
 
-            <div className="relative min-h-104 lg:min-h-136">
+            <div className="relative min-h-112 lg:min-h-144">
               <div className="absolute left-0 top-12 h-16 w-16 rounded-full border border-sky-200 bg-sky-50/80 shadow-sm dark:border-cyan-400/20 dark:bg-cyan-500/10" />
               <div className="absolute bottom-10 right-0 h-20 w-20 rounded-full border border-slate-200 bg-white/80 shadow-sm dark:border-white/10 dark:bg-white/5" />
 
@@ -92,7 +92,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 18, rotate: -4 }}
                 animate={{ opacity: 1, y: 0, rotate: -4 }}
                 transition={{ duration: 0.9, delay: 0.16 }}
-                className="hero-octagon absolute right-0 top-0 h-80 w-56 overflow-hidden border-[6px] border-slate-300 bg-white/95 shadow-[0_25px_60px_rgba(15,23,42,0.08)] lg:h-104 lg:w-72 dark:border-slate-700 dark:bg-slate-950 dark:shadow-[0_25px_60px_rgba(0,0,0,0.3)]"
+                className="hero-octagon absolute right-0 top-0 h-90 w-64 overflow-hidden border-[6px] border-slate-300 bg-white/95 shadow-[0_25px_60px_rgba(15,23,42,0.08)] lg:h-116 lg:w-84 dark:border-slate-700 dark:bg-slate-950 dark:shadow-[0_25px_60px_rgba(0,0,0,0.3)]"
               >
                 <Image
                   src={WearingVarImage}

@@ -51,7 +51,7 @@ function TeamProfileModal({
                 className="h-full min-h-90 w-full object-cover lg:min-h-190"
               />
             ) : (
-              <div className="grid min-h-90 place-items-center text-sm uppercase tracking-[0.2em] text-slate-600 dark:text-slate-400 lg:min-h-190">
+              <div className="agorm-placeholder-image grid min-h-90 place-items-center text-sm uppercase tracking-[0.2em] text-slate-600 dark:text-slate-300 lg:min-h-190">
                 Image unavailable
               </div>
             )}
@@ -149,7 +149,7 @@ export function TeamSection() {
                       className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   ) : (
-                    <div className="grid h-44 place-items-center text-xs uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">
+                    <div className="agorm-placeholder-image grid h-44 place-items-center text-xs uppercase tracking-[0.16em] text-slate-500 dark:text-slate-300">
                       Image Placeholder
                     </div>
                   )}

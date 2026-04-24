@@ -86,3 +86,49 @@ h6 {
   background-color: rgba(2, 6, 23, 0.88) !important;
   border-color: rgba(51, 65, 85, 0.9) !important;
 }
+
+[data-theme="dark"] .agorm-placeholder-image {
+  background-color: rgba(15, 23, 42, 0.82) !important;
+  color: rgba(203, 213, 225, 0.96) !important;
+}
+
+[data-theme="dark"] .agorm-hero-card :is(button, a.agorm-pill, a.agorm-pill-muted),
+[data-theme="dark"] .agorm-contact-form-card button,
+[data-theme="dark"] .agorm-footer a[aria-label] {
+  border-color: rgba(71, 85, 105, 0.95) !important;
+  color: rgba(241, 245, 249, 0.98) !important;
+}
+
+[data-theme="dark"] .agorm-hero-card :is(p, span, a),
+[data-theme="dark"] .agorm-about-card :is(p, span, a),
+[data-theme="dark"] .agorm-service-card :is(p, span, a),
+[data-theme="dark"] .agorm-contact-list-card :is(p, span, a),
+[data-theme="dark"] .agorm-contact-person-card :is(p, span, a),
+[data-theme="dark"] .agorm-contact-form-card :is(p, span, label),
+[data-theme="dark"] .agorm-footer :is(p, span, a) {
+  color: rgba(203, 213, 225, 0.96) !important;
+}
+
+[data-theme="dark"] .agorm-contact-form-card :is(input, textarea) {
+  background-color: rgba(2, 6, 23, 0.9) !important;
+  color: rgba(241, 245, 249, 0.98) !important;
+  border-color: rgba(71, 85, 105, 0.95) !important;
+}
+
+[data-theme="dark"] .agorm-contact-form-card :is(input, textarea)::placeholder {
+  color: rgba(148, 163, 184, 0.9) !important;
+}
+
+[data-theme="dark"] .agorm-contact-form-card :is(input, textarea):focus {
+  border-color: rgba(34, 211, 238, 0.95) !important;
+}
+
+[data-theme="dark"] .agorm-hero-card :is(h1, h2, h3, h4),
+[data-theme="dark"] .agorm-about-card :is(h1, h2, h3, h4),
+[data-theme="dark"] .agorm-service-card :is(h1, h2, h3, h4),
+[data-theme="dark"] .agorm-contact-list-card :is(h1, h2, h3, h4),
+[data-theme="dark"] .agorm-contact-person-card :is(h1, h2, h3, h4),
+[data-theme="dark"] .agorm-contact-form-card :is(h1, h2, h3, h4),
+[data-theme="dark"] .agorm-footer :is(h1, h2, h3, h4) {
+  color: rgba(248, 250, 252, 0.98) !important;
+}
