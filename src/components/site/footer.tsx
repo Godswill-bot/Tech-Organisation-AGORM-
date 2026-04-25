@@ -26,13 +26,13 @@ export function Footer() {
         </div>
 
         <div className="flex items-center gap-3">
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="rounded-md border border-slate-300 bg-white p-2 text-slate-700 transition-colors hover:border-cyan-400 hover:text-cyan-600 dark:border-white/15 dark:bg-transparent dark:text-slate-200 dark:hover:border-cyan-300/50 dark:hover:text-cyan-100">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="agorm-footer-icon rounded-md border border-slate-300 bg-white p-2 text-slate-700 transition-colors hover:border-cyan-400 hover:text-cyan-600 dark:border-white/15 dark:bg-transparent dark:text-slate-200 dark:hover:border-cyan-300/50 dark:hover:text-cyan-100">
             <Link size={16} />
           </a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="rounded-md border border-slate-300 bg-white p-2 text-slate-700 transition-colors hover:border-cyan-400 hover:text-cyan-600 dark:border-white/15 dark:bg-transparent dark:text-slate-200 dark:hover:border-cyan-300/50 dark:hover:text-cyan-100">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="agorm-footer-icon rounded-md border border-slate-300 bg-white p-2 text-slate-700 transition-colors hover:border-cyan-400 hover:text-cyan-600 dark:border-white/15 dark:bg-transparent dark:text-slate-200 dark:hover:border-cyan-300/50 dark:hover:text-cyan-100">
             <Globe size={16} />
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="rounded-md border border-slate-300 bg-white p-2 text-slate-700 transition-colors hover:border-cyan-400 hover:text-cyan-600 dark:border-white/15 dark:bg-transparent dark:text-slate-200 dark:hover:border-cyan-300/50 dark:hover:text-cyan-100">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="agorm-footer-icon rounded-md border border-slate-300 bg-white p-2 text-slate-700 transition-colors hover:border-cyan-400 hover:text-cyan-600 dark:border-white/15 dark:bg-transparent dark:text-slate-200 dark:hover:border-cyan-300/50 dark:hover:text-cyan-100">
             <Send size={16} />
           </a>
         </div>

@@ -139,7 +139,7 @@ export function TeamSection() {
                 onClick={() => setSelectedMember(member)}
                 className="agorm-team-card group h-full rounded-2xl border border-slate-300/70 bg-white p-5 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/60 dark:border-white/10 dark:bg-slate-950/85 dark:shadow-none dark:hover:border-indigo-300/45"
               >
-                <div className="mb-4 overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950/70">
+                <div className="agorm-team-media-shell mb-4 overflow-hidden rounded-xl border border-slate-200 bg-white dark:border-white/10 dark:bg-slate-950/70">
                   {member.image ? (
                     <Image
                       src={member.image}
