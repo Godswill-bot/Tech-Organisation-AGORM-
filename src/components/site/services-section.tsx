@@ -41,13 +41,16 @@ const serviceDetails: Record<string, string[]> = {
 
 export function ServicesSection() {
   return (
-    <section id="services" className="px-5 py-20 sm:px-8 sm:py-30">
+    <section id="services" className="bg-slate-50 px-5 py-20 text-slate-900 sm:px-8 sm:py-30">
       <div className="mx-auto max-w-7xl">
         <SectionReveal>
           <SectionTitle
             eyebrow="Services"
             title="Expanded Engineering Services For Product Teams That Need Delivery Depth"
             description="AGOM offers structured service tracks across product engineering, design, and technical strategy so your business can move from planning to measurable delivery without losing execution quality."
+            eyebrowClassName="text-cyan-700"
+            titleClassName="text-slate-900"
+            descriptionClassName="text-slate-700"
           />
         </SectionReveal>
 
@@ -57,17 +60,17 @@ export function ServicesSection() {
             const details = serviceDetails[service.title] ?? [];
             return (
               <SectionReveal key={service.title} delay={index * 0.06}>
-                <article className="group h-full rounded-3xl border border-white/10 bg-slate-900/45 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/35 hover:bg-slate-900/65 sm:p-7">
-                  <div className="mb-6 inline-flex rounded-xl border border-cyan-300/30 bg-cyan-300/10 p-3 text-cyan-300 transition-colors duration-300 group-hover:text-cyan-200">
+                <article className="group h-full rounded-3xl bg-white p-6 shadow-[0_14px_36px_rgba(15,23,42,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_48px_rgba(15,23,42,0.1)] sm:p-7">
+                  <div className="mb-6 inline-flex rounded-xl bg-cyan-50 p-3 text-cyan-600 transition-colors duration-300 group-hover:text-cyan-500">
                     <Icon size={22} />
                   </div>
-                  <h3 className="text-2xl font-semibold text-white">{service.title}</h3>
-                  <p className="mt-4 text-base leading-8 text-slate-300">{service.description}</p>
+                  <h3 className="text-2xl font-semibold text-slate-900">{service.title}</h3>
+                  <p className="mt-4 text-base leading-8 text-slate-700">{service.description}</p>
 
                   <div className="mt-6 space-y-3">
                     {details.map((detail) => (
-                      <p key={detail} className="text-sm leading-7 text-slate-300">
-                        <span className="mr-2 text-cyan-300">•</span>
+                      <p key={detail} className="text-sm leading-7 text-slate-700">
+                        <span className="mr-2 text-cyan-500">•</span>
                         {detail}
                       </p>
                     ))}
@@ -79,20 +82,20 @@ export function ServicesSection() {
         </div>
 
         <SectionReveal className="mt-10">
-          <div className="rounded-3xl border border-white/10 bg-white/[0.02] p-6 sm:p-8">
-            <p className="text-xs uppercase tracking-[0.24em] text-cyan-300">Service Delivery Model</p>
+          <div className="rounded-[2rem] bg-white p-6 shadow-[0_14px_36px_rgba(15,23,42,0.06)] sm:p-8">
+            <p className="text-xs uppercase tracking-[0.24em] text-cyan-700">Service Delivery Model</p>
             <div className="mt-4 grid gap-4 md:grid-cols-3">
-              <div className="rounded-2xl border border-white/10 bg-slate-900/55 p-5">
-                <p className="text-sm font-semibold text-white">Discovery And Scope</p>
-                <p className="mt-2 text-sm leading-7 text-slate-300">Define requirements, dependencies, and risk boundaries before implementation begins.</p>
+              <div className="rounded-2xl bg-slate-50 p-5">
+                <p className="text-sm font-semibold text-slate-900">Discovery And Scope</p>
+                <p className="mt-2 text-sm leading-7 text-slate-700">Define requirements, dependencies, and risk boundaries before implementation begins.</p>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-slate-900/55 p-5">
-                <p className="text-sm font-semibold text-white">Execution And Review</p>
-                <p className="mt-2 text-sm leading-7 text-slate-300">Ship in clear milestones with collaborative reviews to maintain quality and alignment.</p>
+              <div className="rounded-2xl bg-slate-50 p-5">
+                <p className="text-sm font-semibold text-slate-900">Execution And Review</p>
+                <p className="mt-2 text-sm leading-7 text-slate-700">Ship in clear milestones with collaborative reviews to maintain quality and alignment.</p>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-slate-900/55 p-5">
-                <p className="text-sm font-semibold text-white">Optimization And Support</p>
-                <p className="mt-2 text-sm leading-7 text-slate-300">Measure outcomes post-launch and continuously improve based on real usage signals.</p>
+              <div className="rounded-2xl bg-slate-50 p-5">
+                <p className="text-sm font-semibold text-slate-900">Optimization And Support</p>
+                <p className="mt-2 text-sm leading-7 text-slate-700">Measure outcomes post-launch and continuously improve based on real usage signals.</p>
               </div>
             </div>
           </div>
