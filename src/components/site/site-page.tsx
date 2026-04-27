@@ -8,7 +8,7 @@ import { HeroSection } from "@/components/site/hero-section";
 import { Navbar } from "@/components/site/navbar";
 import { ProjectsSection } from "@/components/site/projects-section";
 import { ServicesSection } from "@/components/site/services-section";
-import { TeamSection } from "@/components/site/team-section";
+import { TestimonialsSection } from "@/components/site/testimonials-section";
 
 export function SitePage() {
   return (
@@ -37,7 +37,7 @@ export function SitePage() {
         <AboutSection />
         <ServicesSection />
         <ProjectsSection />
-        <TeamSection />
+        <TestimonialsSection />
         <ContactSection />
       </motion.main>
 

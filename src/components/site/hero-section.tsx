@@ -77,14 +77,14 @@ export function HeroSection() {
                 transition={{ duration: 0.8, delay: 0.25 }}
                 className="mb-10 flex flex-col gap-4 sm:flex-row"
               >
-                <motion.a href="#contact" className="btn-primary flex items-center justify-center group" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                <motion.a href="#contact" className="btn-primary flex items-center justify-center group px-10 py-4 text-base" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                   Work With Us
                   <motion.span className="ml-2" animate={{ x: [0, 4, 0] }} transition={{ duration: 2, repeat: Infinity }}>
                     →
                   </motion.span>
                 </motion.a>
 
-                <motion.a href="#projects" className="btn-secondary flex items-center justify-center" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                <motion.a href="#projects" className="btn-secondary flex items-center justify-center px-10 py-4 text-base" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                   View Projects
                 </motion.a>
               </motion.div>
@@ -98,7 +98,7 @@ export function HeroSection() {
                 {["Strategy", "Design", "Engineering"].map((capability, i) => (
                   <motion.div
                     key={capability}
-                    className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-slate-300 transition-all duration-300 hover:border-cyan-300/55 hover:bg-cyan-300/10"
+                    className="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-base font-medium text-slate-300 transition-all duration-300 hover:border-cyan-300/55 hover:bg-cyan-300/10"
                     whileHover={{ y: -2 }}
                     transition={{ delay: i * 0.05 }}
                   >

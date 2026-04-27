@@ -18,22 +18,30 @@ const points = [
 
 export function AboutSection() {
   return (
-    <section id="about" className="px-5 py-20 sm:px-8 sm:py-28">
+    <section id="about" className="px-5 py-22 sm:px-8 sm:py-30">
       <div className="mx-auto max-w-7xl">
         <SectionReveal>
-          <SectionTitle
-            eyebrow="About AGORM"
-            title="Built By Thinkers, Makers, And Problem Solvers"
-            description="We build robust technology solutions while continuously innovating our own internal startup products."
-          />
+          <div className="mb-12 grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+            <SectionTitle
+              eyebrow="About AGORM"
+              title="Who We Are"
+              description="We are a product-focused technology organization designing and engineering scalable digital systems for ambitious businesses."
+            />
+            <div className="p-6">
+              <p className="text-xs uppercase tracking-[0.24em] text-cyan-300">Mission</p>
+              <p className="mt-3 text-base leading-8 text-slate-300">
+                To translate bold ideas into reliable software products through strategy, design, and engineering excellence.
+              </p>
+            </div>
+          </div>
         </SectionReveal>
 
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-3">
           {points.map((point, index) => (
             <SectionReveal key={point.title} delay={index * 0.08}>
-              <article className="agorm-about-card h-full rounded-2xl border border-slate-300/70 bg-white/90 p-6 shadow-[0_14px_38px_rgba(15,23,42,0.08)] transition-transform duration-300 hover:-translate-y-1 hover:border-cyan-400/60 dark:border-white/10 dark:bg-white/3 dark:shadow-none dark:hover:border-cyan-300/40">
-                <h3 className="text-lg font-semibold text-slate-950 dark:text-white">{point.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-700 dark:text-slate-300">{point.body}</p>
+              <article className="h-full border-l border-cyan-300/35 pl-5">
+                <h3 className="text-xl font-semibold text-white">{point.title}</h3>
+                <p className="mt-4 text-base leading-8 text-slate-300">{point.body}</p>
               </article>
             </SectionReveal>
           ))}
