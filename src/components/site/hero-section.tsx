@@ -1,8 +1,6 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
-import WearingVarImage from "../../../WEARING VAR.avif";
 
 export function HeroSection() {
   const { scrollY } = useScroll();
@@ -38,7 +36,7 @@ export function HeroSection() {
           className="w-full"
           style={{ scale: scaleHero }}
         >
-          <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+          <div className="grid gap-12 lg:grid-cols-1 lg:items-center">
             <div className="relative z-10">
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
@@ -54,7 +52,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.15 }}
-                className="text-hover-soft mb-6 text-5xl font-bold leading-[1.03] text-white sm:text-6xl lg:text-7xl"
+                className="mb-6 text-5xl font-bold leading-[1.03] text-white sm:text-6xl lg:text-7xl"
               >
                 We Build Digital Systems
                 <span className="mt-1 block w-fit bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
@@ -66,7 +64,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-hover-soft mb-8 max-w-xl text-lg leading-relaxed text-slate-200 sm:text-xl"
+                className="mb-8 max-w-xl text-lg leading-relaxed text-slate-100 sm:text-xl"
               >
                 AGOM engineers high-impact platforms from strategy to launch, pairing bold product thinking with disciplined technical execution.
               </motion.p>
@@ -106,43 +104,6 @@ export function HeroSection() {
                   </motion.div>
                 ))}
               </motion.div>
-            </div>
-
-            <div className="relative h-[30rem] sm:h-[34rem] lg:h-[42rem]">
-              <motion.div
-                className="absolute -top-20 -right-20 h-40 w-40 rounded-full border border-white/20"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.div
-                className="absolute bottom-20 -left-10 h-32 w-32 rounded-full border border-white/20"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-              />
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, rotate: -6 }}
-                animate={{ opacity: 1, scale: 1, rotate: -6 }}
-                transition={{ duration: 0.9, delay: 0.2 }}
-                className="hero-octagon absolute -left-8 top-0 h-80 w-64 overflow-hidden border-2 border-white/15 bg-slate-900/60 shadow-2xl shadow-black/20 transition-all duration-500 hover:border-white/30 sm:-left-10 sm:h-[26rem] sm:w-[20rem] lg:-left-16 lg:h-[34rem] lg:w-[28rem]"
-                whileHover={{ y: -8 }}
-              >
-                <Image
-                  src={WearingVarImage}
-                  alt="[IMAGE PLACEHOLDER: futuristic product and technology visual]"
-                  fill
-                  priority
-                  sizes="(max-width: 768px) 50vw, 30vw"
-                  className="object-cover"
-                />
-              </motion.div>
-
-              <motion.div className="absolute left-1/4 top-1/4 h-3 w-3 animate-pulse rounded-full bg-white/45 blur-sm" />
-              <motion.div
-                className="absolute right-1/3 top-1/3 h-2 w-2 rounded-full bg-white/45 blur-sm"
-                animate={{ opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 1.8, repeat: Infinity }}
-              />
             </div>
           </div>
         </motion.div>
