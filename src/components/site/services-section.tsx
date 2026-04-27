@@ -51,6 +51,8 @@ export function ServicesSection() {
             eyebrowClassName="text-cyan-700"
             titleClassName="text-slate-900"
             descriptionClassName="text-slate-700"
+            titleHoverClassName="text-hover-ink"
+            descriptionHoverClassName="text-hover-ink"
           />
         </SectionReveal>
 

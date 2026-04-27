@@ -12,7 +12,7 @@ export function SystemsContextSections() {
             <div className="pointer-events-none absolute -right-12 top-0 h-64 w-64 rounded-full bg-cyan-200/30 blur-3xl" />
             <p className="relative text-xs font-semibold uppercase tracking-[0.3em] text-emerald-900/65">Operating Model</p>
             <div className="relative mt-5 max-w-4xl">
-              <h2 className="text-hover-accent text-balance text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
+              <h2 className="text-hover-ink text-balance text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
                 How We Build Your Systems Without Breaking Your Existing Workflow
               </h2>
               <p className="text-hover-soft mt-5 max-w-3xl text-lg leading-8 text-slate-700">
@@ -25,7 +25,7 @@ export function SystemsContextSections() {
                 <SectionReveal key={step.id} delay={index * 0.06}>
                   <article className="h-full rounded-[1.75rem] bg-slate-50 p-7 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_40px_rgba(15,23,42,0.08)]">
                     <p className="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-900/55">{step.id}</p>
-                    <h3 className="text-hover-soft mt-16 text-3xl font-semibold leading-tight text-slate-900">{step.title}</h3>
+                    <h3 className="text-hover-ink mt-16 text-3xl font-semibold leading-tight text-slate-900">{step.title}</h3>
                     <p className="mt-5 text-base leading-7 text-slate-700">{step.description}</p>
                   </article>
                 </SectionReveal>
@@ -48,7 +48,7 @@ export function SystemsContextSections() {
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-900/60">AGOM Product Suites</p>
             <div className="mt-5 grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:items-start">
               <div>
-                <h2 className="text-hover-accent text-balance text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
+                <h2 className="text-hover-ink text-balance text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
                   Systems Built For Real Teams, Real Work, And Real Constraints
                 </h2>
                 <p className="text-hover-soft mt-5 max-w-2xl text-lg leading-8 text-slate-700">
@@ -66,7 +66,7 @@ export function SystemsContextSections() {
                       <div className={`pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r opacity-90 ${suite.accent}`} />
                       <div className="relative">
                         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-900/60">{suite.focus}</p>
-                        <h3 className="text-hover-soft mt-3 text-4xl font-semibold leading-tight text-slate-900">{suite.name}</h3>
+                        <h3 className="text-hover-ink mt-3 text-4xl font-semibold leading-tight text-slate-900">{suite.name}</h3>
                         <p className="mt-4 text-sm leading-7 text-slate-700">{suite.summary}</p>
                         {suite.href ? (
                           <a
@@ -94,7 +94,7 @@ export function SystemsContextSections() {
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-900/60">AGOM Insights</p>
             <div className="mt-5 grid gap-8 lg:grid-cols-[1fr_1.25fr]">
               <div>
-                <h2 className="text-hover-accent text-balance text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
+                <h2 className="text-hover-ink text-balance text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
                   Latest Updates On Systems, Delivery, And Product Operations
                 </h2>
                 <p className="text-hover-soft mt-5 max-w-xl text-lg leading-8 text-slate-700">
@@ -109,7 +109,7 @@ export function SystemsContextSections() {
                       <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                         {insight.category} <span className="mx-2">•</span> {insight.date}
                       </p>
-                      <h3 className="text-hover-soft mt-5 text-3xl font-semibold leading-tight text-slate-900">{insight.title}</h3>
+                      <h3 className="text-hover-ink mt-5 text-3xl font-semibold leading-tight text-slate-900">{insight.title}</h3>
                       <p className="mt-4 text-sm leading-7 text-slate-700">{insight.summary}</p>
                       <a href={insight.href} className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-emerald-900 transition-colors hover:text-emerald-700">
                         {insight.cta} <ArrowRight size={14} />

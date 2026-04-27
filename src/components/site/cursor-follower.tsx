@@ -1,5 +1,6 @@
 "use client";
 
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 
 type CursorState = {
@@ -33,6 +34,11 @@ export function CursorFollower() {
     return window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   }, []);
 
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
+  const smoothCursorX = useSpring(cursorX, { stiffness: 240, damping: 28, mass: 0.45 });
+  const smoothCursorY = useSpring(cursorY, { stiffness: 240, damping: 28, mass: 0.45 });
+
   useEffect(() => {
     if (!isFinePointer) return;
 
@@ -56,6 +62,8 @@ export function CursorFollower() {
     };
 
     const onPointerMove = (event: PointerEvent) => {
+      cursorX.set(event.clientX);
+      cursorY.set(event.clientY);
       setState((prev) => ({
         ...prev,
         x: event.clientX,
@@ -93,33 +101,36 @@ export function CursorFollower() {
   }
 
   return (
-    <div
+    <motion.div
       aria-hidden="true"
-      className="pointer-events-none fixed left-0 top-0 z-[100] hidden md:block"
-      style={{
-        transform: `translate3d(${state.x}px, ${state.y}px, 0) translate(-50%, -50%)`,
-        opacity: state.visible ? 1 : 0,
-      }}
+      className="pointer-events-none fixed left-0 top-0 z-[100] hidden md:block -translate-x-1/2 -translate-y-1/2"
+      style={{ x: smoothCursorX, y: smoothCursorY, opacity: state.visible ? 1 : 0 }}
     >
-      <div
-        className={`relative grid place-items-center rounded-full border border-cyan-200/40 bg-slate-950/70 shadow-[0_0_40px_rgba(0,217,255,0.16)] backdrop-blur-md transition-all duration-200 ${
-          state.active ? "h-24 w-24 scale-110 border-cyan-300/70" : "h-4 w-4"
+      <motion.div
+        animate={state.active ? { scale: 1.25 } : { scale: 1 }}
+        transition={{ type: "spring", stiffness: 220, damping: 18, mass: 0.5 }}
+        className={`relative grid place-items-center rounded-full border border-cyan-200/40 bg-slate-950/70 shadow-[0_0_40px_rgba(0,217,255,0.16)] backdrop-blur-md ${
+          state.active ? "h-24 w-24 border-cyan-300/70" : "h-4 w-4"
         }`}
       >
-        <div
-          className={`absolute inset-0 rounded-full bg-gradient-to-br from-cyan-300/30 via-transparent to-indigo-300/30 transition-opacity duration-200 ${
-            state.active ? "opacity-100" : "opacity-0"
-          }`}
+        <motion.div
+          animate={state.active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
+          transition={{ type: "spring", stiffness: 180, damping: 22, mass: 0.45 }}
+          className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-300/30 via-transparent to-indigo-300/30"
         />
-        <div className={`absolute inset-[10%] rounded-full border border-white/15 transition-opacity duration-200 ${state.active ? "opacity-100" : "opacity-0"}`} />
+        <motion.div
+          animate={state.active ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-[10%] rounded-full border border-white/15"
+        />
         <span
-          className={`relative max-w-[5.8rem] px-2 text-center text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition-all duration-200 ${
+          className={`relative max-w-[5.8rem] px-2 text-center text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition-all duration-300 ${
             state.active ? "scale-100 opacity-100" : "scale-0 opacity-0"
           }`}
         >
           {state.label || "AGOM"}
         </span>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

@@ -42,6 +42,8 @@ export function AboutSection() {
               eyebrowClassName="text-emerald-700"
               titleClassName="text-slate-900"
               descriptionClassName="text-slate-700"
+              titleHoverClassName="text-hover-ink"
+              descriptionHoverClassName="text-hover-ink"
             />
             <div className="rounded-3xl bg-slate-50 p-6 shadow-[0_14px_36px_rgba(15,23,42,0.06)]">
               <p className="text-xs uppercase tracking-[0.24em] text-emerald-700">Mission</p>
