@@ -148,8 +148,14 @@ export function HeroSection() {
                 </div>
               </motion.div>
 
-              <div className="absolute -bottom-4 right-4 rounded-xl border border-white/15 bg-slate-900/70 px-4 py-3 text-xs uppercase tracking-[0.2em] text-slate-300">
-                [IMAGE PLACEHOLDER: product dashboard preview]
+              <div className="absolute -bottom-4 right-4 h-28 w-52 overflow-hidden rounded-xl border border-white/15 bg-slate-900/70 shadow-lg shadow-black/40">
+                <Image
+                  src="/hero-dashboard-preview.png"
+                  alt="Product dashboard preview"
+                  fill
+                  sizes="208px"
+                  className="object-cover"
+                />
               </div>
 
               <motion.div className="absolute left-1/4 top-1/4 h-3 w-3 animate-pulse rounded-full bg-cyan-300/45 blur-sm" />

@@ -18,6 +18,8 @@ export type Project = {
   impact: string;
   metric: string;
   previewImage?: string;
+  websiteUrl?: string;
+  trackerUrl?: string;
   gradient: string;
 };
 
@@ -84,7 +86,9 @@ export const projects: Project[] = [
       "Created a centralized digital system with structured workflows, accessible records, and clear task visibility.",
     impact: "Improved operational visibility and reduced repetitive coordination work across teams.",
     metric: "40% faster internal coordination",
-    previewImage: "/siwes-system-project.png",
+    previewImage: "/siwes-system-project-updated.png",
+    websiteUrl: "https://mtuswiesplatform.me/",
+    trackerUrl: "https://mtusiwes-track.vercel.app",
     gradient: "from-cyan-500/30 via-blue-500/20 to-violet-600/40",
   },
   {

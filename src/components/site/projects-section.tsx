@@ -68,6 +68,31 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
             <span className="font-medium text-white">Case Study Metric:</span> {project.metric}
           </p>
         </div>
+
+        {project.websiteUrl || project.trackerUrl ? (
+          <div className="mt-6 flex flex-wrap gap-3">
+            {project.websiteUrl ? (
+              <a
+                href={project.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-cyan-300/45 bg-cyan-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-200 transition-colors hover:bg-cyan-300/20"
+              >
+                MTU SIWES Platform <ExternalLink size={14} />
+              </a>
+            ) : null}
+            {project.trackerUrl ? (
+              <a
+                href={project.trackerUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-indigo-300/45 bg-indigo-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-indigo-200 transition-colors hover:bg-indigo-300/20"
+              >
+                MTU SIWES Tracker <ExternalLink size={14} />
+              </a>
+            ) : null}
+          </div>
+        ) : null}
       </motion.div>
     </motion.div>
   );
