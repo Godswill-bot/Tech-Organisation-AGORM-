@@ -16,7 +16,7 @@ export function HeroSection() {
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <video
           className="absolute inset-0 h-full w-full object-cover"
-          src="/BLACKNPURPLE.mp4"
+          src="/13007245_3840_2160_30fps.mp4"
           autoPlay
           loop
           muted
