@@ -6,122 +6,164 @@ import WearingVarImage from "../../../WEARING VAR.avif";
 
 export function HeroSection() {
   const { scrollY } = useScroll();
-  const yOne = useTransform(scrollY, [0, 600], [0, -90]);
-  const yTwo = useTransform(scrollY, [0, 600], [0, 60]);
+  const yOne = useTransform(scrollY, [0, 800], [0, -120]);
+  const yTwo = useTransform(scrollY, [0, 800], [0, 100]);
+  const scaleHero = useTransform(scrollY, [0, 400], [1, 0.95]);
 
   return (
-    <section id="top" className="relative overflow-hidden px-4 pb-16 pt-24 sm:px-6 lg:px-8 lg:pt-28">
+    <section id="top" className="relative flex min-h-[100svh] items-center overflow-hidden px-4 pb-18 pt-30 sm:px-6 lg:px-8 lg:pt-32">
+      <div className="pointer-events-none absolute inset-0 -z-20 bg-slate-950" />
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          src="/BLACKNPURPLE.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-slate-950/55" />
+      </div>
+
       <motion.div
         style={{ y: yOne }}
-        className="pointer-events-none absolute -left-28 top-8 h-80 w-80 rounded-full bg-sky-500/20 blur-3xl dark:bg-cyan-500/20"
+        className="pointer-events-none absolute -left-48 top-0 h-96 w-96 rounded-full bg-cyan-500/15 blur-3xl"
       />
       <motion.div
         style={{ y: yTwo }}
-        className="pointer-events-none absolute -right-28 top-28 h-96 w-96 rounded-full bg-blue-700/20 blur-3xl dark:bg-indigo-600/20"
+        className="pointer-events-none absolute -right-40 top-1/4 h-96 w-96 rounded-full bg-indigo-500/15 blur-3xl"
       />
 
       <div className="relative mx-auto max-w-7xl">
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.05 }}
-          className="agorm-hero-card overflow-hidden rounded-4xl border border-slate-200 bg-white shadow-[0_30px_80px_rgba(15,23,42,0.12)] dark:border-white/10 dark:bg-slate-950/90"
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="card-premium"
+          style={{ scale: scaleHero }}
         >
-          <div className="grid gap-10 px-5 py-8 sm:px-8 sm:py-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:px-10 lg:py-12">
-            <div className="relative z-10 max-w-xl">
-              <motion.p
-                initial={{ opacity: 0, y: 16 }}
+          <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
+            <div className="relative z-10">
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
-                className="mb-4 text-[11px] uppercase tracking-[0.36em] text-slate-700 dark:text-cyan-200"
+                transition={{ duration: 0.7, delay: 0.1 }}
+                className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/8 px-4 py-2"
               >
-                Digital & innovation
-              </motion.p>
+                <span className="h-2 w-2 animate-pulse rounded-full bg-cyan-300" />
+                <span className="text-xs font-semibold uppercase tracking-wider text-cyan-300">Premium Digital Solutions</span>
+              </motion.div>
 
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.08 }}
-                className="text-balance text-4xl font-semibold leading-[0.95] tracking-tight text-slate-950 sm:text-5xl lg:text-7xl dark:text-white"
+                transition={{ duration: 0.8, delay: 0.15 }}
+                className="mb-6 text-5xl font-bold leading-[1.03] text-foreground sm:text-6xl lg:text-7xl"
               >
-                TECHNOLOGY
-                <span className="block">IN THE FUTURE</span>
+                We Build Digital Systems
+                <span className="block bg-clip-text text-transparent [background:linear-gradient(90deg,#67e8f9,#a5b4fc)]">That Power The Future</span>
               </motion.h1>
 
               <motion.p
-                initial={{ opacity: 0, y: 18 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.16 }}
-                className="mt-6 max-w-xl text-pretty text-sm leading-7 text-slate-600 sm:text-base sm:leading-8 dark:text-slate-300"
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="mb-8 max-w-xl text-lg leading-relaxed text-slate-300 sm:text-xl"
               >
-                AGORM builds refined digital experiences, product systems, and modern software solutions that help ambitious teams move with clarity and confidence.
+                AGORM engineers high-impact platforms from strategy to launch, pairing bold product thinking with disciplined technical execution.
               </motion.p>
 
               <motion.div
-                initial={{ opacity: 0, y: 18 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.22 }}
-                className="mt-8 flex flex-wrap items-center gap-4"
+                transition={{ duration: 0.8, delay: 0.25 }}
+                className="mb-10 flex flex-col gap-4 sm:flex-row"
               >
-                <a
-                  href="#contact"
-                  className="agorm-pill rounded-full bg-slate-900 px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-300 hover:scale-[1.03] hover:bg-slate-800 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-700"
-                >
-                  Read More
-                </a>
-                <a
-                  href="#projects"
-                  className="agorm-pill-muted rounded-full border border-slate-400 bg-white/95 px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-slate-800 transition-colors duration-300 hover:border-slate-500 hover:bg-white dark:border-slate-600 dark:bg-slate-900/80 dark:text-slate-100 dark:hover:border-cyan-300 dark:hover:bg-slate-800 dark:hover:text-cyan-100"
-                >
+                <motion.a href="#contact" className="btn-primary flex items-center justify-center group" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                  Work With Us
+                  <motion.span className="ml-2" animate={{ x: [0, 4, 0] }} transition={{ duration: 2, repeat: Infinity }}>
+                    →
+                  </motion.span>
+                </motion.a>
+
+                <motion.a href="#projects" className="btn-secondary flex items-center justify-center" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                   View Projects
-                </a>
+                </motion.a>
               </motion.div>
 
-              <div className="mt-10 grid max-w-md grid-cols-3 gap-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-700 dark:text-slate-400">
-                <div className="agorm-hero-chip agorm-pill-muted rounded-2xl border border-slate-300 bg-white px-4 py-3 shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">Strategy</div>
-                <div className="agorm-hero-chip agorm-pill-muted rounded-2xl border border-slate-300 bg-white px-4 py-3 shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">Design</div>
-                <div className="agorm-hero-chip agorm-pill-muted rounded-2xl border border-slate-300 bg-white px-4 py-3 shadow-sm dark:border-white/10 dark:bg-white/5 dark:shadow-none">Engineering</div>
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="flex flex-wrap gap-3"
+              >
+                {["Strategy", "Design", "Engineering"].map((capability, i) => (
+                  <motion.div
+                    key={capability}
+                    className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm font-medium text-slate-300 transition-all duration-300 hover:border-cyan-300/55 hover:bg-cyan-300/10"
+                    whileHover={{ y: -2 }}
+                    transition={{ delay: i * 0.05 }}
+                  >
+                    {capability}
+                  </motion.div>
+                ))}
+              </motion.div>
             </div>
 
-            <div className="relative min-h-112 lg:min-h-144">
-              <div className="absolute left-0 top-12 h-16 w-16 rounded-full border border-sky-200 bg-sky-50/80 shadow-sm dark:border-cyan-400/20 dark:bg-cyan-500/10" />
-              <div className="absolute bottom-10 right-0 h-20 w-20 rounded-full border border-slate-200 bg-white/80 shadow-sm dark:border-white/10 dark:bg-white/5" />
+            <div className="relative h-96 sm:h-[500px] lg:h-[600px]">
+              <motion.div
+                className="absolute -top-20 -right-20 h-40 w-40 rounded-full border border-cyan-300/20"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              />
+              <motion.div
+                className="absolute bottom-20 -left-10 h-32 w-32 rounded-full border border-indigo-300/20"
+                animate={{ rotate: -360 }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              />
 
               <motion.div
-                initial={{ opacity: 0, y: 18, rotate: -4 }}
-                animate={{ opacity: 1, y: 0, rotate: -4 }}
-                transition={{ duration: 0.9, delay: 0.16 }}
-                className="hero-octagon absolute right-0 top-0 h-90 w-64 overflow-hidden border-[6px] border-slate-300 bg-white/95 shadow-[0_25px_60px_rgba(15,23,42,0.08)] lg:h-116 lg:w-84 dark:border-slate-700 dark:bg-slate-950 dark:shadow-[0_25px_60px_rgba(0,0,0,0.3)]"
+                initial={{ opacity: 0, scale: 0.9, rotate: -6 }}
+                animate={{ opacity: 1, scale: 1, rotate: -6 }}
+                transition={{ duration: 0.9, delay: 0.2 }}
+                className="hero-octagon absolute right-0 top-0 h-64 w-48 overflow-hidden border-2 border-white/15 bg-slate-900/60 shadow-2xl shadow-cyan-400/10 transition-all duration-500 hover:border-cyan-300/50 sm:h-80 sm:w-56 lg:h-[400px] lg:w-80"
+                whileHover={{ y: -8 }}
               >
                 <Image
                   src={WearingVarImage}
-                  alt="Person wearing AR/VR headset"
+                  alt="[IMAGE PLACEHOLDER: futuristic product and technology visual]"
                   fill
                   priority
-                  sizes="(max-width: 1024px) 60vw, 30vw"
+                  sizes="(max-width: 768px) 50vw, 30vw"
                   className="object-cover"
                 />
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 18, rotate: 4 }}
-                animate={{ opacity: 1, y: 0, rotate: 4 }}
-                transition={{ duration: 0.9, delay: 0.24 }}
-                className="hero-octagon absolute bottom-12 left-6 h-52 w-52 overflow-hidden border-[6px] border-slate-300 bg-white shadow-[0_20px_40px_rgba(15,23,42,0.12)] dark:border-white/10 dark:bg-linear-to-br dark:from-slate-800 dark:to-slate-900"
+                initial={{ opacity: 0, scale: 0.9, rotate: 4 }}
+                animate={{ opacity: 1, scale: 1, rotate: 4 }}
+                transition={{ duration: 0.9, delay: 0.3 }}
+                className="hero-octagon absolute bottom-10 left-0 h-48 w-40 overflow-hidden border-2 border-white/15 bg-slate-900/80 shadow-xl shadow-indigo-400/10 transition-all duration-500 hover:border-indigo-300/50 sm:h-56 sm:w-48"
+                whileHover={{ y: -8 }}
               >
-                <div className="flex h-full w-full items-center justify-center p-6 text-center dark:text-white">
-                  <div>
-                    <p className="text-[10px] uppercase tracking-[0.34em] text-slate-600 dark:text-white/70">AGORM</p>
-                    <p className="mt-3 text-2xl font-semibold leading-tight text-slate-900 dark:text-white">Future-facing systems</p>
-                  </div>
+                <div className="flex h-full w-full flex-col items-center justify-center p-4 text-center">
+                  <div className="mb-2 text-3xl font-bold text-cyan-300 sm:text-4xl">2,500+</div>
+                  <p className="text-xs uppercase tracking-widest text-slate-300">hours shipped this year</p>
                 </div>
               </motion.div>
 
-              <div className="pointer-events-none absolute left-8 top-16 h-4 w-4 rounded-full border border-sky-400/60 bg-sky-100 dark:border-cyan-300/60 dark:bg-cyan-300/20" />
-              <div className="pointer-events-none absolute right-10 top-24 h-6 w-6 rounded-full border border-slate-300 bg-white dark:border-white/10 dark:bg-white/5" />
-              <div className="pointer-events-none absolute bottom-20 left-16 h-5 w-5 rounded-full border border-sky-400/60 bg-sky-100 dark:border-cyan-300/60 dark:bg-cyan-300/20" />
-              <div className="hero-octagon pointer-events-none absolute bottom-6 right-24 h-8 w-8 rotate-45 border border-slate-300 bg-white dark:border-white/10 dark:bg-white/5" />
+              <div className="absolute -bottom-4 right-4 rounded-xl border border-white/15 bg-slate-900/70 px-4 py-3 text-xs uppercase tracking-[0.2em] text-slate-300">
+                [IMAGE PLACEHOLDER: product dashboard preview]
+              </div>
+
+              <motion.div className="absolute left-1/4 top-1/4 h-3 w-3 animate-pulse rounded-full bg-cyan-300/45 blur-sm" />
+              <motion.div
+                className="absolute right-1/3 top-1/3 h-2 w-2 rounded-full bg-indigo-300/45 blur-sm"
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 1.8, repeat: Infinity }}
+              />
             </div>
           </div>
         </motion.div>
