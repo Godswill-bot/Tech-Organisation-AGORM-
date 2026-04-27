@@ -108,7 +108,7 @@ export function HeroSection() {
               </motion.div>
             </div>
 
-            <div className="relative h-96 sm:h-[500px] lg:h-[600px]">
+            <div className="relative h-[30rem] sm:h-[34rem] lg:h-[42rem]">
               <motion.div
                 className="absolute -top-20 -right-20 h-40 w-40 rounded-full border border-cyan-300/20"
                 animate={{ rotate: 360 }}
@@ -124,7 +124,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, scale: 0.9, rotate: -6 }}
                 animate={{ opacity: 1, scale: 1, rotate: -6 }}
                 transition={{ duration: 0.9, delay: 0.2 }}
-                className="hero-octagon absolute right-0 top-0 h-72 w-56 overflow-hidden border-2 border-white/15 bg-slate-900/60 shadow-2xl shadow-cyan-400/10 transition-all duration-500 hover:border-cyan-300/50 sm:h-96 sm:w-64 lg:h-[500px] lg:w-[360px]"
+                className="hero-octagon absolute -left-8 top-0 h-80 w-64 overflow-hidden border-2 border-white/15 bg-slate-900/60 shadow-2xl shadow-cyan-400/10 transition-all duration-500 hover:border-cyan-300/50 sm:-left-10 sm:h-[26rem] sm:w-[20rem] lg:-left-16 lg:h-[34rem] lg:w-[28rem]"
                 whileHover={{ y: -8 }}
               >
                 <Image
@@ -135,19 +135,6 @@ export function HeroSection() {
                   sizes="(max-width: 768px) 50vw, 30vw"
                   className="object-cover"
                 />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9, rotate: 4 }}
-                animate={{ opacity: 1, scale: 1, rotate: 4 }}
-                transition={{ duration: 0.9, delay: 0.3 }}
-                className="hero-octagon absolute bottom-10 left-0 h-48 w-40 overflow-hidden border-2 border-white/15 bg-slate-900/80 shadow-xl shadow-indigo-400/10 transition-all duration-500 hover:border-indigo-300/50 sm:h-56 sm:w-48"
-                whileHover={{ y: -8 }}
-              >
-                <div className="flex h-full w-full flex-col items-center justify-center p-4 text-center">
-                  <div className="mb-2 text-3xl font-bold text-cyan-300 sm:text-4xl">2,500+</div>
-                  <p className="text-xs uppercase tracking-widest text-slate-300">hours shipped this year</p>
-                </div>
               </motion.div>
 
               <motion.div className="absolute left-1/4 top-1/4 h-3 w-3 animate-pulse rounded-full bg-cyan-300/45 blur-sm" />
