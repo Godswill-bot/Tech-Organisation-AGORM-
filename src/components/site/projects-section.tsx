@@ -23,7 +23,7 @@ export function ProjectsSection() {
           {projects.map((project, index) => (
             <SectionReveal key={project.id} delay={index * 0.08}>
               <article
-                className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-white p-6 shadow-[0_18px_44px_rgba(15,23,42,0.08)] md:p-10 lg:p-12"
+                className="relative overflow-hidden rounded-[2rem] border-l-4 border-t border-slate-900 bg-white p-6 shadow-[0_18px_44px_rgba(15,23,42,0.08)] md:p-10 lg:p-12"
               >
                 <div className={`pointer-events-none absolute inset-0 bg-linear-to-br opacity-20 ${project.gradient}`} />
 
@@ -35,11 +35,14 @@ export function ProjectsSection() {
                     viewport={{ once: true, margin: "-15% 0px -10% 0px" }}
                     transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <p className="text-xs uppercase tracking-[0.2em] text-slate-500">{project.category}</p>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="h-2 w-6 bg-slate-900" />
+                      <p className="text-xs uppercase tracking-[0.2em] text-slate-900 font-semibold">{project.category}</p>
+                    </div>
                     <h3 className="text-hover-accent mt-3 text-3xl font-semibold leading-tight text-slate-950 sm:text-4xl lg:text-5xl">{project.title}</h3>
                     <p className="text-hover-soft mt-5 text-base leading-8 text-slate-700 sm:text-lg">{project.summary}</p>
 
-                    <div className="mt-7 grid gap-4 text-sm leading-7 text-slate-700 sm:grid-cols-2 sm:text-[15px]">
+                    <div className="mt-7 grid gap-4 border-l-2 border-slate-900 pl-4 text-sm leading-7 text-slate-700 sm:grid-cols-2 sm:text-[15px]">
                       <p><span className="font-medium text-slate-900">Challenge:</span> {project.challenge}</p>
                       <p><span className="font-medium text-slate-900">Solution:</span> {project.solution}</p>
                       <p className="sm:col-span-2"><span className="font-medium text-slate-900">Impact:</span> {project.impact}</p>
@@ -54,7 +57,7 @@ export function ProjectsSection() {
                             href={project.websiteUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-700 transition-colors hover:bg-slate-50"
+                            className="inline-flex items-center gap-2 rounded-full border-2 border-slate-900 bg-slate-900 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-white hover:text-slate-900"
                           >
                             MTU SIWES Platform <ExternalLink size={14} />
                           </a>
@@ -64,7 +67,7 @@ export function ProjectsSection() {
                             href={project.trackerUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-700 transition-colors hover:bg-slate-50"
+                            className="inline-flex items-center gap-2 rounded-full border-2 border-slate-900 bg-slate-900 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-white hover:text-slate-900"
                           >
                             MTU SIWES Tracker <ExternalLink size={14} />
                           </a>

@@ -62,8 +62,9 @@ export function ServicesSection() {
             const details = serviceDetails[service.title] ?? [];
             return (
               <SectionReveal key={service.title} delay={index * 0.06}>
-                <article className="group h-full rounded-3xl bg-white p-6 shadow-[0_14px_36px_rgba(15,23,42,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_48px_rgba(15,23,42,0.1)] sm:p-7">
-                  <div className="mb-6 inline-flex rounded-xl bg-slate-100 p-3 text-slate-800 transition-colors duration-300 group-hover:text-slate-900">
+                <article className="group relative h-full overflow-hidden rounded-3xl bg-white p-6 shadow-[0_14px_36px_rgba(15,23,42,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_48px_rgba(15,23,42,0.1)] sm:p-7">
+                  <div className="pointer-events-none absolute top-0 left-0 h-1 w-12 bg-slate-900 transition-all duration-300 group-hover:w-24" />
+                  <div className="mb-6 inline-flex rounded-xl bg-slate-900 p-3 text-white transition-colors duration-300 group-hover:bg-slate-800">
                     <Icon size={22} />
                   </div>
                   <h3 className="text-2xl font-semibold text-slate-900">{service.title}</h3>
@@ -72,7 +73,7 @@ export function ServicesSection() {
                   <div className="mt-6 space-y-3">
                     {details.map((detail) => (
                       <p key={detail} className="text-sm leading-7 text-slate-700">
-                        <span className="mr-2 text-slate-500">•</span>
+                        <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-slate-900" />
                         {detail}
                       </p>
                     ))}
@@ -84,21 +85,23 @@ export function ServicesSection() {
         </div>
 
         <SectionReveal className="mt-10">
-          <div className="rounded-[2rem] bg-white p-6 shadow-[0_14px_36px_rgba(15,23,42,0.06)] sm:p-8">
-            <p className="text-xs uppercase tracking-[0.24em] text-slate-500">Service Delivery Model</p>
-            <div className="mt-4 grid gap-4 md:grid-cols-3">
-              <div className="rounded-2xl bg-slate-50 p-5">
-                <p className="text-sm font-semibold text-slate-900">Discovery And Scope</p>
-                <p className="mt-2 text-sm leading-7 text-slate-700">Define requirements, dependencies, and risk boundaries before implementation begins.</p>
-              </div>
-              <div className="rounded-2xl bg-slate-50 p-5">
-                <p className="text-sm font-semibold text-slate-900">Execution And Review</p>
-                <p className="mt-2 text-sm leading-7 text-slate-700">Ship in clear milestones with collaborative reviews to maintain quality and alignment.</p>
-              </div>
-              <div className="rounded-2xl bg-slate-50 p-5">
-                <p className="text-sm font-semibold text-slate-900">Optimization And Support</p>
-                <p className="mt-2 text-sm leading-7 text-slate-700">Measure outcomes post-launch and continuously improve based on real usage signals.</p>
-              </div>
+          <div className="rounded-[2rem] border-l-4 border-slate-900 bg-white p-6 shadow-[0_14px_36px_rgba(15,23,42,0.06)] sm:p-8">
+            <div className="flex items-center gap-3 mb-2">
+              <div className="h-2 w-8 bg-slate-900" />
+              <p className="text-xs uppercase tracking-[0.24em] text-slate-900 font-semibold">Service Delivery Model</p>
+            </div>
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              {[
+                { title: "Discovery And Scope", desc: "Define requirements, dependencies, and risk boundaries before implementation begins." },
+                { title: "Execution And Review", desc: "Ship in clear milestones with collaborative reviews to maintain quality and alignment." },
+                { title: "Optimization And Support", desc: "Measure outcomes post-launch and continuously improve based on real usage signals." }
+              ].map((item, idx) => (
+                <div key={item.title} className="relative rounded-2xl bg-slate-50 p-5 border-t-2 border-slate-900">
+                  <div className="absolute top-0 right-0 h-8 w-8 rounded-full border-2 border-slate-900 -translate-y-4 translate-x-4 bg-white flex items-center justify-center text-slate-900 font-bold text-xs">{idx + 1}</div>
+                  <p className="text-sm font-semibold text-slate-900">{item.title}</p>
+                  <p className="mt-2 text-sm leading-7 text-slate-700">{item.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </SectionReveal>

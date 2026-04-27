@@ -17,11 +17,15 @@ export function TestimonialsSection() {
         <div className="grid gap-5 md:grid-cols-3">
           {testimonials.map((item, index) => (
             <SectionReveal key={item.author} delay={index * 0.08}>
-              <article className="h-full rounded-2xl border border-black/10 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-black/20">
+              <article className="group relative h-full rounded-2xl border-l-4 border-slate-900 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_40px_rgba(0,0,0,0.12)]">
+                <div className="text-3xl font-bold text-slate-900 opacity-30 mb-2">"</div>
                 <p className="text-sm leading-7 text-slate-700">"{item.quote}"</p>
-                <div className="mt-6 border-t border-black/10 pt-4">
-                  <p className="text-sm font-semibold text-slate-900">{item.author}</p>
-                  <p className="text-xs uppercase tracking-[0.18em] text-slate-500">{item.role}</p>
+                <div className="mt-6 border-t-2 border-slate-900 pt-4">
+                  <div className="flex items-center gap-2">
+                    <div className="h-1 w-4 bg-slate-900" />
+                    <p className="text-sm font-semibold text-slate-900">{item.author}</p>
+                  </div>
+                  <p className="text-xs uppercase tracking-[0.18em] text-slate-600 mt-1">{item.role}</p>
                 </div>
               </article>
             </SectionReveal>
