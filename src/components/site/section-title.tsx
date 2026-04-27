@@ -14,8 +14,8 @@ export function SectionTitle({
   title,
   description,
   eyebrowClassName = "text-slate-500",
-  titleClassName = "text-white",
-  descriptionClassName = "text-slate-300",
+  titleClassName = "text-slate-900",
+  descriptionClassName = "text-slate-700",
   titleHoverClassName = "text-hover-accent",
   descriptionHoverClassName = "text-hover-soft",
 }: SectionTitleProps) {

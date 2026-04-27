@@ -139,7 +139,7 @@ export function TeamSection() {
                 onClick={() => setSelectedMember(member)}
                 className="agorm-team-card group h-full rounded-2xl border border-black/10 bg-white p-5 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-black/30"
               >
-                <div className="agorm-team-media-shell mb-4 overflow-hidden rounded-xl border border-white/10 bg-slate-950/70">
+                <div className="agorm-team-media-shell mb-4 overflow-hidden rounded-xl border border-black/10 bg-white shadow-[0_12px_30px_rgba(15,23,42,0.06)]">
                   {member.image ? (
                     <Image
                       src={member.image}
@@ -149,14 +149,14 @@ export function TeamSection() {
                       className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   ) : (
-                    <div className="agorm-placeholder-image grid h-44 place-items-center px-4 text-center text-xs uppercase tracking-[0.16em] text-slate-300">
+                    <div className="agorm-placeholder-image grid h-44 place-items-center px-4 text-center text-xs uppercase tracking-[0.16em] text-slate-500">
                       [IMAGE PLACEHOLDER: team photo of {member.name}]
                     </div>
                   )}
                 </div>
-                <h3 className="text-lg font-semibold text-white">{member.name}</h3>
+                <h3 className="text-lg font-semibold text-slate-900">{member.name}</h3>
                 <p className="mt-1 text-sm text-slate-500">{member.role}</p>
-                <p className="mt-3 text-sm leading-7 text-slate-300">{member.bio}</p>
+                <p className="mt-3 text-sm leading-7 text-slate-700">{member.bio}</p>
                 <p className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-slate-700">
                   <Phone size={15} /> Tap to view full profile
                 </p>

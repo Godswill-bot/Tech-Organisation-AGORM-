@@ -22,8 +22,8 @@ export function TeamPage() {
         <section className="mx-auto mb-14 max-w-7xl">
           <SectionReveal>
             <p className="text-xs uppercase tracking-[0.32em] text-slate-500">Team</p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-6xl">Meet The AGOM Team</h1>
-            <p className="mt-5 max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-slate-900 sm:text-6xl">Meet The AGOM Team</h1>
+            <p className="mt-5 max-w-3xl text-base leading-8 text-slate-700 sm:text-lg">
               Built by specialists across software engineering, data, AI, design, and robotics. Explore each profile and connect with us directly.
             </p>
           </SectionReveal>
@@ -34,7 +34,7 @@ export function TeamPage() {
             {teamMembers.map((member, index) => (
               <SectionReveal key={member.name} delay={index * 0.06}>
                 <article className="grid gap-7 md:grid-cols-[1fr_1.1fr] md:items-center">
-                  <div className="overflow-hidden rounded-3xl border border-white/10 bg-slate-950/70">
+                  <div className="overflow-hidden rounded-3xl border border-black/10 bg-white shadow-[0_14px_36px_rgba(15,23,42,0.06)]">
                     {member.image ? (
                       <Image
                         src={member.image}
@@ -52,18 +52,18 @@ export function TeamPage() {
 
                   <div>
                     <p className="text-xs uppercase tracking-[0.22em] text-slate-500">{member.role}</p>
-                    <h2 className="mt-3 text-3xl font-semibold text-white">{member.name}</h2>
-                    <p className="mt-4 text-sm leading-8 text-slate-300">{member.bio}</p>
+                    <h2 className="mt-3 text-3xl font-semibold text-slate-900">{member.name}</h2>
+                    <p className="mt-4 text-sm leading-8 text-slate-700">{member.bio}</p>
 
                     <div className="mt-6 flex flex-wrap gap-2">
                       {member.expertise.map((item) => (
-                        <span key={item} className="px-3 py-2 text-xs uppercase tracking-[0.12em] text-slate-300">
+                        <span key={item} className="rounded-full border border-black/10 bg-slate-50 px-3 py-2 text-xs uppercase tracking-[0.12em] text-slate-600">
                           {item}
                         </span>
                       ))}
                     </div>
 
-                    <div className="mt-7 space-y-2 text-sm text-slate-300">
+                    <div className="mt-7 space-y-2 text-sm text-slate-700">
                       <p>Phone: {member.phone}</p>
                       {member.email ? <p>Email: {member.email.replace("mailto:", "")}</p> : null}
                     </div>
@@ -78,11 +78,11 @@ export function TeamPage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="rounded-3xl border border-white/10 bg-slate-900/70 p-6"
+              className="rounded-3xl border border-black/10 bg-white p-6 shadow-[0_16px_42px_rgba(15,23,42,0.08)]"
             >
               <p className="text-xs uppercase tracking-[0.28em] text-slate-500">Let's Talk</p>
-              <h3 className="mt-3 text-2xl font-semibold text-white">Start A Conversation</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-300">
+              <h3 className="mt-3 text-2xl font-semibold text-slate-900">Start A Conversation</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-700">
                 Share your email and project direction. We will contact you with a focused plan.
               </p>
 
@@ -110,7 +110,7 @@ export function TeamPage() {
                 </button>
               </form>
 
-              <div className="mt-6 space-y-2 border-t border-white/10 pt-5 text-sm text-slate-300">
+              <div className="mt-6 space-y-2 border-t border-black/10 pt-5 text-sm text-slate-700">
                 {teamMembers
                   .filter((member) => member.email)
                   .map((member) => (

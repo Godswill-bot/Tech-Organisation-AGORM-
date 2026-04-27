@@ -45,7 +45,7 @@ export function ProjectsSection() {
                       <p className="sm:col-span-2"><span className="font-medium text-white">Impact:</span> {project.impact}</p>
                     </div>
 
-                    <p className="mt-6 text-lg font-semibold text-slate-900">{project.metric}</p>
+                    <p className="mt-6 text-lg font-semibold text-white">{project.metric}</p>
 
                     {project.websiteUrl || project.trackerUrl ? (
                       <div className="mt-6 flex flex-wrap gap-3">
