@@ -124,7 +124,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, scale: 0.9, rotate: -6 }}
                 animate={{ opacity: 1, scale: 1, rotate: -6 }}
                 transition={{ duration: 0.9, delay: 0.2 }}
-                className="hero-octagon absolute right-0 top-0 h-64 w-48 overflow-hidden border-2 border-white/15 bg-slate-900/60 shadow-2xl shadow-cyan-400/10 transition-all duration-500 hover:border-cyan-300/50 sm:h-80 sm:w-56 lg:h-[400px] lg:w-80"
+                className="hero-octagon absolute right-0 top-0 h-72 w-56 overflow-hidden border-2 border-white/15 bg-slate-900/60 shadow-2xl shadow-cyan-400/10 transition-all duration-500 hover:border-cyan-300/50 sm:h-96 sm:w-64 lg:h-[500px] lg:w-[360px]"
                 whileHover={{ y: -8 }}
               >
                 <Image
