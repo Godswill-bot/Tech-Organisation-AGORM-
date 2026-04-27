@@ -54,7 +54,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.15 }}
-                className="mb-6 text-5xl font-bold leading-[1.03] text-foreground sm:text-6xl lg:text-7xl"
+                className="text-hover-soft mb-6 text-5xl font-bold leading-[1.03] text-foreground sm:text-6xl lg:text-7xl"
               >
                 We Build Digital Systems
                 <span className="mt-1 block w-fit bg-gradient-to-r from-cyan-300 to-indigo-300 bg-clip-text text-transparent">
@@ -66,7 +66,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="mb-8 max-w-xl text-lg leading-relaxed text-slate-300 sm:text-xl"
+                className="text-hover-soft mb-8 max-w-xl text-lg leading-relaxed text-slate-300 sm:text-xl"
               >
                 AGORM engineers high-impact platforms from strategy to launch, pairing bold product thinking with disciplined technical execution.
               </motion.p>

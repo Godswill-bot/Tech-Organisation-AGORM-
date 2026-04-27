@@ -36,8 +36,8 @@ export function ProjectsSection() {
                     transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">{project.category}</p>
-                    <h3 className="mt-3 text-3xl font-semibold leading-tight text-white sm:text-4xl">{project.title}</h3>
-                    <p className="mt-5 text-base leading-8 text-slate-300">{project.summary}</p>
+                    <h3 className="text-hover-accent mt-3 text-3xl font-semibold leading-tight text-white sm:text-4xl">{project.title}</h3>
+                    <p className="text-hover-soft mt-5 text-base leading-8 text-slate-300">{project.summary}</p>
 
                     <div className="mt-7 grid gap-4 text-sm leading-7 text-slate-300 sm:grid-cols-2">
                       <p><span className="font-medium text-white">Challenge:</span> {project.challenge}</p>
