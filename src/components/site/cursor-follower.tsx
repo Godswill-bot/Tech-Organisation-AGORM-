@@ -158,7 +158,7 @@ export function CursorFollower() {
     return null;
   }
 
-  const labelText = (state.label || "AGOM").toUpperCase();
+  const labelText = state.label || "AGOM";
   const labelCharacters = [...labelText];
 
   return (
@@ -170,22 +170,17 @@ export function CursorFollower() {
       <motion.div
         animate={state.active ? { scale: 1.25 } : { scale: 1 }}
         transition={{ type: "spring", stiffness: 220, damping: 18, mass: 0.5 }}
-        className={`relative grid place-items-center rounded-full border border-white/35 bg-black/75 shadow-[0_0_40px_rgba(17,24,39,0.18)] backdrop-blur-md ${
-          state.active ? "h-24 w-24 border-white/60" : "h-4 w-4"
+        className={`relative grid place-items-center rounded-full border border-black/15 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.14)] ${
+          state.active ? "h-24 w-24 border-black/20" : "h-4 w-4"
         }`}
       >
         <motion.div
           animate={state.active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
           transition={{ type: "spring", stiffness: 180, damping: 22, mass: 0.45 }}
-          className="absolute inset-0 rounded-full bg-gradient-to-br from-white/35 via-transparent to-slate-300/30"
-        />
-        <motion.div
-          animate={state.active ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute inset-[10%] rounded-full border border-white/30"
+          className="absolute inset-0 rounded-full bg-gradient-to-br from-white via-white to-slate-100"
         />
         <span
-          className={`relative max-w-[5.8rem] px-2 text-center text-[10px] font-semibold uppercase tracking-[0.18em] text-white transition-all duration-300 ${
+          className={`relative max-w-[6.4rem] px-2 text-center text-[11px] font-semibold tracking-[0.02em] text-slate-900 transition-all duration-300 ${
             state.active ? "scale-100 opacity-100" : "scale-0 opacity-0"
           }`}
         >
