@@ -5,9 +5,8 @@ import { insightUpdates, productSuites, workflowSteps } from "@/data/site-conten
 export function SystemsContextSections() {
   return (
     <>
-      <section id="workflow" className="bg-white px-5 py-20 text-slate-900 sm:px-8 sm:py-24">
-        <div className="mx-auto max-w-7xl">
-          <div className="relative overflow-hidden rounded-[2.5rem] bg-white px-5 pb-12 pt-14 shadow-[0_28px_80px_rgba(15,23,42,0.08)] sm:px-10 sm:pb-14 lg:px-14 lg:pt-16">
+      <section id="workflow" className="w-full bg-white px-0 py-20 text-slate-900 sm:py-24">
+        <div className="relative w-full overflow-hidden bg-white px-5 pb-12 pt-14 sm:px-8 sm:pb-14 lg:px-14 lg:pt-16">
             <div className="pointer-events-none absolute -left-10 -top-16 h-44 w-44 rounded-full bg-lime-300/35 blur-3xl" />
             <div className="pointer-events-none absolute -right-12 top-0 h-64 w-64 rounded-full bg-cyan-200/30 blur-3xl" />
             <p className="relative text-xs font-semibold uppercase tracking-[0.3em] text-emerald-900/65">Operating Model</p>
@@ -38,13 +37,11 @@ export function SystemsContextSections() {
                 LET'S TALK <ArrowRight size={16} />
               </a>
             </div>
-          </div>
         </div>
       </section>
 
-      <section id="product-suites" className="bg-[#f7f8fb] px-5 py-20 text-slate-900 sm:px-8 sm:py-24">
-        <div className="mx-auto max-w-7xl">
-          <div className="relative overflow-hidden rounded-[2.5rem] bg-[#f7f8fb] px-5 pb-14 pt-14 shadow-[0_24px_70px_rgba(2,6,23,0.08)] sm:px-10 lg:px-14">
+      <section id="product-suites" className="w-full bg-[#f7f8fb] px-0 py-20 text-slate-900 sm:py-24">
+        <div className="relative w-full bg-[#f7f8fb] px-5 pb-14 pt-14 sm:px-8 lg:px-14">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-900/60">AGOM Product Suites</p>
             <div className="mt-5 grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:items-start">
               <div>
@@ -84,13 +81,11 @@ export function SystemsContextSections() {
                 ))}
               </div>
             </div>
-          </div>
         </div>
       </section>
 
-      <section id="insights" className="bg-white px-5 pb-20 text-slate-900 sm:px-8 sm:pb-24">
-        <div className="mx-auto max-w-7xl">
-          <div className="relative overflow-hidden rounded-[2.5rem] bg-white px-5 pb-12 pt-14 shadow-[0_20px_60px_rgba(12,36,30,0.08)] sm:px-10 lg:px-14">
+      <section id="insights" className="w-full bg-white px-0 pb-20 text-slate-900 sm:pb-24">
+        <div className="relative w-full bg-white px-5 pb-12 pt-14 sm:px-8 lg:px-14">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-900/60">AGOM Insights</p>
             <div className="mt-5 grid gap-8 lg:grid-cols-[1fr_1.25fr]">
               <div>
@@ -119,7 +114,6 @@ export function SystemsContextSections() {
                 ))}
               </div>
             </div>
-          </div>
         </div>
       </section>
     </>
