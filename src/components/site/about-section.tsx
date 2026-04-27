@@ -39,10 +39,10 @@ export function AboutSection() {
           alt=""
           fill
           aria-hidden="true"
-          className="object-cover object-center opacity-10"
+          className="object-cover object-center opacity-25 mix-blend-multiply"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-white/85" />
+        <div className="absolute inset-0 bg-white/55" />
       </div>
 
       <div className="relative mx-auto max-w-7xl">
