@@ -6,75 +6,15 @@ import { useEffect, useMemo, useState } from "react";
 type CursorState = {
   visible: boolean;
   active: boolean;
-  label: string;
 };
 
-const TEXT_SELECTOR = "a,button,input,textarea,label,[role='button'],h1,h2,h3,h4,h5,h6,p,li,span,strong,em";
-
-function extractCursorLabel(target: HTMLElement | null) {
-  if (!target) return "";
-
-  const direct = target.getAttribute("data-cursor-label") || target.getAttribute("aria-label") || target.textContent || "";
-  return direct.replace(/\s+/g, " ").trim().slice(0, 16);
-}
-
-function extractWordAtPoint(x: number, y: number) {
-  if (typeof document === "undefined") return "";
-
-  const doc = document as Document & {
-    caretPositionFromPoint?: (cx: number, cy: number) => { offsetNode: Node; offset: number } | null;
-    caretRangeFromPoint?: (cx: number, cy: number) => Range | null;
-  };
-
-  let offsetNode: Node | null = null;
-  let offset = 0;
-
-  if (typeof doc.caretPositionFromPoint === "function") {
-    const position = doc.caretPositionFromPoint(x, y);
-    if (position) {
-      offsetNode = position.offsetNode;
-      offset = position.offset;
-    }
-  } else if (typeof doc.caretRangeFromPoint === "function") {
-    const range = doc.caretRangeFromPoint(x, y);
-    if (range) {
-      offsetNode = range.startContainer;
-      offset = range.startOffset;
-    }
-  }
-
-  if (!offsetNode || offsetNode.nodeType !== Node.TEXT_NODE) {
-    return "";
-  }
-
-  const text = offsetNode.textContent ?? "";
-  if (!text.trim()) {
-    return "";
-  }
-
-  let start = offset;
-  let end = offset;
-
-  while (start > 0 && /\S/.test(text[start - 1])) {
-    start -= 1;
-  }
-
-  while (end < text.length && /\S/.test(text[end])) {
-    end += 1;
-  }
-
-  return text
-    .slice(start, end)
-    .replace(/^[^a-zA-Z0-9]+|[^a-zA-Z0-9]+$/g, "")
-    .slice(0, 16);
-}
+const INTERACTIVE_SELECTOR = "a,button,input,textarea,label,select,summary,[role='button'],[data-cursor='interactive']";
 
 export function CursorFollower() {
   const [mounted, setMounted] = useState(false);
   const [state, setState] = useState<CursorState>({
     visible: false,
     active: false,
-    label: "",
   });
 
   const isFinePointer = useMemo(() => {
@@ -84,8 +24,8 @@ export function CursorFollower() {
 
   const cursorX = useMotionValue(0);
   const cursorY = useMotionValue(0);
-  const smoothCursorX = useSpring(cursorX, { stiffness: 185, damping: 26, mass: 0.55 });
-  const smoothCursorY = useSpring(cursorY, { stiffness: 185, damping: 26, mass: 0.55 });
+  const smoothCursorX = useSpring(cursorX, { stiffness: 190, damping: 24, mass: 0.5 });
+  const smoothCursorY = useSpring(cursorY, { stiffness: 190, damping: 24, mass: 0.5 });
 
   useEffect(() => {
     setMounted(true);
@@ -96,46 +36,35 @@ export function CursorFollower() {
 
     document.body.classList.add("cursor-follow-enabled");
 
-    const getHoverState = (target: EventTarget | null, x: number, y: number) => {
+    const isInteractive = (target: EventTarget | null) => {
       const element = target instanceof HTMLElement ? target : null;
-      const hoverTarget = element?.closest(TEXT_SELECTOR) as HTMLElement | null;
-
-      if (!hoverTarget) {
-        return { active: false, label: "" };
-      }
-
-      const pointedWord = extractWordAtPoint(x, y);
-      const label = pointedWord || extractCursorLabel(hoverTarget);
-      return { active: true, label };
+      return Boolean(element?.closest(INTERACTIVE_SELECTOR));
     };
 
     const onPointerMove = (event: PointerEvent) => {
       cursorX.set(event.clientX);
       cursorY.set(event.clientY);
-      const hoverState = getHoverState(event.target, event.clientX, event.clientY);
 
+      const active = isInteractive(event.target);
       setState((prev) => {
-        if (prev.visible && prev.active === hoverState.active && prev.label === hoverState.label) {
+        if (prev.visible && prev.active === active) {
           return prev;
         }
 
-        return {
-          ...prev,
-          visible: true,
-          active: hoverState.active,
-          label: hoverState.label,
-        };
+        return { visible: true, active };
       });
     };
 
     const onPointerLeave = () => {
-      setState((prev) => ({ ...prev, visible: false, active: false, label: "" }));
+      setState({ visible: false, active: false });
     };
 
-    const onPointerDown = () => setState((prev) => ({ ...prev, active: true }));
+    const onPointerDown = () => {
+      setState((prev) => ({ ...prev, active: true }));
+    };
+
     const onPointerUp = (event: PointerEvent) => {
-      const hoverState = getHoverState(event.target, cursorX.get(), cursorY.get());
-      setState((prev) => ({ ...prev, active: hoverState.active, label: hoverState.label }));
+      setState((prev) => ({ ...prev, active: isInteractive(event.target) }));
     };
 
     window.addEventListener("pointermove", onPointerMove, { passive: true });
@@ -152,56 +81,27 @@ export function CursorFollower() {
       window.removeEventListener("pointerdown", onPointerDown);
       window.removeEventListener("pointerup", onPointerUp);
     };
-  }, [isFinePointer]);
+  }, [isFinePointer, cursorX, cursorY]);
 
   if (!mounted || !isFinePointer) {
     return null;
   }
 
-  const labelText = state.label || "AGOM";
-  const labelCharacters = [...labelText];
-
   return (
     <motion.div
       aria-hidden="true"
-      className="pointer-events-none fixed left-0 top-0 z-[100] hidden md:block -translate-x-1/2 -translate-y-1/2"
+      className="pointer-events-none fixed left-0 top-0 z-[100] hidden -translate-x-1/2 -translate-y-1/2 mix-blend-difference md:block"
       style={{ x: smoothCursorX, y: smoothCursorY, opacity: state.visible ? 1 : 0 }}
     >
       <motion.div
-        animate={state.active ? { scale: 1.25 } : { scale: 1 }}
-        transition={{ type: "spring", stiffness: 220, damping: 18, mass: 0.5 }}
-        className={`relative grid place-items-center rounded-full border border-black/15 bg-white shadow-[0_10px_30px_rgba(0,0,0,0.14)] ${
-          state.active ? "h-24 w-24 border-black/20" : "h-4 w-4"
-        }`}
-      >
-        <motion.div
-          animate={state.active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.85 }}
-          transition={{ type: "spring", stiffness: 180, damping: 22, mass: 0.45 }}
-          className="absolute inset-0 rounded-full bg-gradient-to-br from-white via-white to-slate-100"
-        />
-        <span
-          className={`relative max-w-[6.4rem] px-2 text-center text-[11px] font-semibold tracking-[0.02em] text-slate-900 transition-all duration-300 ${
-            state.active ? "scale-100 opacity-100" : "scale-0 opacity-0"
-          }`}
-        >
-          {labelCharacters.map((character, index) => (
-            <motion.span
-              key={`${character}-${index}-${labelText}`}
-              className="inline-block"
-              animate={state.active ? { scale: [1, 1.18, 1], y: [0, -0.5, 0] } : { scale: 1, y: 0 }}
-              transition={{
-                duration: 0.9,
-                repeat: state.active ? Infinity : 0,
-                repeatDelay: 0.12,
-                delay: index * 0.045,
-                ease: "easeInOut",
-              }}
-            >
-              {character === " " ? "\u00A0" : character}
-            </motion.span>
-          ))}
-        </span>
-      </motion.div>
+        animate={
+          state.active
+            ? { width: 60, height: 60, backgroundColor: "rgba(255,255,255,1)", borderColor: "rgba(255,255,255,0)" }
+            : { width: 20, height: 20, backgroundColor: "rgba(0,0,0,0)", borderColor: "rgba(255,255,255,0.5)" }
+        }
+        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        className="rounded-full border"
+      />
     </motion.div>
   );
 }

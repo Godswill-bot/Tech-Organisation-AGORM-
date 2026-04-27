@@ -309,6 +309,13 @@ textarea:focus {
   }
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .cursor-follow-enabled,
+  .cursor-follow-enabled * {
+    cursor: none !important;
+  }
+}
+
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 8px;
