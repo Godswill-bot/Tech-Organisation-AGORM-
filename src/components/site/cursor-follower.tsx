@@ -21,6 +21,7 @@ function extractCursorLabel(target: HTMLElement | null) {
 }
 
 export function CursorFollower() {
+  const [mounted, setMounted] = useState(false);
   const [state, setState] = useState<CursorState>({
     x: 0,
     y: 0,
@@ -38,6 +39,10 @@ export function CursorFollower() {
   const cursorY = useMotionValue(0);
   const smoothCursorX = useSpring(cursorX, { stiffness: 240, damping: 28, mass: 0.45 });
   const smoothCursorY = useSpring(cursorY, { stiffness: 240, damping: 28, mass: 0.45 });
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!isFinePointer) return;
@@ -96,7 +101,7 @@ export function CursorFollower() {
     };
   }, [isFinePointer]);
 
-  if (!isFinePointer) {
+  if (!mounted || !isFinePointer) {
     return null;
   }
 
