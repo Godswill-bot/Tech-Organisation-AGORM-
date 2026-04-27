@@ -1,68 +1,78 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { MoonStar, Menu, SunMedium, X } from "lucide-react";
-import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { navLinks } from "@/data/site-content";
 
-type NavbarProps = {
-  theme: "dark" | "light";
-  onToggleTheme: () => void;
-};
-
-export function Navbar({ theme, onToggleTheme }: NavbarProps) {
+export function Navbar() {
   const [open, setOpen] = useState(false);
-  const navLinkClass =
-    theme === "dark"
-      ? "text-sm text-slate-300 transition-colors duration-300 hover:text-white"
-      : "text-sm text-slate-700 transition-colors duration-300 hover:text-slate-950";
+  const [scrolled, setScrolled] = useState(false);
 
-  const headerClass =
-    theme === "dark"
-      ? "fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-background/70 backdrop-blur-xl transition-colors duration-500"
-      : "fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white/80 backdrop-blur-xl transition-colors duration-500";
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className={headerClass}>
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "border-b border-cyan-400/10 bg-background/80 backdrop-blur-xl shadow-lg shadow-cyan-400/5"
+          : "border-b border-cyan-400/5 bg-background/40 backdrop-blur-md"
+      }`}
+    >
       <nav className="mx-auto flex h-18 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
-        <a href="#top" className="flex flex-col leading-none">
-          <span className="text-lg font-semibold tracking-[0.22em] text-slate-950 dark:text-foreground">AGORM</span>
-          <span className="mt-1 text-[10px] uppercase tracking-[0.24em] text-slate-700 dark:text-slate-400">Tech Organisation</span>
-        </a>
+        <motion.a
+          href="#top"
+          className="flex flex-col leading-none group"
+          whileHover={{ scale: 1.02 }}
+        >
+          <span className="text-lg font-bold tracking-wider text-foreground group-hover:text-accent-cyan transition-colors duration-300">
+            AGORM
+          </span>
+          <span className="mt-1 text-[10px] uppercase tracking-widest text-foreground-muted group-hover:text-accent-cyan transition-colors duration-300">
+            Tech Organisation
+          </span>
+        </motion.a>
 
-        <div className="hidden items-center gap-6 md:flex">
+        <div className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
-            <a
+            <motion.a
               key={link.href}
               href={link.href}
-              className={navLinkClass}
+              className="text-sm font-medium text-foreground-muted hover:text-accent-cyan transition-colors duration-300 relative group"
+              whileHover="hover"
             >
               {link.label}
-            </a>
+              <motion.span
+                className="absolute bottom-0 left-0 h-0.5 bg-accent-cyan"
+                initial={{ width: 0 }}
+                variants={{
+                  hover: { width: "100%" }
+                }}
+                transition={{ duration: 0.3 }}
+              />
+            </motion.a>
           ))}
-          <button
-            type="button"
-            onClick={onToggleTheme}
-            className={
-              theme === "dark"
-                ? "rounded-full border border-white/15 bg-transparent p-2 text-foreground transition-colors duration-300 hover:border-cyan-300/50 hover:bg-cyan-300/10"
-                : "rounded-full border border-slate-300 bg-white p-2 text-slate-700 transition-colors duration-300 hover:border-cyan-400 hover:bg-cyan-50 hover:text-slate-950"
-            }
-            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-          >
-            {theme === "dark" ? <SunMedium size={16} /> : <MoonStar size={16} />}
-          </button>
-          <a
-            href="#contact"
-            className="rounded-full border border-cyan-300/40 bg-cyan-50 px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-cyan-700 transition-all duration-300 hover:border-cyan-200 hover:bg-cyan-100 dark:border-cyan-300/40 dark:bg-transparent dark:text-cyan-200 dark:hover:bg-cyan-300/10"
-          >
-            Start a Project
-          </a>
         </div>
+
+        <motion.a
+          href="#contact"
+          className="btn-primary hidden md:inline-flex"
+          whileHover={{ scale: 1.05, boxShadow: "0 20px 50px rgba(0, 217, 255, 0.4)" }}
+          whileTap={{ scale: 0.98 }}
+        >
+          Start a Project
+        </motion.a>
 
         <button
           type="button"
-          className="grid place-items-center rounded-md p-2 text-foreground md:hidden"
+          className="grid place-items-center rounded-md p-2 text-foreground md:hidden hover:bg-surface-hover transition-colors duration-300"
           onClick={() => setOpen((prev) => !prev)}
           aria-label="Toggle navigation"
         >
@@ -73,35 +83,32 @@ export function Navbar({ theme, onToggleTheme }: NavbarProps) {
       <AnimatePresence>
         {open ? (
           <motion.div
-            initial={{ opacity: 0, y: -16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className={
-              theme === "dark"
-                ? "border-t border-white/10 bg-background/95 px-5 py-4 md:hidden"
-                : "border-t border-slate-200/80 bg-white/95 px-5 py-4 md:hidden"
-            }
+            className="border-t border-cyan-400/10 bg-background/95 px-5 py-4 md:hidden"
           >
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
+                <motion.a
                   key={link.href}
                   href={link.href}
-                  className={theme === "dark" ? "text-sm text-foreground" : "text-sm text-slate-700"}
+                  className="text-sm font-medium text-foreground-muted hover:text-accent-cyan transition-colors duration-300"
                   onClick={() => setOpen(false)}
+                  whileHover={{ x: 4 }}
                 >
                   {link.label}
-                </a>
+                </motion.a>
               ))}
-              <button
-                type="button"
-                onClick={onToggleTheme}
-                className={theme === "dark" ? "mt-2 inline-flex items-center gap-2 text-left text-sm text-foreground" : "mt-2 inline-flex items-center gap-2 text-left text-sm text-slate-700"}
+              <motion.a
+                href="#contact"
+                className="btn-primary mt-4 inline-flex text-center justify-center"
+                onClick={() => setOpen(false)}
+                whileTap={{ scale: 0.98 }}
               >
-                {theme === "dark" ? <SunMedium size={16} /> : <MoonStar size={16} />}
-                {theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
-              </button>
+                Start a Project
+              </motion.a>
             </div>
           </motion.div>
         ) : null}
