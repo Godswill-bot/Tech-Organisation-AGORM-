@@ -82,7 +82,7 @@ export function HeroSection() {
                   </motion.span>
                 </motion.a>
 
-                <motion.a href="#projects" className="btn-secondary flex items-center justify-center border-white/30 px-10 py-4 text-base text-white hover:border-white hover:bg-white/10" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                <motion.a href="#projects" className="flex items-center justify-center rounded-md border-2 border-white bg-white px-10 py-4 text-base font-semibold text-slate-950 transition-all duration-300 hover:bg-slate-50 hover:shadow-[0_12px_32px_rgba(255,255,255,0.2)]" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                   View Projects
                 </motion.a>
               </motion.div>
