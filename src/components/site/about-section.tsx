@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { SectionReveal } from "@/components/site/section-reveal";
 import { SectionTitle } from "@/components/site/section-title";
 
@@ -31,8 +32,20 @@ const operatingPrinciples = [
 
 export function AboutSection() {
   return (
-    <section id="about" className="bg-white px-5 py-22 text-slate-900 sm:px-8 sm:py-30">
-      <div className="mx-auto max-w-7xl">
+    <section id="about" className="relative overflow-hidden bg-white px-5 py-22 text-slate-900 sm:px-8 sm:py-30">
+      <div className="pointer-events-none absolute inset-0">
+        <Image
+          src="/black.webp"
+          alt=""
+          fill
+          aria-hidden="true"
+          className="object-cover object-center opacity-10"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-white/85" />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl">
         <SectionReveal>
           <div className="mb-14 grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
             <SectionTitle
