@@ -5,11 +5,11 @@ import { insightUpdates, productSuites, workflowSteps } from "@/data/site-conten
 export function SystemsContextSections() {
   return (
     <>
-      <section id="workflow" className="px-5 py-20 sm:px-8 sm:py-24">
-        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.4rem] bg-white text-slate-900 shadow-[0_28px_80px_rgba(15,23,42,0.08)]">
-          <div className="relative px-5 pb-12 pt-14 sm:px-10 sm:pb-14 lg:px-14 lg:pt-16">
-            <div className="pointer-events-none absolute -left-10 -top-16 h-44 w-44 rounded-full bg-lime-300/45 blur-2xl" />
-            <div className="pointer-events-none absolute -right-12 top-0 h-64 w-64 rounded-full bg-cyan-200/35 blur-3xl" />
+      <section id="workflow" className="bg-white px-5 py-20 text-slate-900 sm:px-8 sm:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-white px-5 pb-12 pt-14 shadow-[0_28px_80px_rgba(15,23,42,0.08)] sm:px-10 sm:pb-14 lg:px-14 lg:pt-16">
+            <div className="pointer-events-none absolute -left-10 -top-16 h-44 w-44 rounded-full bg-lime-300/35 blur-3xl" />
+            <div className="pointer-events-none absolute -right-12 top-0 h-64 w-64 rounded-full bg-cyan-200/30 blur-3xl" />
             <p className="relative text-xs font-semibold uppercase tracking-[0.3em] text-emerald-900/65">Operating Model</p>
             <div className="relative mt-5 max-w-4xl">
               <h2 className="text-hover-accent text-balance text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
@@ -42,9 +42,9 @@ export function SystemsContextSections() {
         </div>
       </section>
 
-      <section id="product-suites" className="px-5 py-20 sm:px-8 sm:py-24">
-        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.4rem] bg-[#f7f8fb] text-slate-900 shadow-[0_24px_70px_rgba(2,6,23,0.08)]">
-          <div className="relative px-5 pb-14 pt-14 sm:px-10 lg:px-14">
+      <section id="product-suites" className="bg-[#f7f8fb] px-5 py-20 text-slate-900 sm:px-8 sm:py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-[#f7f8fb] px-5 pb-14 pt-14 shadow-[0_24px_70px_rgba(2,6,23,0.08)] sm:px-10 lg:px-14">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-900/60">AGOM Product Suites</p>
             <div className="mt-5 grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:items-start">
               <div>
@@ -88,9 +88,9 @@ export function SystemsContextSections() {
         </div>
       </section>
 
-      <section id="insights" className="px-5 pb-20 sm:px-8 sm:pb-24">
-        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.4rem] bg-white text-slate-900 shadow-[0_20px_60px_rgba(12,36,30,0.08)]">
-          <div className="relative px-5 pb-12 pt-14 sm:px-10 lg:px-14">
+      <section id="insights" className="bg-white px-5 pb-20 text-slate-900 sm:px-8 sm:pb-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-white px-5 pb-12 pt-14 shadow-[0_20px_60px_rgba(12,36,30,0.08)] sm:px-10 lg:px-14">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-900/60">AGOM Insights</p>
             <div className="mt-5 grid gap-8 lg:grid-cols-[1fr_1.25fr]">
               <div>
