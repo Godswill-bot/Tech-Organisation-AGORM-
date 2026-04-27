@@ -1,12 +1,18 @@
+import Image from "next/image";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { SectionReveal } from "@/components/site/section-reveal";
 import { insightUpdates, productSuites, workflowSteps } from "@/data/site-content";
+import BlackSideImage from "../../../black side.png";
 
 export function SystemsContextSections() {
   return (
     <>
       <section id="workflow" className="w-full bg-white px-0 py-20 text-slate-900 sm:py-24">
         <div className="relative w-full overflow-hidden bg-white px-5 pb-12 pt-14 sm:px-8 sm:pb-14 lg:px-14 lg:pt-16">
+            <div className="pointer-events-none absolute inset-0">
+              <Image src={BlackSideImage} alt="" fill aria-hidden className="object-cover object-center opacity-12" sizes="100vw" />
+              <div className="absolute inset-0 bg-white/82" />
+            </div>
             <div className="pointer-events-none absolute -left-10 -top-16 h-44 w-44 rounded-full bg-black/5 blur-3xl" />
             <div className="pointer-events-none absolute -right-12 top-0 h-64 w-64 rounded-full bg-black/5 blur-3xl" />
             <p className="relative text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">Operating Model</p>
