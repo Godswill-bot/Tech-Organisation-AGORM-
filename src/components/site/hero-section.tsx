@@ -11,9 +11,9 @@ export function HeroSection() {
   const scaleHero = useTransform(scrollY, [0, 400], [1, 0.95]);
 
   return (
-    <section id="top" className="relative flex min-h-[100svh] items-center overflow-hidden px-4 pb-18 pt-30 sm:px-6 lg:px-8 lg:pt-32">
-      <div className="pointer-events-none absolute inset-0 -z-20 bg-slate-950" />
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+    <section id="top" className="relative isolate flex min-h-[100svh] items-center overflow-hidden px-4 pb-18 pt-30 sm:px-6 lg:px-8 lg:pt-32">
+      <div className="pointer-events-none absolute inset-0 z-0 bg-slate-950" />
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <video
           className="absolute inset-0 h-full w-full object-cover"
           src="/BLACKNPURPLE.mp4"
@@ -27,21 +27,15 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-slate-950/55" />
       </div>
 
-      <motion.div
-        style={{ y: yOne }}
-        className="pointer-events-none absolute -left-48 top-0 h-96 w-96 rounded-full bg-cyan-500/15 blur-3xl"
-      />
-      <motion.div
-        style={{ y: yTwo }}
-        className="pointer-events-none absolute -right-40 top-1/4 h-96 w-96 rounded-full bg-indigo-500/15 blur-3xl"
-      />
+      <motion.div style={{ y: yOne }} className="pointer-events-none absolute -left-48 top-0 z-10 h-96 w-96 rounded-full bg-cyan-500/15 blur-3xl" />
+      <motion.div style={{ y: yTwo }} className="pointer-events-none absolute -right-40 top-1/4 z-10 h-96 w-96 rounded-full bg-indigo-500/15 blur-3xl" />
 
-      <div className="relative mx-auto max-w-7xl">
+      <div className="relative z-20 mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="card-premium"
+          className="w-full"
           style={{ scale: scaleHero }}
         >
           <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-center">
