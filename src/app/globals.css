@@ -279,36 +279,33 @@ textarea:focus {
 .text-hover-accent {
   display: inline;
   color: inherit;
-  transition: color var(--duration-base) var(--ease-out-quad), text-shadow var(--duration-base) var(--ease-out-quad), filter var(--duration-base) var(--ease-out-quad);
+  transition: color var(--duration-base) var(--ease-out-quad), text-shadow var(--duration-base) var(--ease-out-quad);
 }
 
 .text-hover-soft {
   color: inherit;
-  transition: color var(--duration-base) var(--ease-out-quad), text-shadow var(--duration-base) var(--ease-out-quad), transform var(--duration-base) var(--ease-out-quad);
+  transition: color var(--duration-base) var(--ease-out-quad), text-shadow var(--duration-base) var(--ease-out-quad);
 }
 
 .text-hover-ink {
   color: inherit;
-  transition: color var(--duration-base) var(--ease-out-quad), text-shadow var(--duration-base) var(--ease-out-quad), transform var(--duration-base) var(--ease-out-quad);
+  transition: color var(--duration-base) var(--ease-out-quad), text-shadow var(--duration-base) var(--ease-out-quad);
 }
 
 @media (hover: hover) {
   .text-hover-accent:hover {
     color: var(--accent-cyan);
     text-shadow: 0 0 18px rgba(0, 217, 255, 0.35);
-    filter: brightness(1.05);
   }
 
   .text-hover-soft:hover {
     color: #e2f6ff;
     text-shadow: 0 0 18px rgba(0, 217, 255, 0.22);
-    transform: translateY(-1px);
   }
 
   .text-hover-ink:hover {
     color: #0f172a;
     text-shadow: 0 0 10px rgba(15, 23, 42, 0.08);
-    transform: translateY(-1px);
   }
 }
 
