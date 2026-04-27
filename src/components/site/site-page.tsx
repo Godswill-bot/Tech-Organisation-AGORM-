@@ -8,6 +8,7 @@ import { HeroSection } from "@/components/site/hero-section";
 import { Navbar } from "@/components/site/navbar";
 import { ProjectsSection } from "@/components/site/projects-section";
 import { ServicesSection } from "@/components/site/services-section";
+import { SystemsContextSections } from "@/components/site/systems-context-sections";
 import { TestimonialsSection } from "@/components/site/testimonials-section";
 
 export function SitePage() {
@@ -35,6 +36,7 @@ export function SitePage() {
       >
         <HeroSection />
         <AboutSection />
+        <SystemsContextSections />
         <ServicesSection />
         <ProjectsSection />
         <TestimonialsSection />

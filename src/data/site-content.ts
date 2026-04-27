@@ -41,6 +41,31 @@ export type TeamMember = {
   image?: StaticImageData;
 };
 
+export type WorkflowStep = {
+  id: string;
+  title: string;
+  description: string;
+};
+
+export type ProductSuite = {
+  id: string;
+  name: string;
+  focus: string;
+  summary: string;
+  accent: string;
+  href?: string;
+};
+
+export type InsightUpdate = {
+  id: string;
+  category: string;
+  date: string;
+  title: string;
+  summary: string;
+  cta: string;
+  href: string;
+};
+
 export const services: Service[] = [
   {
     title: "Web Development",
@@ -192,4 +217,74 @@ export const navLinks = [
   { href: "/team", label: "Team" },
   { href: "#testimonials", label: "Trust" },
   { href: "#contact", label: "Contact" },
+];
+
+export const workflowSteps: WorkflowStep[] = [
+  {
+    id: "01",
+    title: "Research And Discovery",
+    description: "We map your current process, identify bottlenecks, and define system outcomes with measurable KPIs.",
+  },
+  {
+    id: "02",
+    title: "Design And Engineering",
+    description: "AGORM architects clear flows, secure infrastructure, and interfaces your team can adopt quickly.",
+  },
+  {
+    id: "03",
+    title: "Testing And Validation",
+    description: "We run targeted QA cycles, collect team feedback, and harden performance before full rollout.",
+  },
+  {
+    id: "04",
+    title: "Deployment And Growth",
+    description: "After launch, we monitor adoption, optimize workflows, and support iterative improvements.",
+  },
+];
+
+export const productSuites: ProductSuite[] = [
+  {
+    id: "siwes-platform",
+    name: "SIWES Platform",
+    focus: "Academic Operations",
+    summary: "Centralized internship workflows, institutional records, and stakeholder coordination.",
+    accent: "from-lime-400/30 to-emerald-300/10",
+    href: "https://mtuswiesplatform.me/",
+  },
+  {
+    id: "siwes-tracker",
+    name: "SIWES Tracker",
+    focus: "Student Progress",
+    summary: "Real-time supervision visibility, reporting timelines, and compliance checkpoints in one dashboard.",
+    accent: "from-cyan-400/30 to-teal-300/10",
+    href: "https://mtusiwes-track.vercel.app",
+  },
+  {
+    id: "credit-engine",
+    name: "Credit Scoring Engine",
+    focus: "Risk Intelligence",
+    summary: "Data-driven approval support for ecommerce teams balancing speed with safer lending decisions.",
+    accent: "from-indigo-400/30 to-violet-300/10",
+  },
+];
+
+export const insightUpdates: InsightUpdate[] = [
+  {
+    id: "ops-playbook",
+    category: "Delivery",
+    date: "Apr 2026",
+    title: "How We Deploy Systems Without Workflow Disruption",
+    summary: "Our rollout framework keeps teams productive while new tools are introduced in phases.",
+    cta: "Read rollout model",
+    href: "#contact",
+  },
+  {
+    id: "siwes-learning",
+    category: "Case Note",
+    date: "Apr 2026",
+    title: "Building The SIWES Stack For Real-World Adoption",
+    summary: "Key architecture decisions that improved transparency and coordination for academic operations.",
+    cta: "See system direction",
+    href: "#projects",
+  },
 ];
