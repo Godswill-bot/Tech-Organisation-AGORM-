@@ -47,7 +47,7 @@ export function ServicesSection() {
           <SectionTitle
             eyebrow="Services"
             title="Expanded Engineering Services For Product Teams That Need Delivery Depth"
-            description="AGORM offers structured service tracks across product engineering, design, and technical strategy so your business can move from planning to measurable delivery without losing execution quality."
+            description="AGOM offers structured service tracks across product engineering, design, and technical strategy so your business can move from planning to measurable delivery without losing execution quality."
           />
         </SectionReveal>
 

@@ -48,7 +48,7 @@ export function Navbar() {
           whileHover={{ scale: 1.02 }}
         >
           <span className="text-lg font-bold tracking-wider text-foreground transition-colors duration-300 group-hover:text-cyan-300">
-            AGORM
+            AGOM
           </span>
           <span className="mt-1 text-[10px] uppercase tracking-widest text-slate-400 transition-colors duration-300 group-hover:text-cyan-300">
             Tech Organisation

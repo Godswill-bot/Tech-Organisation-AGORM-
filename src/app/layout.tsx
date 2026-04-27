@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Sora } from "next/font/google";
+import { CursorFollower } from "@/components/site/cursor-follower";
 import "./globals.css";
 
 const headingFont = Sora({
@@ -13,11 +14,11 @@ const bodyFont = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "AGORM | We Build Digital Experiences That Matter",
+  title: "AGOM | We Build Digital Experiences That Matter",
   description:
-    "AGORM is a premium tech startup building robust web apps, mobile solutions, and product innovation across industries.",
+    "AGOM is a premium tech startup building robust web apps, mobile solutions, and product innovation across industries.",
   openGraph: {
-    title: "AGORM",
+    title: "AGOM",
     description:
       "Premium web and mobile product development for startups, brands, and modern businesses.",
     type: "website",
@@ -30,8 +31,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="light" className={`${headingFont.variable} ${bodyFont.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className={`${headingFont.variable} ${bodyFont.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col">
+        <CursorFollower />
+        {children}
+      </body>
     </html>
   );
 }

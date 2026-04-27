@@ -68,7 +68,7 @@ export function HeroSection() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-hover-soft mb-8 max-w-xl text-lg leading-relaxed text-slate-300 sm:text-xl"
               >
-                AGORM engineers high-impact platforms from strategy to launch, pairing bold product thinking with disciplined technical execution.
+                AGOM engineers high-impact platforms from strategy to launch, pairing bold product thinking with disciplined technical execution.
               </motion.p>
 
               <motion.div

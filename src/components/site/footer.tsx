@@ -13,7 +13,7 @@ export function Footer() {
     <footer className="agorm-footer border-t border-white/10 bg-slate-950/60 px-5 py-10 backdrop-blur-sm sm:px-8">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-lg font-semibold tracking-[0.2em] text-white">AGORM</p>
+          <p className="text-lg font-semibold tracking-[0.2em] text-white">AGOM</p>
           <p className="mt-2 text-sm text-slate-400">Digital products for a fast-changing world.</p>
         </div>
 
@@ -38,7 +38,7 @@ export function Footer() {
         </div>
       </div>
 
-      <p className="mx-auto mt-8 max-w-7xl text-xs text-slate-500">Copyright {new Date().getFullYear()} AGORM. All rights reserved.</p>
+      <p className="mx-auto mt-8 max-w-7xl text-xs text-slate-500">Copyright {new Date().getFullYear()} AGOM. All rights reserved.</p>
     </footer>
   );
 }

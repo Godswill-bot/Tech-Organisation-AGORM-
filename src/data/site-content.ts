@@ -192,7 +192,7 @@ export const teamMembers: TeamMember[] = [
 export const testimonials: Testimonial[] = [
   {
     quote:
-      "AGORM translated a complex roadmap into a polished product experience with exceptional speed and discipline.",
+      "AGOM translated a complex roadmap into a polished product experience with exceptional speed and discipline.",
     author: "Product Lead",
     role: "Fintech Startup",
   },
@@ -228,7 +228,7 @@ export const workflowSteps: WorkflowStep[] = [
   {
     id: "02",
     title: "Design And Engineering",
-    description: "AGORM architects clear flows, secure infrastructure, and interfaces your team can adopt quickly.",
+    description: "AGOM architects clear flows, secure infrastructure, and interfaces your team can adopt quickly.",
   },
   {
     id: "03",

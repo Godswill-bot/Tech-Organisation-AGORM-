@@ -22,7 +22,7 @@ export function TeamPage() {
         <section className="mx-auto mb-14 max-w-7xl">
           <SectionReveal>
             <p className="text-xs uppercase tracking-[0.32em] text-cyan-300">Team</p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-6xl">Meet The AGORM Team</h1>
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-6xl">Meet The AGOM Team</h1>
             <p className="mt-5 max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
               Built by specialists across software engineering, data, AI, design, and robotics. Explore each profile and connect with us directly.
             </p>

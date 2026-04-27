@@ -11,7 +11,7 @@ const points = [
     body: "To help organizations turn ambitious ideas into reliable digital systems that create real impact.",
   },
   {
-    title: "What Makes AGORM Different",
+    title: "What Makes AGOM Different",
     body: "We blend startup speed with enterprise-grade quality, combining strategy, design, and engineering in one execution flow.",
   },
 ];
@@ -36,9 +36,9 @@ export function AboutSection() {
         <SectionReveal>
           <div className="mb-14 grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
             <SectionTitle
-              eyebrow="About AGORM"
+              eyebrow="About AGOM"
               title="A Product Engineering Team Built For Serious System Delivery"
-              description="AGORM partners with institutions, startups, and growth-stage businesses to design and deploy digital systems that reduce friction, improve visibility, and support long-term scale."
+              description="AGOM partners with institutions, startups, and growth-stage businesses to design and deploy digital systems that reduce friction, improve visibility, and support long-term scale."
             />
             <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
               <p className="text-xs uppercase tracking-[0.24em] text-cyan-300">Mission</p>
@@ -71,7 +71,7 @@ export function AboutSection() {
                 Built To Handle Product Complexity End To End
               </h3>
               <p className="mt-4 max-w-2xl text-base leading-8 text-slate-300">
-                From discovery workshops to post-launch optimization, AGORM integrates product, engineering, and operational perspectives into one coordinated delivery model.
+                From discovery workshops to post-launch optimization, AGOM integrates product, engineering, and operational perspectives into one coordinated delivery model.
               </p>
 
               <div className="mt-7 grid gap-3 sm:grid-cols-2">

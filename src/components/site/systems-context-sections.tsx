@@ -16,7 +16,7 @@ export function SystemsContextSections() {
                 How We Build Your Systems Without Breaking Your Existing Workflow
               </h2>
               <p className="text-hover-soft mt-5 max-w-3xl text-lg leading-8 text-emerald-900/75">
-                AGORM aligns with your current operation first, then introduces clean digital layers that make execution faster and easier to scale.
+                AGOM aligns with your current operation first, then introduces clean digital layers that make execution faster and easier to scale.
               </p>
             </div>
 
@@ -45,14 +45,14 @@ export function SystemsContextSections() {
       <section id="product-suites" className="px-5 py-20 sm:px-8 sm:py-24">
         <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.2rem] border border-white/10 bg-slate-50 text-slate-900 shadow-[0_24px_70px_rgba(2,6,23,0.18)]">
           <div className="relative px-5 pb-14 pt-14 sm:px-10 lg:px-14">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-900/70">AGORM Product Suites</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-900/70">AGOM Product Suites</p>
             <div className="mt-5 grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:items-start">
               <div>
                 <h2 className="text-hover-accent text-balance text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
                   Systems Built For Real Teams, Real Work, And Real Constraints
                 </h2>
                 <p className="text-hover-soft mt-5 max-w-2xl text-lg leading-8 text-slate-700">
-                  From institutional coordination to credit intelligence, AGORM products focus on usable structure, visibility, and measurable outcomes.
+                  From institutional coordination to credit intelligence, AGOM products focus on usable structure, visibility, and measurable outcomes.
                 </p>
                 <a href="#projects" className="mt-8 inline-flex items-center gap-2 rounded-full bg-lime-400 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-emerald-950 transition-all duration-300 hover:translate-x-1 hover:bg-lime-300">
                   Explore Systems <ArrowRight size={16} />
@@ -91,14 +91,14 @@ export function SystemsContextSections() {
       <section id="insights" className="px-5 pb-20 sm:px-8 sm:pb-24">
         <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.2rem] border border-white/10 bg-slate-100 text-slate-900 shadow-[0_20px_60px_rgba(12,36,30,0.16)]">
           <div className="relative px-5 pb-12 pt-14 sm:px-10 lg:px-14">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-900/70">AGORM Insights</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-900/70">AGOM Insights</p>
             <div className="mt-5 grid gap-8 lg:grid-cols-[1fr_1.25fr]">
               <div>
                 <h2 className="text-hover-accent text-balance text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
                   Latest Updates On Systems, Delivery, And Product Operations
                 </h2>
                 <p className="text-hover-soft mt-5 max-w-xl text-lg leading-8 text-slate-700">
-                  Practical notes from active AGORM builds, focused on what works when deploying modern systems in fast-moving teams.
+                  Practical notes from active AGOM builds, focused on what works when deploying modern systems in fast-moving teams.
                 </p>
               </div>
 
