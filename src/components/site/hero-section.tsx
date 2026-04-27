@@ -150,32 +150,6 @@ export function HeroSection() {
                 </div>
               </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 24, rotate: 1.5 }}
-                animate={{ opacity: 1, y: 0, rotate: 1.5 }}
-                transition={{ duration: 0.9, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute -bottom-8 right-2 h-40 w-72 overflow-hidden rounded-2xl border border-cyan-200/25 bg-slate-900/85 shadow-2xl shadow-cyan-500/20 sm:-bottom-6 sm:right-6 sm:h-44 sm:w-80"
-                whileHover={{ y: -6, scale: 1.02 }}
-              >
-                <motion.div
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-cyan-300/20 via-transparent to-indigo-300/20"
-                  animate={{ opacity: [0.35, 0.65, 0.35] }}
-                  transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <Image
-                  src="/hero-dashboard-preview.png"
-                  alt="Product dashboard preview"
-                  fill
-                  sizes="(max-width: 640px) 288px, 320px"
-                  className="object-cover"
-                />
-                <motion.div
-                  className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 bg-white/20 blur-xl"
-                  animate={{ x: [0, 420] }}
-                  transition={{ duration: 2.8, repeat: Infinity, repeatDelay: 2.4, ease: "easeInOut" }}
-                />
-              </motion.div>
-
               <motion.div className="absolute left-1/4 top-1/4 h-3 w-3 animate-pulse rounded-full bg-cyan-300/45 blur-sm" />
               <motion.div
                 className="absolute right-1/3 top-1/3 h-2 w-2 rounded-full bg-indigo-300/45 blur-sm"
