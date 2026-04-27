@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ExternalLink, X } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
 import { SectionReveal } from "@/components/site/section-reveal";
 import { SectionTitle } from "@/components/site/section-title";
@@ -13,7 +14,7 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-70 grid place-items-center bg-slate-950/70 p-5 backdrop-blur-sm dark:bg-slate-950/70"
+      className="fixed inset-0 z-70 grid place-items-center bg-slate-950/75 p-5 backdrop-blur-sm"
       onClick={onClose}
     >
       <motion.div
@@ -21,31 +22,50 @@ function ProjectModal({ project, onClose }: { project: Project; onClose: () => v
         animate={{ opacity: 1, y: 0, scale: 1 }}
         exit={{ opacity: 0, y: 16, scale: 0.98 }}
         transition={{ duration: 0.25 }}
-        className="relative w-full max-w-2xl rounded-2xl border border-slate-300 bg-white p-6 shadow-lg sm:p-8 dark:border-white/15 dark:bg-slate-900/95 dark:shadow-none"
+        className="relative w-full max-w-2xl rounded-2xl border border-white/15 bg-slate-950/95 p-6 shadow-lg sm:p-8"
         onClick={(event) => event.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-4 top-4 rounded-md p-1 text-slate-600 hover:bg-slate-100 hover:text-slate-950 dark:text-slate-300 dark:hover:bg-white/10 dark:hover:text-white"
+          className="absolute right-4 top-4 rounded-md p-1 text-slate-300 hover:bg-white/10 hover:text-white"
           aria-label="Close project modal"
         >
           <X size={20} />
         </button>
 
-        <p className="text-xs uppercase tracking-[0.2em] text-cyan-400 dark:text-cyan-300">{project.category}</p>
-        <h3 className="mt-2 text-2xl font-semibold text-slate-950 dark:text-white">{project.title}</h3>
-        <p className="mt-4 text-sm leading-7 text-slate-700 dark:text-slate-300">{project.summary}</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">{project.category}</p>
+        <h3 className="mt-2 text-2xl font-semibold text-white">{project.title}</h3>
+        <p className="mt-4 text-sm leading-7 text-slate-300">{project.summary}</p>
 
-        <div className="mt-6 space-y-4 text-sm leading-7 text-slate-700 dark:text-slate-300">
+        <div className="mt-5 overflow-hidden rounded-xl border border-white/10 bg-white/5">
+          {project.previewImage ? (
+            <Image
+              src={project.previewImage}
+              alt={`${project.title} preview`}
+              width={1200}
+              height={675}
+              className="h-44 w-full object-cover"
+            />
+          ) : (
+            <div className="grid h-44 place-items-center px-4 text-center text-[10px] uppercase tracking-[0.2em] text-slate-300">
+              [IMAGE PLACEHOLDER: project preview]
+            </div>
+          )}
+        </div>
+
+        <div className="mt-6 space-y-4 text-sm leading-7 text-slate-300">
           <p>
-            <span className="font-medium text-slate-950 dark:text-white">Challenge:</span> {project.challenge}
+            <span className="font-medium text-white">Challenge:</span> {project.challenge}
           </p>
           <p>
-            <span className="font-medium text-slate-950 dark:text-white">Solution:</span> {project.solution}
+            <span className="font-medium text-white">Solution:</span> {project.solution}
           </p>
           <p>
-            <span className="font-medium text-slate-950 dark:text-white">Impact:</span> {project.impact}
+            <span className="font-medium text-white">Impact:</span> {project.impact}
+          </p>
+          <p>
+            <span className="font-medium text-white">Case Study Metric:</span> {project.metric}
           </p>
         </div>
       </motion.div>
@@ -73,14 +93,30 @@ export function ProjectsSection() {
               <button
                 type="button"
                 onClick={() => setSelectedProject(project)}
-                className="agorm-project-card group relative h-full w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/60 dark:border-white/10 dark:bg-slate-950/90 dark:hover:border-cyan-300/40"
+                className="agorm-project-card group relative h-full w-full overflow-hidden rounded-2xl border border-white/10 bg-slate-900/75 p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/50"
               >
-                <div className={`pointer-events-none absolute inset-0 opacity-20 dark:opacity-12 bg-linear-to-br ${project.gradient}`} />
+                <div className={`pointer-events-none absolute inset-0 bg-linear-to-br opacity-18 ${project.gradient}`} />
                 <div className="relative">
-                  <p className="text-xs uppercase tracking-[0.18em] text-cyan-600 dark:text-cyan-200/95">{project.category}</p>
-                  <h3 className="mt-2 text-xl font-semibold text-slate-950 dark:text-white">{project.title}</h3>
-                  <p className="mt-4 text-sm leading-7 text-slate-700 dark:text-slate-200/90">{project.summary}</p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-cyan-600 dark:text-cyan-100">
+                  <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">{project.category}</p>
+                  <h3 className="mt-2 text-xl font-semibold text-white">{project.title}</h3>
+                  <p className="mt-4 text-sm leading-7 text-slate-300">{project.summary}</p>
+                  <div className="mt-5 overflow-hidden rounded-xl border border-white/10 bg-white/5">
+                    {project.previewImage ? (
+                      <Image
+                        src={project.previewImage}
+                        alt={`${project.title} preview`}
+                        width={1200}
+                        height={675}
+                        className="h-44 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    ) : (
+                      <div className="grid h-44 place-items-center px-4 text-center text-[10px] uppercase tracking-[0.2em] text-slate-300">
+                        [IMAGE PLACEHOLDER: project preview]
+                      </div>
+                    )}
+                  </div>
+                  <p className="mt-4 text-sm font-medium text-emerald-300">{project.metric}</p>
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-cyan-300">
                     View details <ExternalLink size={16} className="transition-transform group-hover:translate-x-1" />
                   </span>
                 </div>

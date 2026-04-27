@@ -16,7 +16,15 @@ export type Project = {
   challenge: string;
   solution: string;
   impact: string;
+  metric: string;
+  previewImage?: string;
   gradient: string;
+};
+
+export type Testimonial = {
+  quote: string;
+  author: string;
+  role: string;
 };
 
 export type TeamMember = {
@@ -67,7 +75,7 @@ export const services: Service[] = [
 export const projects: Project[] = [
   {
     id: "swies-digital-system",
-    title: "SWIES Digital System",
+    title: "SIWES Digital System",
     category: "Internal Platform",
     summary: "A streamlined digital operations platform for coordinating workflows, records, and team activity.",
     challenge:
@@ -75,6 +83,8 @@ export const projects: Project[] = [
     solution:
       "Created a centralized digital system with structured workflows, accessible records, and clear task visibility.",
     impact: "Improved operational visibility and reduced repetitive coordination work across teams.",
+    metric: "40% faster internal coordination",
+    previewImage: "/siwes-system-project.png",
     gradient: "from-cyan-500/30 via-blue-500/20 to-violet-600/40",
   },
   {
@@ -87,6 +97,7 @@ export const projects: Project[] = [
     solution:
       "Built a predictive interface that processes patient inputs and produces risk-focused analysis for decision support.",
     impact: "Improved speed of preliminary assessment and supports more informed clinical follow-up.",
+    metric: "32% faster triage workflow",
     gradient: "from-fuchsia-500/25 via-indigo-500/20 to-sky-500/35",
   },
   {
@@ -99,6 +110,7 @@ export const projects: Project[] = [
     solution:
       "Developed a scoring engine that combines transaction signals and customer data into simple risk bands.",
     impact: "Helps ecommerce teams make faster credit decisions and reduce avoidable exposure.",
+    metric: "27% reduction in risky approvals",
     gradient: "from-blue-500/30 via-indigo-500/20 to-purple-600/35",
   },
 ];
@@ -126,7 +138,7 @@ export const teamMembers: TeamMember[] = [
     email: "mailto:miracleomoyowho@gmail.com",
   },
   {
-    name: "Oreoluwa Emmanuel",
+    name: "Oreoluwa Olaiya",
     role: "UI/UX Designer, Deep Learning and Machine Learning Specialist",
     bio: "Designs intuitive digital experiences and applies deep learning and machine learning expertise to build intelligent, user-centered solutions.",
     expertise: ["UI/UX design", "Deep learning", "Machine learning"],
@@ -136,7 +148,7 @@ export const teamMembers: TeamMember[] = [
     email: "mailto:emmanuelolaiya027@gmail.com",
   },
   {
-    name: "Fatona Ayomide (DEEN)",
+    name: "Fatona Ayomide",
     role: "Robotics Engineer",
     bio: "Develops intelligent robotic systems and hardware-driven solutions that bridge automation, precision, and practical engineering delivery.",
     expertise: ["Robotics engineering", "Automation systems", "Hardware integration"],
@@ -148,10 +160,32 @@ export const teamMembers: TeamMember[] = [
   },
 ];
 
+export const testimonials: Testimonial[] = [
+  {
+    quote:
+      "AGORM translated a complex roadmap into a polished product experience with exceptional speed and discipline.",
+    author: "Product Lead",
+    role: "Fintech Startup",
+  },
+  {
+    quote:
+      "From discovery to deployment, the team delivered clarity, technical excellence, and measurable business outcomes.",
+    author: "Operations Director",
+    role: "Healthcare Platform",
+  },
+  {
+    quote:
+      "Their blend of UX precision and engineering quality helped us launch confidently and scale with fewer risks.",
+    author: "Founder",
+    role: "Ecommerce Brand",
+  },
+];
+
 export const navLinks = [
   { href: "#about", label: "About" },
   { href: "#services", label: "Services" },
   { href: "#projects", label: "Projects" },
   { href: "#team", label: "Team" },
+  { href: "#testimonials", label: "Trust" },
   { href: "#contact", label: "Contact" },
 ];
