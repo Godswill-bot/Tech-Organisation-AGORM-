@@ -24,7 +24,7 @@ export function HeroSection() {
           preload="metadata"
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-slate-950/55" />
+        <div className="absolute inset-0 bg-slate-950/72" />
       </div>
 
       <motion.div style={{ y: yOne }} className="pointer-events-none absolute -left-48 top-0 z-10 h-96 w-96 rounded-full bg-black/10 blur-3xl" />
@@ -54,7 +54,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.15 }}
-                className="text-hover-soft mb-6 text-5xl font-bold leading-[1.03] text-foreground sm:text-6xl lg:text-7xl"
+                className="text-hover-soft mb-6 text-5xl font-bold leading-[1.03] text-white sm:text-6xl lg:text-7xl"
               >
                 We Build Digital Systems
                 <span className="mt-1 block w-fit bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
@@ -66,7 +66,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-hover-soft mb-8 max-w-xl text-lg leading-relaxed text-slate-300 sm:text-xl"
+                className="text-hover-soft mb-8 max-w-xl text-lg leading-relaxed text-slate-200 sm:text-xl"
               >
                 AGOM engineers high-impact platforms from strategy to launch, pairing bold product thinking with disciplined technical execution.
               </motion.p>
@@ -84,7 +84,7 @@ export function HeroSection() {
                   </motion.span>
                 </motion.a>
 
-                <motion.a href="#projects" className="btn-secondary flex items-center justify-center px-10 py-4 text-base" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                <motion.a href="#projects" className="btn-secondary flex items-center justify-center border-white/30 px-10 py-4 text-base text-white hover:border-white hover:bg-white/10" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                   View Projects
                 </motion.a>
               </motion.div>
@@ -98,7 +98,7 @@ export function HeroSection() {
                 {["Strategy", "Design", "Engineering"].map((capability, i) => (
                   <motion.div
                     key={capability}
-                    className="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-base font-medium text-slate-200 transition-all duration-300 hover:border-white/40 hover:bg-white/10"
+                    className="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-base font-medium text-white transition-all duration-300 hover:border-white/40 hover:bg-white/10"
                     whileHover={{ y: -2 }}
                     transition={{ delay: i * 0.05 }}
                   >
