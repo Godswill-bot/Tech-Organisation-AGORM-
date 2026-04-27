@@ -19,20 +19,20 @@ export function Footer() {
 
         <div className="flex flex-wrap gap-4">
           {links.map((link) => (
-            <a key={link.href} href={link.href} className="text-sm font-medium text-slate-300 transition-colors hover:text-cyan-300">
+            <a key={link.href} href={link.href} className="text-sm font-medium text-slate-300 transition-colors hover:text-white">
               {link.label}
             </a>
           ))}
         </div>
 
         <div className="flex items-center gap-3">
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="agorm-footer-icon rounded-md border border-white/15 bg-white/5 p-2 text-slate-200 transition-colors hover:border-cyan-300/50 hover:text-cyan-200">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="agorm-footer-icon rounded-md border border-white/15 bg-white/5 p-2 text-slate-200 transition-colors hover:border-white/50 hover:text-white">
             <Link size={16} />
           </a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="agorm-footer-icon rounded-md border border-white/15 bg-white/5 p-2 text-slate-200 transition-colors hover:border-cyan-300/50 hover:text-cyan-200">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="agorm-footer-icon rounded-md border border-white/15 bg-white/5 p-2 text-slate-200 transition-colors hover:border-white/50 hover:text-white">
             <Globe size={16} />
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="agorm-footer-icon rounded-md border border-white/15 bg-white/5 p-2 text-slate-200 transition-colors hover:border-cyan-300/50 hover:text-cyan-200">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="agorm-footer-icon rounded-md border border-white/15 bg-white/5 p-2 text-slate-200 transition-colors hover:border-white/50 hover:text-white">
             <Send size={16} />
           </a>
         </div>

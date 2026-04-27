@@ -16,10 +16,10 @@ export function SitePage() {
     <div className="relative min-h-screen overflow-x-clip bg-background text-foreground transition-colors duration-500">
       {/* Premium Dark Background with Gradient Overlays */}
       <div className="pointer-events-none fixed inset-0 -z-10 opacity-100">
-        {/* Primary gradient - cyan glow */}
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl" />
-        {/* Secondary gradient - indigo glow */}
-        <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl" />
+        {/* Primary gradient - monochrome glow */}
+        <div className="absolute top-0 left-1/4 h-96 w-96 rounded-full bg-black/5 blur-3xl" />
+        {/* Secondary gradient - monochrome glow */}
+        <div className="absolute top-1/2 right-1/4 h-96 w-96 rounded-full bg-black/5 blur-3xl" />
         {/* Background solid */}
         <div className="absolute inset-0 bg-background" />
       </div>

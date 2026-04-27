@@ -34,7 +34,7 @@ function TeamProfileModal({
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-4 top-4 z-10 rounded-full border border-white/10 bg-slate-900 px-3 py-1 text-sm text-slate-300 shadow-sm transition-colors hover:border-cyan-300 hover:text-white"
+          className="absolute right-4 top-4 z-10 rounded-full border border-black/10 bg-white px-3 py-1 text-sm text-slate-700 shadow-sm transition-colors hover:border-black/30 hover:text-slate-950"
           aria-label={`Close ${member.name} profile`}
         >
           Close
@@ -59,7 +59,7 @@ function TeamProfileModal({
 
           <div className="flex flex-col justify-between p-6 sm:p-8 lg:p-10">
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-cyan-300">Team Member</p>
+              <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Team Member</p>
               <h3 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-4xl">
                 {member.name}
               </h3>
@@ -84,7 +84,7 @@ function TeamProfileModal({
             <div className="mt-10 grid gap-3 sm:grid-cols-3">
               <a
                 href={`tel:${member.phone.replace(/\s+/g, "")}`}
-                className="rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-sm font-medium text-slate-200 transition-colors hover:border-cyan-300 hover:text-white"
+                className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:border-black/30 hover:text-slate-950"
               >
                 <span className="block text-xs uppercase tracking-[0.18em] text-slate-400">Phone</span>
                 <span className="mt-1 block wrap-break-word">{member.phone}</span>
@@ -92,7 +92,7 @@ function TeamProfileModal({
               {member.email ? (
                 <a
                   href={member.email}
-                  className="rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-sm font-medium text-slate-200 transition-colors hover:border-cyan-300 hover:text-white"
+                  className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:border-black/30 hover:text-slate-950"
                 >
                   <span className="block text-xs uppercase tracking-[0.18em] text-slate-400">Email</span>
                   <span className="mt-1 block wrap-break-word">{member.email.replace("mailto:", "")}</span>
@@ -103,7 +103,7 @@ function TeamProfileModal({
                   href={member.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-2xl border border-white/10 bg-slate-900/70 px-4 py-3 text-sm font-medium text-slate-200 transition-colors hover:border-cyan-300 hover:text-white"
+                  className="rounded-2xl border border-black/10 bg-white px-4 py-3 text-sm font-medium text-slate-700 transition-colors hover:border-black/30 hover:text-slate-950"
                 >
                   <span className="block text-xs uppercase tracking-[0.18em] text-slate-400">LinkedIn</span>
                   <span className="mt-1 block">Open Profile</span>
@@ -137,7 +137,7 @@ export function TeamSection() {
               <button
                 type="button"
                 onClick={() => setSelectedMember(member)}
-                className="agorm-team-card group h-full rounded-2xl border border-white/10 bg-slate-900/80 p-5 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/50"
+                className="agorm-team-card group h-full rounded-2xl border border-black/10 bg-white p-5 text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-black/30"
               >
                 <div className="agorm-team-media-shell mb-4 overflow-hidden rounded-xl border border-white/10 bg-slate-950/70">
                   {member.image ? (
@@ -155,9 +155,9 @@ export function TeamSection() {
                   )}
                 </div>
                 <h3 className="text-lg font-semibold text-white">{member.name}</h3>
-                <p className="mt-1 text-sm text-cyan-300">{member.role}</p>
+                <p className="mt-1 text-sm text-slate-500">{member.role}</p>
                 <p className="mt-3 text-sm leading-7 text-slate-300">{member.bio}</p>
-                <p className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-cyan-300">
+                <p className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-slate-700">
                   <Phone size={15} /> Tap to view full profile
                 </p>
               </button>

@@ -39,14 +39,14 @@ export function AboutSection() {
               eyebrow="About AGOM"
               title="A Product Engineering Team Built For Serious System Delivery"
               description="AGOM partners with institutions, startups, and growth-stage businesses to design and deploy digital systems that reduce friction, improve visibility, and support long-term scale."
-              eyebrowClassName="text-emerald-700"
+              eyebrowClassName="text-slate-600"
               titleClassName="text-slate-900"
               descriptionClassName="text-slate-700"
               titleHoverClassName="text-hover-ink"
               descriptionHoverClassName="text-hover-ink"
             />
             <div className="rounded-3xl bg-slate-50 p-6 shadow-[0_14px_36px_rgba(15,23,42,0.06)]">
-              <p className="text-xs uppercase tracking-[0.24em] text-emerald-700">Mission</p>
+              <p className="text-xs uppercase tracking-[0.24em] text-slate-600">Mission</p>
               <p className="mt-3 text-base leading-8 text-slate-700">
                 To translate bold ideas into reliable software systems through disciplined strategy, intentional product design, and high-quality engineering.
               </p>
@@ -71,7 +71,7 @@ export function AboutSection() {
         <SectionReveal className="mt-12">
           <div className="grid gap-8 rounded-[2rem] bg-slate-900 px-6 py-8 text-slate-50 shadow-[0_24px_60px_rgba(2,6,23,0.18)] sm:p-8 lg:grid-cols-[1.05fr_0.95fr]">
             <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-cyan-300">Core Capabilities</p>
+              <p className="text-xs uppercase tracking-[0.24em] text-slate-500">Core Capabilities</p>
               <h3 className="mt-3 text-3xl font-semibold leading-tight text-white sm:text-4xl">
                 Built To Handle Product Complexity End To End
               </h3>
@@ -81,7 +81,7 @@ export function AboutSection() {
 
               <div className="mt-7 grid gap-3 sm:grid-cols-2">
                 {capabilities.map((capability) => (
-                  <p key={capability} className="rounded-xl bg-white/5 px-4 py-3 text-sm text-slate-200">
+                  <p key={capability} className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-slate-700">
                     {capability}
                   </p>
                 ))}
@@ -89,11 +89,11 @@ export function AboutSection() {
             </div>
 
             <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-cyan-300">How We Operate</p>
+              <p className="text-xs uppercase tracking-[0.24em] text-slate-500">How We Operate</p>
               <div className="mt-4 space-y-4">
                 {operatingPrinciples.map((principle, index) => (
-                  <div key={principle} className="rounded-2xl bg-white/5 p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">0{index + 1}</p>
+                  <div key={principle} className="rounded-2xl bg-slate-50 p-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">0{index + 1}</p>
                     <p className="mt-2 text-sm leading-7 text-slate-300">{principle}</p>
                   </div>
                 ))}

@@ -35,7 +35,7 @@ export function ProjectsSection() {
                     viewport={{ once: true, margin: "-15% 0px -10% 0px" }}
                     transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">{project.category}</p>
+                    <p className="text-xs uppercase tracking-[0.2em] text-slate-500">{project.category}</p>
                     <h3 className="text-hover-accent mt-3 text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-5xl">{project.title}</h3>
                     <p className="text-hover-soft mt-5 text-base leading-8 text-slate-300 sm:text-lg">{project.summary}</p>
 
@@ -45,7 +45,7 @@ export function ProjectsSection() {
                       <p className="sm:col-span-2"><span className="font-medium text-white">Impact:</span> {project.impact}</p>
                     </div>
 
-                    <p className="mt-6 text-lg font-semibold text-emerald-300">{project.metric}</p>
+                    <p className="mt-6 text-lg font-semibold text-slate-900">{project.metric}</p>
 
                     {project.websiteUrl || project.trackerUrl ? (
                       <div className="mt-6 flex flex-wrap gap-3">
@@ -54,7 +54,7 @@ export function ProjectsSection() {
                             href={project.websiteUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-full border border-cyan-300/45 bg-cyan-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-200 transition-colors hover:bg-cyan-300/20"
+                            className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-700 transition-colors hover:bg-slate-50"
                           >
                             MTU SIWES Platform <ExternalLink size={14} />
                           </a>
@@ -64,7 +64,7 @@ export function ProjectsSection() {
                             href={project.trackerUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-full border border-indigo-300/45 bg-indigo-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-indigo-200 transition-colors hover:bg-indigo-300/20"
+                            className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-700 transition-colors hover:bg-slate-50"
                           >
                             MTU SIWES Tracker <ExternalLink size={14} />
                           </a>

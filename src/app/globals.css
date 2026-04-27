@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  /* Premium Dark-First Color System */
-  --background: #0a0e27;
-  --background-secondary: #1a1f3a;
-  --background-tertiary: #2a2f47;
-  --foreground: #f1f5f9;
-  --foreground-muted: #cbd5e1;
-  
-  /* Premium Accents */
-  --accent-cyan: #00d9ff;
-  --accent-cyan-dark: #0099cc;
-  --accent-indigo: #6366f1;
-  --accent-indigo-bright: #818cf8;
-  --accent-mint: #10b981;
-  
+  /* Monochrome Theme System */
+  --background: #ffffff;
+  --background-secondary: #f4f4f5;
+  --background-tertiary: #e5e7eb;
+  --foreground: #111827;
+  --foreground-muted: #4b5563;
+
+  /* Monochrome Accents */
+  --accent-cyan: #111827;
+  --accent-cyan-dark: #000000;
+  --accent-indigo: #4b5563;
+  --accent-indigo-bright: #6b7280;
+  --accent-mint: #111827;
+
   /* Semantic Colors */
-  --border-primary: rgba(51, 65, 85, 0.5);
-  --border-secondary: rgba(71, 85, 105, 0.3);
-  --surface-hover: rgba(255, 255, 255, 0.05);
-  --surface-active: rgba(255, 255, 255, 0.08);
+  --border-primary: rgba(17, 24, 39, 0.18);
+  --border-secondary: rgba(17, 24, 39, 0.1);
+  --surface-hover: rgba(17, 24, 39, 0.04);
+  --surface-active: rgba(17, 24, 39, 0.08);
   
   /* Animation Timing */
   --ease-smooth: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -104,19 +104,19 @@ p {
   font-weight: 600;
   font-size: 0.95rem;
   letter-spacing: 0.3px;
-  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-indigo-bright));
-  color: #000;
+  background: linear-gradient(135deg, #111111, #4b5563);
+  color: #ffffff;
   border: none;
   cursor: pointer;
   transition: all var(--duration-base) var(--ease-out-quad);
-  box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(17, 24, 39, 0.14);
   position: relative;
   overflow: hidden;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 15px 40px rgba(0, 217, 255, 0.35);
+  box-shadow: 0 15px 40px rgba(17, 24, 39, 0.22);
 }
 
 .btn-primary:active {
@@ -140,14 +140,14 @@ p {
 }
 
 .btn-secondary:hover {
-  border-color: var(--accent-cyan);
-  background: rgba(0, 217, 255, 0.08);
-  box-shadow: 0 8px 24px rgba(0, 217, 255, 0.12);
+  border-color: #111111;
+  background: rgba(17, 24, 39, 0.05);
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.08);
 }
 
 /* Premium Card System */
 .card-premium {
-  background: var(--background-secondary);
+  background: #ffffff;
   border: 1px solid var(--border-primary);
   border-radius: 0.75rem;
   padding: 2rem;
@@ -160,15 +160,15 @@ p {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(0, 217, 255, 0), rgba(99, 102, 241, 0));
+  background: linear-gradient(135deg, rgba(17, 24, 39, 0), rgba(17, 24, 39, 0));
   opacity: 0;
   transition: opacity var(--duration-base);
 }
 
 .card-premium:hover {
-  border-color: rgba(0, 217, 255, 0.3);
-  background: var(--background-secondary);
-  box-shadow: 0 12px 40px rgba(0, 217, 255, 0.08);
+  border-color: rgba(17, 24, 39, 0.22);
+  background: #ffffff;
+  box-shadow: 0 12px 40px rgba(17, 24, 39, 0.08);
   transform: translateY(-4px);
 }
 
@@ -179,7 +179,7 @@ p {
 /* Input System */
 input,
 textarea {
-  background: var(--background-secondary);
+  background: #ffffff;
   color: var(--foreground);
   border: 1px solid var(--border-primary);
   border-radius: 0.5rem;
@@ -197,9 +197,9 @@ textarea::placeholder {
 input:focus,
 textarea:focus {
   outline: none;
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
-  background: var(--background-secondary);
+  border-color: #111111;
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.08);
+  background: #ffffff;
 }
 
 /* Animation Utilities */
@@ -294,13 +294,13 @@ textarea:focus {
 
 @media (hover: hover) {
   .text-hover-accent:hover {
-    color: var(--accent-cyan);
-    text-shadow: 0 0 18px rgba(0, 217, 255, 0.35);
+      color: #111111;
+      text-shadow: 0 0 10px rgba(17, 24, 39, 0.12);
   }
 
   .text-hover-soft:hover {
-    color: #e2f6ff;
-    text-shadow: 0 0 18px rgba(0, 217, 255, 0.22);
+      color: #111111;
+      text-shadow: 0 0 10px rgba(17, 24, 39, 0.12);
   }
 
   .text-hover-ink:hover {
@@ -324,7 +324,7 @@ textarea:focus {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-cyan);
+  background: #111111;
 }
 
 

@@ -7,9 +7,9 @@ export function SystemsContextSections() {
     <>
       <section id="workflow" className="w-full bg-white px-0 py-20 text-slate-900 sm:py-24">
         <div className="relative w-full overflow-hidden bg-white px-5 pb-12 pt-14 sm:px-8 sm:pb-14 lg:px-14 lg:pt-16">
-            <div className="pointer-events-none absolute -left-10 -top-16 h-44 w-44 rounded-full bg-lime-300/35 blur-3xl" />
-            <div className="pointer-events-none absolute -right-12 top-0 h-64 w-64 rounded-full bg-cyan-200/30 blur-3xl" />
-            <p className="relative text-xs font-semibold uppercase tracking-[0.3em] text-emerald-900/65">Operating Model</p>
+            <div className="pointer-events-none absolute -left-10 -top-16 h-44 w-44 rounded-full bg-black/5 blur-3xl" />
+            <div className="pointer-events-none absolute -right-12 top-0 h-64 w-64 rounded-full bg-black/5 blur-3xl" />
+            <p className="relative text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">Operating Model</p>
             <div className="relative mt-5 max-w-4xl">
               <h2 className="text-hover-ink text-balance text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
                 How We Build Your Systems Without Breaking Your Existing Workflow
@@ -23,7 +23,7 @@ export function SystemsContextSections() {
               {workflowSteps.map((step, index) => (
                 <SectionReveal key={step.id} delay={index * 0.06}>
                   <article className="h-full rounded-[1.75rem] bg-slate-50 p-7 transition-all duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_18px_40px_rgba(15,23,42,0.08)]">
-                    <p className="text-sm font-semibold uppercase tracking-[0.28em] text-emerald-900/55">{step.id}</p>
+                    <p className="text-sm font-semibold uppercase tracking-[0.28em] text-slate-500">{step.id}</p>
                     <h3 className="text-hover-ink mt-16 text-3xl font-semibold leading-tight text-slate-900">{step.title}</h3>
                     <p className="mt-5 text-base leading-7 text-slate-700">{step.description}</p>
                   </article>
@@ -33,7 +33,7 @@ export function SystemsContextSections() {
 
             <div className="relative mt-10 inline-flex rounded-full bg-slate-100 px-5 py-3 text-sm font-semibold text-slate-900 shadow-[0_10px_24px_rgba(15,23,42,0.06)]">
               Need this execution model in your institution?
-              <a href="#contact" className="ml-3 inline-flex items-center gap-1 text-slate-900 transition-colors hover:text-emerald-700">
+              <a href="#contact" className="ml-3 inline-flex items-center gap-1 text-slate-900 transition-colors hover:text-slate-700">
                 LET'S TALK <ArrowRight size={16} />
               </a>
             </div>
@@ -42,7 +42,7 @@ export function SystemsContextSections() {
 
       <section id="product-suites" className="w-full bg-[#f7f8fb] px-0 py-20 text-slate-900 sm:py-24">
         <div className="relative w-full bg-[#f7f8fb] px-5 pb-14 pt-14 sm:px-8 lg:px-14">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-900/60">AGOM Product Suites</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">AGOM Product Suites</p>
             <div className="mt-5 grid gap-8 lg:grid-cols-[1.15fr_1fr] lg:items-start">
               <div>
                 <h2 className="text-hover-ink text-balance text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
@@ -51,7 +51,7 @@ export function SystemsContextSections() {
                 <p className="text-hover-soft mt-5 max-w-2xl text-lg leading-8 text-slate-700">
                   From institutional coordination to credit intelligence, AGOM products focus on usable structure, visibility, and measurable outcomes.
                 </p>
-                <a href="#projects" className="mt-8 inline-flex items-center gap-2 rounded-full bg-lime-400 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-emerald-950 transition-all duration-300 hover:translate-x-1 hover:bg-lime-300">
+                <a href="#projects" className="mt-8 inline-flex items-center gap-2 rounded-full bg-slate-900 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-white transition-all duration-300 hover:translate-x-1 hover:bg-black">
                   Explore Systems <ArrowRight size={16} />
                 </a>
               </div>
@@ -62,7 +62,7 @@ export function SystemsContextSections() {
                     <article className="group relative h-full overflow-hidden rounded-[1.8rem] bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(2,6,23,0.12)] sm:min-h-[250px]">
                       <div className={`pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r opacity-90 ${suite.accent}`} />
                       <div className="relative">
-                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-900/60">{suite.focus}</p>
+                        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">{suite.focus}</p>
                         <h3 className="text-hover-ink mt-3 text-4xl font-semibold leading-tight text-slate-900">{suite.name}</h3>
                         <p className="mt-4 text-sm leading-7 text-slate-700">{suite.summary}</p>
                         {suite.href ? (
@@ -70,7 +70,7 @@ export function SystemsContextSections() {
                             href={suite.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-emerald-900 transition-colors hover:text-emerald-700"
+                            className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-slate-900 transition-colors hover:text-slate-700"
                           >
                             Visit live <ExternalLink size={14} />
                           </a>
@@ -86,7 +86,7 @@ export function SystemsContextSections() {
 
       <section id="insights" className="w-full bg-white px-0 pb-20 text-slate-900 sm:pb-24">
         <div className="relative w-full bg-white px-5 pb-12 pt-14 sm:px-8 lg:px-14">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-900/60">AGOM Insights</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">AGOM Insights</p>
             <div className="mt-5 grid gap-8 lg:grid-cols-[1fr_1.25fr]">
               <div>
                 <h2 className="text-hover-ink text-balance text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">
@@ -106,7 +106,7 @@ export function SystemsContextSections() {
                       </p>
                       <h3 className="text-hover-ink mt-5 text-3xl font-semibold leading-tight text-slate-900">{insight.title}</h3>
                       <p className="mt-4 text-sm leading-7 text-slate-700">{insight.summary}</p>
-                      <a href={insight.href} className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-emerald-900 transition-colors hover:text-emerald-700">
+                      <a href={insight.href} className="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-slate-900 transition-colors hover:text-slate-700">
                         {insight.cta} <ArrowRight size={14} />
                       </a>
                     </article>

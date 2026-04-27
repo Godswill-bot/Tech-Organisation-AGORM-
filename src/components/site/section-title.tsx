@@ -13,7 +13,7 @@ export function SectionTitle({
   eyebrow,
   title,
   description,
-  eyebrowClassName = "text-cyan-300",
+  eyebrowClassName = "text-slate-500",
   titleClassName = "text-white",
   descriptionClassName = "text-slate-300",
   titleHoverClassName = "text-hover-accent",

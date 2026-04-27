@@ -47,10 +47,10 @@ export function Navbar() {
           className="flex flex-col leading-none group"
           whileHover={{ scale: 1.02 }}
         >
-          <span className="text-lg font-bold tracking-wider text-foreground transition-colors duration-300 group-hover:text-cyan-300">
+          <span className="text-lg font-bold tracking-wider text-foreground transition-colors duration-300 group-hover:text-slate-900">
             AGOM
           </span>
-          <span className="mt-1 text-[10px] uppercase tracking-widest text-slate-400 transition-colors duration-300 group-hover:text-cyan-300">
+          <span className="mt-1 text-[10px] uppercase tracking-widest text-slate-400 transition-colors duration-300 group-hover:text-slate-900">
             Tech Organisation
           </span>
         </motion.a>
@@ -66,7 +66,7 @@ export function Navbar() {
               >
                 <button
                   type="button"
-                  className="group inline-flex items-center gap-1 text-sm font-medium text-slate-300 transition-colors duration-300 hover:text-cyan-300"
+                  className="group inline-flex items-center gap-1 text-sm font-medium text-slate-600 transition-colors duration-300 hover:text-slate-950"
                 >
                   {link.label}
                   <ChevronDown size={14} className={`transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
@@ -78,15 +78,15 @@ export function Navbar() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute left-1/2 top-full z-30 mt-4 w-[480px] -translate-x-1/2 rounded-2xl border border-white/10 bg-slate-950/95 p-5 shadow-[0_16px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl"
+                      className="absolute left-1/2 top-full z-30 mt-4 w-[480px] -translate-x-1/2 rounded-2xl border border-black/10 bg-white/95 p-5 shadow-[0_16px_50px_rgba(0,0,0,0.15)] backdrop-blur-xl"
                     >
-                      <p className="mb-3 text-xs uppercase tracking-[0.22em] text-cyan-300">Capability Menu</p>
+                      <p className="mb-3 text-xs uppercase tracking-[0.22em] text-slate-500">Capability Menu</p>
                       <div className="grid grid-cols-2 gap-3">
                         {services.map((service) => (
                           <a
                             key={service.title}
                             href={resolveHref("#services")}
-                            className="px-1 py-2 text-sm text-slate-200 transition-colors duration-300 hover:text-cyan-300"
+                            className="px-1 py-2 text-sm text-slate-700 transition-colors duration-300 hover:text-slate-950"
                           >
                             {service.title}
                           </a>
@@ -100,12 +100,12 @@ export function Navbar() {
               <motion.a
                 key={link.href}
                 href={resolveHref(link.href, link.label)}
-                className="group relative text-sm font-medium text-slate-300 transition-colors duration-300 hover:text-cyan-300"
+                className="group relative text-sm font-medium text-slate-600 transition-colors duration-300 hover:text-slate-950"
                 whileHover="hover"
               >
                 {link.label}
                 <motion.span
-                  className="absolute -bottom-1 left-0 h-0.5 bg-cyan-300"
+                  className="absolute -bottom-1 left-0 h-0.5 bg-slate-900"
                   initial={{ width: 0 }}
                   variants={{
                     hover: { width: "100%" },
@@ -150,7 +150,7 @@ export function Navbar() {
                 <motion.a
                   key={link.href}
                   href={resolveHref(link.href, link.label)}
-                  className="text-sm font-medium text-slate-300 transition-colors duration-300 hover:text-cyan-300"
+                  className="text-sm font-medium text-slate-600 transition-colors duration-300 hover:text-slate-950"
                   onClick={() => setOpen(false)}
                   whileHover={{ x: 4 }}
                 >

@@ -27,8 +27,8 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-slate-950/55" />
       </div>
 
-      <motion.div style={{ y: yOne }} className="pointer-events-none absolute -left-48 top-0 z-10 h-96 w-96 rounded-full bg-cyan-500/15 blur-3xl" />
-      <motion.div style={{ y: yTwo }} className="pointer-events-none absolute -right-40 top-1/4 z-10 h-96 w-96 rounded-full bg-indigo-500/15 blur-3xl" />
+      <motion.div style={{ y: yOne }} className="pointer-events-none absolute -left-48 top-0 z-10 h-96 w-96 rounded-full bg-black/10 blur-3xl" />
+      <motion.div style={{ y: yTwo }} className="pointer-events-none absolute -right-40 top-1/4 z-10 h-96 w-96 rounded-full bg-black/10 blur-3xl" />
 
       <div className="relative z-20 mx-auto max-w-7xl">
         <motion.div
@@ -44,10 +44,10 @@ export function HeroSection() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.1 }}
-                className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/8 px-4 py-2"
+                className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2"
               >
-                <span className="h-2 w-2 animate-pulse rounded-full bg-cyan-300" />
-                <span className="text-xs font-semibold uppercase tracking-wider text-cyan-300">Premium Digital Solutions</span>
+                <span className="h-2 w-2 animate-pulse rounded-full bg-white" />
+                <span className="text-xs font-semibold uppercase tracking-wider text-white">Premium Digital Solutions</span>
               </motion.div>
 
               <motion.h1
@@ -57,7 +57,7 @@ export function HeroSection() {
                 className="text-hover-soft mb-6 text-5xl font-bold leading-[1.03] text-foreground sm:text-6xl lg:text-7xl"
               >
                 We Build Digital Systems
-                <span className="mt-1 block w-fit bg-gradient-to-r from-cyan-300 to-indigo-300 bg-clip-text text-transparent">
+                <span className="mt-1 block w-fit bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
                   That Power The Future
                 </span>
               </motion.h1>
@@ -98,7 +98,7 @@ export function HeroSection() {
                 {["Strategy", "Design", "Engineering"].map((capability, i) => (
                   <motion.div
                     key={capability}
-                    className="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-base font-medium text-slate-300 transition-all duration-300 hover:border-cyan-300/55 hover:bg-cyan-300/10"
+                    className="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-base font-medium text-slate-200 transition-all duration-300 hover:border-white/40 hover:bg-white/10"
                     whileHover={{ y: -2 }}
                     transition={{ delay: i * 0.05 }}
                   >
@@ -110,12 +110,12 @@ export function HeroSection() {
 
             <div className="relative h-[30rem] sm:h-[34rem] lg:h-[42rem]">
               <motion.div
-                className="absolute -top-20 -right-20 h-40 w-40 rounded-full border border-cyan-300/20"
+                className="absolute -top-20 -right-20 h-40 w-40 rounded-full border border-white/20"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               />
               <motion.div
-                className="absolute bottom-20 -left-10 h-32 w-32 rounded-full border border-indigo-300/20"
+                className="absolute bottom-20 -left-10 h-32 w-32 rounded-full border border-white/20"
                 animate={{ rotate: -360 }}
                 transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
               />
@@ -124,7 +124,7 @@ export function HeroSection() {
                 initial={{ opacity: 0, scale: 0.9, rotate: -6 }}
                 animate={{ opacity: 1, scale: 1, rotate: -6 }}
                 transition={{ duration: 0.9, delay: 0.2 }}
-                className="hero-octagon absolute -left-8 top-0 h-80 w-64 overflow-hidden border-2 border-white/15 bg-slate-900/60 shadow-2xl shadow-cyan-400/10 transition-all duration-500 hover:border-cyan-300/50 sm:-left-10 sm:h-[26rem] sm:w-[20rem] lg:-left-16 lg:h-[34rem] lg:w-[28rem]"
+                className="hero-octagon absolute -left-8 top-0 h-80 w-64 overflow-hidden border-2 border-white/15 bg-slate-900/60 shadow-2xl shadow-black/20 transition-all duration-500 hover:border-white/30 sm:-left-10 sm:h-[26rem] sm:w-[20rem] lg:-left-16 lg:h-[34rem] lg:w-[28rem]"
                 whileHover={{ y: -8 }}
               >
                 <Image
@@ -137,9 +137,9 @@ export function HeroSection() {
                 />
               </motion.div>
 
-              <motion.div className="absolute left-1/4 top-1/4 h-3 w-3 animate-pulse rounded-full bg-cyan-300/45 blur-sm" />
+              <motion.div className="absolute left-1/4 top-1/4 h-3 w-3 animate-pulse rounded-full bg-white/45 blur-sm" />
               <motion.div
-                className="absolute right-1/3 top-1/3 h-2 w-2 rounded-full bg-indigo-300/45 blur-sm"
+                className="absolute right-1/3 top-1/3 h-2 w-2 rounded-full bg-white/45 blur-sm"
                 animate={{ opacity: [0.5, 1, 0.5] }}
                 transition={{ duration: 1.8, repeat: Infinity }}
               />

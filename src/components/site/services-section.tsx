@@ -48,7 +48,7 @@ export function ServicesSection() {
             eyebrow="Services"
             title="Expanded Engineering Services For Product Teams That Need Delivery Depth"
             description="AGOM offers structured service tracks across product engineering, design, and technical strategy so your business can move from planning to measurable delivery without losing execution quality."
-            eyebrowClassName="text-cyan-700"
+            eyebrowClassName="text-slate-600"
             titleClassName="text-slate-900"
             descriptionClassName="text-slate-700"
             titleHoverClassName="text-hover-ink"
@@ -63,7 +63,7 @@ export function ServicesSection() {
             return (
               <SectionReveal key={service.title} delay={index * 0.06}>
                 <article className="group h-full rounded-3xl bg-white p-6 shadow-[0_14px_36px_rgba(15,23,42,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_48px_rgba(15,23,42,0.1)] sm:p-7">
-                  <div className="mb-6 inline-flex rounded-xl bg-cyan-50 p-3 text-cyan-600 transition-colors duration-300 group-hover:text-cyan-500">
+                  <div className="mb-6 inline-flex rounded-xl bg-slate-100 p-3 text-slate-800 transition-colors duration-300 group-hover:text-slate-900">
                     <Icon size={22} />
                   </div>
                   <h3 className="text-2xl font-semibold text-slate-900">{service.title}</h3>
@@ -72,7 +72,7 @@ export function ServicesSection() {
                   <div className="mt-6 space-y-3">
                     {details.map((detail) => (
                       <p key={detail} className="text-sm leading-7 text-slate-700">
-                        <span className="mr-2 text-cyan-500">•</span>
+                        <span className="mr-2 text-slate-500">•</span>
                         {detail}
                       </p>
                     ))}
@@ -85,7 +85,7 @@ export function ServicesSection() {
 
         <SectionReveal className="mt-10">
           <div className="rounded-[2rem] bg-white p-6 shadow-[0_14px_36px_rgba(15,23,42,0.06)] sm:p-8">
-            <p className="text-xs uppercase tracking-[0.24em] text-cyan-700">Service Delivery Model</p>
+            <p className="text-xs uppercase tracking-[0.24em] text-slate-500">Service Delivery Model</p>
             <div className="mt-4 grid gap-4 md:grid-cols-3">
               <div className="rounded-2xl bg-slate-50 p-5">
                 <p className="text-sm font-semibold text-slate-900">Discovery And Scope</p>
