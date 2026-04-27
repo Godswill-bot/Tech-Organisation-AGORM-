@@ -23,9 +23,9 @@ export function ProjectsSection() {
           {projects.map((project, index) => (
             <SectionReveal key={project.id} delay={index * 0.08}>
               <article
-                className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/70 p-6 md:p-10 lg:p-12"
+                className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-white p-6 shadow-[0_18px_44px_rgba(15,23,42,0.08)] md:p-10 lg:p-12"
               >
-                <div className={`pointer-events-none absolute inset-0 bg-linear-to-br opacity-15 ${project.gradient}`} />
+                <div className={`pointer-events-none absolute inset-0 bg-linear-to-br opacity-20 ${project.gradient}`} />
 
                 <div className={`relative grid gap-10 lg:gap-12 ${index % 2 === 0 ? "lg:grid-cols-[1fr_1.2fr]" : "lg:grid-cols-[1.2fr_1fr]"}`}>
                   <motion.div
@@ -36,16 +36,16 @@ export function ProjectsSection() {
                     transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <p className="text-xs uppercase tracking-[0.2em] text-slate-500">{project.category}</p>
-                    <h3 className="text-hover-accent mt-3 text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-5xl">{project.title}</h3>
-                    <p className="text-hover-soft mt-5 text-base leading-8 text-slate-300 sm:text-lg">{project.summary}</p>
+                    <h3 className="text-hover-accent mt-3 text-3xl font-semibold leading-tight text-slate-950 sm:text-4xl lg:text-5xl">{project.title}</h3>
+                    <p className="text-hover-soft mt-5 text-base leading-8 text-slate-700 sm:text-lg">{project.summary}</p>
 
-                    <div className="mt-7 grid gap-4 text-sm leading-7 text-slate-300 sm:grid-cols-2 sm:text-[15px]">
-                      <p><span className="font-medium text-white">Challenge:</span> {project.challenge}</p>
-                      <p><span className="font-medium text-white">Solution:</span> {project.solution}</p>
-                      <p className="sm:col-span-2"><span className="font-medium text-white">Impact:</span> {project.impact}</p>
+                    <div className="mt-7 grid gap-4 text-sm leading-7 text-slate-700 sm:grid-cols-2 sm:text-[15px]">
+                      <p><span className="font-medium text-slate-900">Challenge:</span> {project.challenge}</p>
+                      <p><span className="font-medium text-slate-900">Solution:</span> {project.solution}</p>
+                      <p className="sm:col-span-2"><span className="font-medium text-slate-900">Impact:</span> {project.impact}</p>
                     </div>
 
-                    <p className="mt-6 text-lg font-semibold text-white">{project.metric}</p>
+                    <p className="mt-6 text-lg font-semibold text-slate-900">{project.metric}</p>
 
                     {project.websiteUrl || project.trackerUrl ? (
                       <div className="mt-6 flex flex-wrap gap-3">
@@ -74,7 +74,7 @@ export function ProjectsSection() {
                   </motion.div>
 
                   <motion.div
-                    className={`overflow-hidden rounded-2xl border border-white/10 bg-white/5 ${index % 2 === 0 ? "order-2" : "order-1 lg:order-2"}`}
+                    className={`overflow-hidden rounded-2xl border border-black/10 bg-white ${index % 2 === 0 ? "order-2" : "order-1 lg:order-2"}`}
                     initial={{ opacity: 0, y: 14 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-15% 0px -10% 0px" }}
@@ -89,7 +89,7 @@ export function ProjectsSection() {
                         className="h-[20rem] w-full object-cover object-top sm:h-[26rem] lg:h-[34rem]"
                       />
                     ) : (
-                      <div className="grid h-[20rem] place-items-center px-4 text-center text-[10px] uppercase tracking-[0.2em] text-slate-300 sm:h-[26rem] lg:h-[34rem]">
+                      <div className="grid h-[20rem] place-items-center px-4 text-center text-[10px] uppercase tracking-[0.2em] text-slate-500 sm:h-[26rem] lg:h-[34rem]">
                         [IMAGE PLACEHOLDER: project preview]
                       </div>
                     )}

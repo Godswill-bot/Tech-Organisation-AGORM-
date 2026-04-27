@@ -114,7 +114,7 @@ export const projects: Project[] = [
     previewImage: "/siwes-system-project-updated.png",
     websiteUrl: "https://mtuswiesplatform.me/",
     trackerUrl: "https://mtusiwes-track.vercel.app",
-    gradient: "from-cyan-500/30 via-blue-500/20 to-violet-600/40",
+    gradient: "from-slate-900/18 via-slate-700/12 to-slate-400/20",
   },
   {
     id: "ai-hepatitis-predictor",
@@ -127,7 +127,7 @@ export const projects: Project[] = [
       "Built a predictive interface that processes patient inputs and produces risk-focused analysis for decision support.",
     impact: "Improved speed of preliminary assessment and supports more informed clinical follow-up.",
     metric: "32% faster triage workflow",
-    gradient: "from-fuchsia-500/25 via-indigo-500/20 to-sky-500/35",
+    gradient: "from-slate-800/16 via-slate-600/12 to-slate-400/18",
   },
   {
     id: "credit-scoring-system",
@@ -140,7 +140,7 @@ export const projects: Project[] = [
       "Developed a scoring engine that combines transaction signals and customer data into simple risk bands.",
     impact: "Helps ecommerce teams make faster credit decisions and reduce avoidable exposure.",
     metric: "27% reduction in risky approvals",
-    gradient: "from-blue-500/30 via-indigo-500/20 to-purple-600/35",
+    gradient: "from-slate-900/18 via-slate-700/12 to-slate-500/18",
   },
 ];
 
