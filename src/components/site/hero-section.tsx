@@ -57,7 +57,9 @@ export function HeroSection() {
                 className="mb-6 text-5xl font-bold leading-[1.03] text-foreground sm:text-6xl lg:text-7xl"
               >
                 We Build Digital Systems
-                <span className="block bg-clip-text text-transparent [background:linear-gradient(90deg,#67e8f9,#a5b4fc)]">That Power The Future</span>
+                <span className="mt-1 block w-fit bg-gradient-to-r from-cyan-300 to-indigo-300 bg-clip-text text-transparent">
+                  That Power The Future
+                </span>
               </motion.h1>
 
               <motion.p
