@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, ChevronRight } from "lucide-react";
+import { ExternalLink, ChevronRight, Rocket } from "lucide-react";
 import Image from "next/image";
 import { SectionReveal } from "@/components/site/section-reveal";
 import { SectionTitle } from "@/components/site/section-title";
@@ -28,11 +28,14 @@ export function ProjectsSection() {
     <section id="projects" className="px-5 py-22 sm:px-8 sm:py-30">
       <div className="mx-auto max-w-[90rem]">
         <SectionReveal>
-          <SectionTitle
-            eyebrow="Portfolio"
-            title="Large-Scale Project Showcases"
-            description="Each project is presented as a full showcase section, with richer context and larger visuals for clearer product storytelling."
-          />
+          <div className="flex items-end gap-6">
+            <Rocket size={80} className="text-slate-900" strokeWidth={1.5} />
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.36em] text-slate-500">Portfolio</p>
+              <h2 className="mt-2 text-5xl font-bold leading-tight text-slate-950 lg:text-6xl">Large-Scale Project Showcases</h2>
+              <p className="mt-3 max-w-2xl text-lg leading-8 text-slate-700">Each project is presented as a full showcase section, with richer context and larger visuals for clearer product storytelling.</p>
+            </div>
+          </div>
         </SectionReveal>
 
         {/* Featured Project with Sidebar Layout */}
