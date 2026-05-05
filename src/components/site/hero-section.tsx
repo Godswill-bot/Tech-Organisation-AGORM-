@@ -49,7 +49,7 @@ export function HeroSection() {
         <motion.img
           src="/hero-background.png"
           alt=""
-          className="absolute top-8 bottom-8 left-20 right-4 object-cover will-change-transform rounded-3xl"
+          className="absolute top-8 bottom-8 left-40 right-0 object-cover will-change-transform rounded-3xl"
           style={{ y: yOne }}
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
