@@ -2,14 +2,14 @@
 
 import gsap from "gsap";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { GsapWordReveal } from "@/components/site/gsap-word-reveal";
 
 export function HeroSection() {
   const { scrollY } = useScroll();
-  const yOne = useTransform(scrollY, [0, 800], [0, -120]);
-  const yTwo = useTransform(scrollY, [0, 800], [0, 100]);
-  const scaleHero = useTransform(scrollY, [0, 400], [1, 0.95]);
+  const yOne = useTransform(scrollY, [0, 800], [0, -60]);
+  const yTwo = useTransform(scrollY, [0, 800], [0, 50]);
+  const scaleHero = useTransform(scrollY, [0, 400], [1, 0.98]);
   const heroRef = useRef<HTMLElement | null>(null);
   const contentRef = useRef<HTMLDivElement | null>(null);
   const mediaRef = useRef<HTMLDivElement | null>(null);
@@ -29,20 +29,20 @@ export function HeroSection() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         contentRef.current,
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" },
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
       );
 
       gsap.fromTo(
         mediaRef.current,
-        { opacity: 0, y: 24, scale: 0.98 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.95, ease: "power3.out", delay: 0.12 },
+        { opacity: 0, y: 16, scale: 0.99 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: "power3.out", delay: 0.1 },
       );
 
       gsap.fromTo(
         statRefs.current.filter(Boolean),
-        { opacity: 0, y: 18 },
-        { opacity: 1, y: 0, stagger: 0.08, duration: 0.7, ease: "power3.out", delay: 0.25 },
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, stagger: 0.06, duration: 0.6, ease: "power3.out", delay: 0.2 },
       );
     }, heroRef);
 
@@ -53,22 +53,28 @@ export function HeroSection() {
     <section ref={heroRef} id="top" className="relative isolate flex min-h-svh items-center overflow-hidden px-4 pb-18 pt-30 sm:px-6 lg:px-8 lg:pt-32">
       <div className="pointer-events-none absolute inset-0 z-0 bg-slate-950" />
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-        {/* HERO_ANIMATION_SLOT: swap this video for a Blender MP4 or a Three.js / GLB scene when ready. */}
-        <video
-          className="absolute inset-0 h-full w-full object-cover"
-          src="/13007245_3840_2160_30fps.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
+        {/* Hero background image with parallax animation */}
+        <motion.img
+          src="/hero-background.png"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover will-change-transform"
+          style={{ y: yOne }}
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-slate-950/72" />
+        {/* Animated gradient overlay */}
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/60 to-slate-950/80 will-change-transform"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        />
       </div>
 
-      <motion.div style={{ y: yOne }} className="pointer-events-none absolute -left-48 top-0 z-10 h-96 w-96 rounded-full bg-black/10 blur-3xl" />
-      <motion.div style={{ y: yTwo }} className="pointer-events-none absolute -right-40 top-1/4 z-10 h-96 w-96 rounded-full bg-black/10 blur-3xl" />
+      <motion.div style={{ y: yOne }} className="pointer-events-none absolute -left-48 top-0 z-10 h-96 w-96 rounded-full bg-black/10 blur-3xl will-change-transform" />
+      <motion.div style={{ y: yTwo }} className="pointer-events-none absolute -right-40 top-1/4 z-10 h-96 w-96 rounded-full bg-black/10 blur-3xl will-change-transform" />
 
       <div className="relative z-20 mx-auto max-w-7xl">
         <motion.div

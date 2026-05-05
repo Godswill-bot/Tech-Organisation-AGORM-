@@ -46,7 +46,7 @@ export function FeaturesSection() {
     const ctx = gsap.context(() => {
       if (backgroundRef.current) {
         gsap.to(backgroundRef.current, {
-          yPercent: 12,
+          yPercent: 8,
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -59,13 +59,13 @@ export function FeaturesSection() {
 
       gsap.fromTo(
         cardRefs.current.filter(Boolean),
-        { opacity: 0, y: 40, scale: 0.98 },
+        { opacity: 0, y: 28, scale: 0.99 },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          stagger: 0.1,
-          duration: 0.9,
+          stagger: 0.08,
+          duration: 0.7,
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,

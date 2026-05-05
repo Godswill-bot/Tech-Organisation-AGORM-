@@ -51,8 +51,8 @@ export function AboutSection() {
     const ctx = gsap.context(() => {
       if (animationSlotRef.current) {
         gsap.to(animationSlotRef.current, {
-          yPercent: -6,
-          scale: 1.02,
+          yPercent: -4,
+          scale: 1.01,
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -65,13 +65,13 @@ export function AboutSection() {
 
       gsap.fromTo(
         storyCardRefs.current.filter(Boolean),
-        { opacity: 0, y: 32, scale: 0.98 },
+        { opacity: 0, y: 24, scale: 0.99 },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          stagger: 0.1,
-          duration: 0.85,
+          stagger: 0.08,
+          duration: 0.7,
           ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -119,7 +119,7 @@ export function AboutSection() {
 
             <div className="rounded-4xl border border-white/10 bg-white/6 p-5 shadow-[0_18px_60px_rgba(0,0,0,0.26)] backdrop-blur-md sm:p-6">
               {/* ABOUT_ANIMATION_SLOT: replace this panel with a 3D model, a Blender render, or a motion graphic. */}
-              <div ref={animationSlotRef} className="relative min-h-104 overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-slate-900 via-slate-950 to-black">
+              <div ref={animationSlotRef} className="relative min-h-104 overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-slate-900 via-slate-950 to-black will-change-transform">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.16),transparent_28%)]" />
                 <div className="absolute inset-0 grid place-items-center p-6 text-center">
                   <div className="max-w-sm rounded-3xl border border-dashed border-white/18 bg-white/6 p-6 backdrop-blur-md">

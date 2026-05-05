@@ -34,13 +34,12 @@ export function GsapWordReveal({
     const ctx = gsap.context(() => {
       gsap.fromTo(
         wordRefs.current,
-        { opacity: 0, y: 24, filter: "blur(8px)" },
+        { opacity: 0, y: 16 },
         {
           opacity: 1,
           y: 0,
-          filter: "blur(0px)",
           stagger,
-          duration: 0.8,
+          duration: 0.6,
           ease: "power3.out",
           scrollTrigger: {
             trigger: containerRef.current,
