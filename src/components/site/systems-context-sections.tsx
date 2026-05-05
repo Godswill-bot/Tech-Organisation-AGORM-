@@ -129,11 +129,12 @@ export function SystemsContextSections() {
         </div>
       </section>
 
-      <section id="product-suites" className="relative w-full overflow-hidden bg-black px-5 py-20 text-slate-100 sm:px-8 sm:py-24">
+      <section id="product-suites" className="relative w-full overflow-hidden bg-slate-950 px-5 py-20 text-slate-100 sm:px-8 sm:py-24">
         <FloatingBackground variant="dark" />
         <BackgroundFade>
-          <Image src={BlackSideImage} alt="" fill aria-hidden sizes="100vw" className="object-cover object-center opacity-55" />
-          <div className="absolute inset-0 bg-black/55" />
+          <Image src={BlackSideImage} alt="" fill aria-hidden sizes="100vw" className="object-cover object-center opacity-30 blur-[1px]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.82),rgba(2,6,23,0.94))]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.08),transparent_28%)]" />
         </BackgroundFade>
 
         <div className="relative mx-auto max-w-7xl">

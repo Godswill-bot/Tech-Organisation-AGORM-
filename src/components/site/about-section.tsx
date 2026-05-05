@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLayoutEffect, useRef } from "react";
 import { GsapWordReveal } from "@/components/site/gsap-word-reveal";
 import { SectionReveal } from "@/components/site/section-reveal";
-import ReferenceBg from "../../../flat-design-minimal-technology-landing-page_23-2149113339.avif";
+import ReferenceBg from "../../../peopelooking.png";
 
 const points = [
   {
@@ -88,7 +88,7 @@ export function AboutSection() {
   return (
     <section ref={sectionRef} id="about" className="relative overflow-hidden bg-slate-950 px-5 py-22 text-white sm:px-8 sm:py-30">
       <div className="pointer-events-none absolute inset-0">
-        <Image src={ReferenceBg} alt="" fill aria-hidden="true" sizes="100vw" className="object-cover object-center opacity-30 blur-[1px]" />
+        <Image src={ReferenceBg} alt="" fill aria-hidden="true" sizes="100vw" className="object-contain object-center opacity-30 blur-[1px]" />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.82),rgba(2,6,23,0.94))]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.08),transparent_28%)]" />
       </div>
