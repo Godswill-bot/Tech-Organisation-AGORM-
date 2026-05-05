@@ -64,6 +64,8 @@ function BackgroundFade({ children }: { children: ReactNode }) {
     <motion.div
       ref={ref}
       className="pointer-events-none absolute inset-0"
+      initial={{ opacity: 0 }}
+      animate={inView ? { opacity: 1 } : {}}
       transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
