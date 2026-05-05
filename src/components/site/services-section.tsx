@@ -102,13 +102,13 @@ export function ServicesSection() {
               <div className="h-2 w-8 bg-slate-900" />
               <p className="text-xs uppercase tracking-[0.24em] text-slate-900 font-semibold">Service Delivery Model</p>
             </div>
-            <div className="mt-8 grid gap-6 md:grid-cols-3">
+            <div className="mt-8 grid gap-10 md:grid-cols-3">
               {[
                 { title: "Discovery And Scope", desc: "Define requirements, dependencies, and risk boundaries before implementation begins." },
                 { title: "Execution And Review", desc: "Ship in clear milestones with collaborative reviews to maintain quality and alignment." },
                 { title: "Optimization And Support", desc: "Measure outcomes post-launch and continuously improve based on real usage signals." }
               ].map((item, idx) => (
-                <div key={item.title} className="relative rounded-2xl bg-slate-50 p-7 border-t-2 border-slate-900">
+                <div key={item.title} className="relative rounded-2xl bg-slate-50 p-8 border-t-2 border-slate-900">
                   <div className="absolute top-0 right-0 h-8 w-8 rounded-full border-2 border-slate-900 -translate-y-4 translate-x-4 bg-white flex items-center justify-center text-slate-900 font-bold text-xs">{idx + 1}</div>
                   <p className="text-sm font-semibold text-slate-900">{item.title}</p>
                   <p className="mt-3 text-sm leading-7 text-slate-700">{item.desc}</p>
