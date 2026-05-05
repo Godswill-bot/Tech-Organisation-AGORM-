@@ -168,9 +168,9 @@ export function AboutSection() {
                 From discovery workshops to post-launch optimization, AGOM integrates product, engineering, and operational perspectives into one coordinated delivery model.
               </p>
 
-              <div className="mt-7 grid gap-3 sm:grid-cols-2">
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 {capabilities.map((capability) => (
-                  <p key={capability} className="rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm text-slate-200 shadow-sm">
+                  <p key={capability} className="rounded-2xl border border-white/10 bg-black/25 px-5 py-4 text-sm text-slate-200 shadow-sm">
                     {capability}
                   </p>
                 ))}
@@ -179,9 +179,9 @@ export function AboutSection() {
 
             <div>
               <p className="text-xs uppercase tracking-[0.24em] text-slate-400">How We Operate</p>
-              <div className="mt-4 space-y-4">
+              <div className="mt-6 space-y-5">
                 {operatingPrinciples.map((principle, index) => (
-                  <div key={principle} className="rounded-2xl border border-white/10 bg-black/25 p-4 shadow-sm">
+                  <div key={principle} className="rounded-2xl border border-white/10 bg-black/25 p-5 shadow-sm">
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">0{index + 1}</p>
                     <p className="mt-2 text-sm leading-7 text-slate-300">{principle}</p>
                   </div>
