@@ -267,6 +267,18 @@ textarea:focus {
   }
 }
 
+@keyframes loading-bar {
+  0% {
+    transform: translateX(-55%);
+  }
+  50% {
+    transform: translateX(10%);
+  }
+  100% {
+    transform: translateX(105%);
+  }
+}
+
 .animate-fade-in-up {
   animation: fade-in-up 0.6s var(--ease-out-quad) forwards;
 }
