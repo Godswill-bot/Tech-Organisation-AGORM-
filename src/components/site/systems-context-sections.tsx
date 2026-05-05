@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 import { SectionReveal } from "@/components/site/section-reveal";
 import { insightUpdates, productSuites, workflowSteps } from "@/data/site-content";
-import BlackSideImage from "../../../black side.png";
+import BlackSideImage from "../../../yoooo.jpg";
 
 function FloatingIcon({
   children,
