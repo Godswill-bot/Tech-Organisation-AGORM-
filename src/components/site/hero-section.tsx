@@ -98,14 +98,14 @@ export function HeroSection() {
               />
 
               <div className="mb-8 flex flex-col gap-4 sm:flex-row">
-                <motion.a href="#contact" className="flex items-center justify-center rounded-md border-2 border-white bg-transparent px-10 py-4 text-base font-semibold text-white transition-all duration-300 hover:bg-white/10" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                <motion.a href="#contact" className="flex items-center justify-center rounded-2xl border-2 border-white bg-transparent px-10 py-4 text-base font-semibold text-white transition-all duration-300 hover:bg-white/10" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                   Work With Us
                   <motion.span className="ml-2" animate={{ x: [0, 4, 0] }} transition={{ duration: 2, repeat: Infinity }}>
                     →
                   </motion.span>
                 </motion.a>
 
-                <motion.a href="#projects" className="flex items-center justify-center rounded-md border-2 border-white bg-transparent px-10 py-4 text-base font-semibold text-white transition-all duration-300 hover:bg-white/10" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                <motion.a href="#projects" className="flex items-center justify-center rounded-2xl border-2 border-white bg-transparent px-10 py-4 text-base font-semibold text-white transition-all duration-300 hover:bg-white/10" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                   View Projects
                 </motion.a>
               </div>
