@@ -45,7 +45,7 @@ export function BackgroundDecorations() {
   const decorations = React.useMemo(() => generateDecorations(), []);
 
   return (
-    <div className="pointer-events-none fixed inset-0 -z-20">
+    <div className="pointer-events-none fixed inset-0 -z-10">
       {decorations.map((element) => {
         const Icon = element.iconIndex !== undefined ? icons[element.iconIndex] : null;
         
@@ -72,7 +72,7 @@ export function BackgroundDecorations() {
           >
             {element.type === "box" ? (
               <div
-                className="rounded-lg border-2 border-slate-900/40 bg-slate-900/10 backdrop-blur-sm"
+                className="rounded-lg border-2 border-slate-400/30 bg-slate-400/5"
                 style={{
                   width: `${element.size}px`,
                   height: `${element.size}px`,
@@ -82,7 +82,7 @@ export function BackgroundDecorations() {
             ) : Icon ? (
               <Icon
                 size={element.size}
-                className="text-slate-900/40"
+                className="text-slate-500/50"
                 strokeWidth={1.5}
               />
             ) : null}
