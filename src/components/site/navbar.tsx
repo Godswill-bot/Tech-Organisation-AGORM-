@@ -10,6 +10,7 @@ export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showNavbar, setShowNavbar] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
 
   const resolveHref = (href: string, label?: string) => {
@@ -27,6 +28,8 @@ export function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      // Show navbar when scrolled past 300px
+      setShowNavbar(window.scrollY > 300);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -34,12 +37,16 @@ export function Navbar() {
   }, []);
 
   return (
-    <header
+    <motion.header
+      initial={{ opacity: 0, y: -80 }}
+      animate={{ opacity: showNavbar ? 1 : 0, y: showNavbar ? 0 : -80 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
           ? "border-b border-slate-200 bg-white/95 backdrop-blur-xl shadow-[0_8px_24px_rgba(15,23,42,0.08)]"
           : "border-b border-slate-200 bg-white/90 backdrop-blur-md"
       }`}
+      style={{ pointerEvents: showNavbar ? "auto" : "none" }}
     >
       <nav className="mx-auto flex h-18 w-full max-w-7xl items-center justify-between px-5 sm:px-8">
         <motion.a
@@ -169,6 +176,6 @@ export function Navbar() {
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }
