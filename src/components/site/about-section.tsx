@@ -1,6 +1,9 @@
 import Image from "next/image";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { SectionReveal } from "@/components/site/section-reveal";
 import { SectionTitle } from "@/components/site/section-title";
+import ReferenceBg from "../../../flat-design-minimal-technology-landing-page_23-2149113339.avif";
 
 const points = [
   {
@@ -31,19 +34,28 @@ const operatingPrinciples = [
 ];
 
 export function AboutSection() {
+  const ref = useRef<HTMLElement | null>(null);
+  const inView = useInView(ref, { once: true, margin: "-20% 0px -10% 0px" });
+
   return (
-    <section id="about" className="relative overflow-hidden bg-white px-5 py-22 text-slate-900 sm:px-8 sm:py-30">
-      <div className="pointer-events-none absolute inset-0">
+    <section ref={ref} id="about" className="relative overflow-hidden bg-white px-5 py-22 text-slate-900 sm:px-8 sm:py-30">
+      <motion.div
+        className="pointer-events-none absolute inset-0"
+        initial={{ opacity: 0 }}
+        animate={inView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      >
         <Image
-          src="/black.webp"
+          src={ReferenceBg}
           alt=""
           fill
           aria-hidden="true"
-          className="object-cover object-center opacity-25 mix-blend-multiply"
+          className="object-cover object-center opacity-45 blur-[1px]"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-white/55" />
-      </div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(15,23,42,0.14),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(15,23,42,0.1),transparent_28%)]" />
+      </motion.div>
 
       <div className="relative mx-auto max-w-7xl">
         <SectionReveal>

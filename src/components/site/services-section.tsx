@@ -1,15 +1,17 @@
 import { SectionReveal } from "@/components/site/section-reveal";
 import { SectionTitle } from "@/components/site/section-title";
 import { services } from "@/data/site-content";
-import { Globe, Lightbulb, Palette, Rocket, Smartphone } from "lucide-react";
+import { Globe, Lightbulb, Palette, Rocket, Smartphone, Sparkles, ShieldCheck, LayoutGrid, Orbit } from "lucide-react";
 
 const iconMap = {
-  Globe,
-  Smartphone,
-  Palette,
-  Lightbulb,
-  Rocket,
+  "Web Development": Globe,
+  "Mobile App Development": Smartphone,
+  "UI/UX Design": Palette,
+  "Tech Consulting": Lightbulb,
+  "Brand Digital Transformation": Rocket,
 };
+
+const accentIcons = [Sparkles, ShieldCheck, LayoutGrid, Orbit, Rocket];
 
 const serviceDetails: Record<string, string[]> = {
   "Web Development": [
@@ -58,17 +60,27 @@ export function ServicesSection() {
 
         <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
           {services.map((service, index) => {
-            const Icon = iconMap[service.icon];
+            const Icon = iconMap[service.title as keyof typeof iconMap];
+            const AccentIcon = accentIcons[index % accentIcons.length];
             const details = serviceDetails[service.title] ?? [];
             return (
               <SectionReveal key={service.title} delay={index * 0.06}>
                 <article className="group relative h-full overflow-hidden rounded-3xl bg-white p-6 shadow-[0_14px_36px_rgba(15,23,42,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_48px_rgba(15,23,42,0.1)] sm:p-7">
                   <div className="pointer-events-none absolute top-0 left-0 h-1 w-12 bg-slate-900 transition-all duration-300 group-hover:w-24" />
-                  <div className="mb-6 inline-flex rounded-xl bg-slate-900 p-3 text-white transition-colors duration-300 group-hover:bg-slate-800">
-                    <Icon size={22} />
+                  <div className="mb-6 flex items-center justify-between">
+                    <div className="inline-flex rounded-2xl border border-slate-200 bg-slate-950 p-3 text-white shadow-[0_10px_26px_rgba(15,23,42,0.12)] transition-colors duration-300 group-hover:bg-slate-800">
+                      <Icon size={22} />
+                    </div>
+                    <div className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.24em] text-slate-500">
+                      {String(index + 1).padStart(2, "0")}
+                    </div>
                   </div>
                   <h3 className="text-2xl font-semibold text-slate-900">{service.title}</h3>
                   <p className="mt-4 text-base leading-8 text-slate-700">{service.description}</p>
+
+                  <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600">
+                    <AccentIcon size={14} /> Built for clarity
+                  </div>
 
                   <div className="mt-6 space-y-3">
                     {details.map((detail) => (
@@ -85,7 +97,7 @@ export function ServicesSection() {
         </div>
 
         <SectionReveal className="mt-10">
-          <div className="rounded-[2rem] border-l-4 border-slate-900 bg-white p-6 shadow-[0_14px_36px_rgba(15,23,42,0.06)] sm:p-8">
+          <div className="rounded-4xl border-l-4 border-slate-900 bg-white p-6 shadow-[0_14px_36px_rgba(15,23,42,0.06)] sm:p-8">
             <div className="flex items-center gap-3 mb-2">
               <div className="h-2 w-8 bg-slate-900" />
               <p className="text-xs uppercase tracking-[0.24em] text-slate-900 font-semibold">Service Delivery Model</p>
