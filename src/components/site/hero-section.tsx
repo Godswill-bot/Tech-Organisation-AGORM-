@@ -49,7 +49,7 @@ export function HeroSection() {
         <motion.img
           src="/hero-background.png"
           alt=""
-          className="absolute top-8 bottom-8 left-40 right-0 object-cover will-change-transform rounded-3xl"
+          className="absolute top-8 bottom-8 left-1/2 right-0 object-cover will-change-transform rounded-3xl"
           style={{ y: yOne }}
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
@@ -67,7 +67,7 @@ export function HeroSection() {
 
       <motion.div style={{ y: yOne }} className="pointer-events-none absolute -left-48 top-0 z-10 h-96 w-96 rounded-full bg-black/10 blur-3xl will-change-transform" />
 
-      <div className="relative z-20 mx-auto max-w-7xl">
+      <div className="relative z-20 mx-auto w-full max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -75,8 +75,8 @@ export function HeroSection() {
           className="w-full"
           style={{ scale: scaleHero }}
         >
-          <div className="w-full">
-            <div ref={contentRef} className="relative z-10 max-w-3xl">
+          <div className="grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:items-center">
+            <div ref={contentRef} className="relative z-10">
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-white" />
                 <span className="text-xs font-semibold uppercase tracking-[0.32em] text-white">Premium Digital Solutions</span>
@@ -125,6 +125,8 @@ export function HeroSection() {
                 ))}
               </div>
             </div>
+
+            <div className="pointer-events-none relative hidden lg:block" />
           </div>
         </motion.div>
       </div>
