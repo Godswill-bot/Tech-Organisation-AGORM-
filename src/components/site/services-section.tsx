@@ -96,13 +96,13 @@ export function ServicesSection() {
           })}
         </div>
 
-        <SectionReveal className="mt-20">
+        <SectionReveal className="mt-32">
           <div className="rounded-4xl border-l-4 border-slate-900 bg-white p-6 shadow-[0_14px_36px_rgba(15,23,42,0.06)] sm:p-8">
             <div className="flex items-center gap-3 mb-2">
               <div className="h-2 w-8 bg-slate-900" />
               <p className="text-xs uppercase tracking-[0.24em] text-slate-900 font-semibold">Service Delivery Model</p>
             </div>
-            <div className="mt-8 grid gap-14 md:grid-cols-3">
+            <div className="mt-8 grid gap-10 md:grid-cols-3">
               {[
                 { title: "Discovery And Scope", desc: "Define requirements, dependencies, and risk boundaries before implementation begins." },
                 { title: "Execution And Review", desc: "Ship in clear milestones with collaborative reviews to maintain quality and alignment." },

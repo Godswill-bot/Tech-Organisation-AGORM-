@@ -114,7 +114,7 @@ export function SystemsContextSections() {
             </div>
           </SectionReveal>
 
-          <div className="mt-12 grid gap-14 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-12 grid gap-10 md:grid-cols-2 xl:grid-cols-4">
             {workflowSteps.map((step, index) => (
               <SectionReveal key={step.id} delay={index * 0.07}>
                 <article className="group h-full rounded-[1.75rem] border border-black/10 bg-white p-6 shadow-[0_18px_40px_rgba(15,23,42,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-black/20 hover:shadow-[0_24px_60px_rgba(15,23,42,0.08)]">

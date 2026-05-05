@@ -141,7 +141,7 @@ export function AboutSection() {
           </div>
         </SectionReveal>
 
-        <div className="mt-12 grid gap-14 md:grid-cols-3">
+        <div className="mt-12 grid gap-10 md:grid-cols-3">
           {points.map((point, index) => (
             <div
               key={point.title}
@@ -157,7 +157,7 @@ export function AboutSection() {
           ))}
         </div>
 
-        <SectionReveal className="mt-24">
+        <SectionReveal className="mt-32">
           <div className="grid gap-8 rounded-4xl border border-white/10 bg-white/6 p-6 text-white shadow-[0_24px_60px_rgba(0,0,0,0.24)] backdrop-blur-md sm:p-8 lg:grid-cols-[1.05fr_0.95fr]">
             <div>
               <p className="text-xs uppercase tracking-[0.24em] text-slate-400">Core Capabilities</p>
