@@ -96,7 +96,7 @@ export function ServicesSection() {
           })}
         </div>
 
-        <SectionReveal className="mt-10">
+        <SectionReveal className="mt-20">
           <div className="rounded-4xl border-l-4 border-slate-900 bg-white p-6 shadow-[0_14px_36px_rgba(15,23,42,0.06)] sm:p-8">
             <div className="flex items-center gap-3 mb-2">
               <div className="h-2 w-8 bg-slate-900" />
