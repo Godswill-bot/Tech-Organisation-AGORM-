@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { AboutSection } from "@/components/site/about-section";
 import { ContactSection } from "@/components/site/contact-section";
+import { FeaturesSection } from "@/components/site/features-section";
 import { Footer } from "@/components/site/footer";
 import { HeroSection } from "@/components/site/hero-section";
 import { Navbar } from "@/components/site/navbar";
@@ -25,7 +26,7 @@ export function SitePage() {
       </div>
       
       {/* Subtle grid pattern */}
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[linear-gradient(rgba(148,163,184,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.03)_1px,transparent_1px)] bg-[size:40px_40px] mask-[radial-gradient(ellipse_at_top,black_40%,transparent_80%)]" />
+      <div className="pointer-events-none fixed inset-0 -z-10 bg-[linear-gradient(rgba(148,163,184,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.03)_1px,transparent_1px)] bg-size-[40px_40px] mask-[radial-gradient(ellipse_at_top,black_40%,transparent_80%)]" />
 
       <Navbar />
 
@@ -36,6 +37,7 @@ export function SitePage() {
       >
         <HeroSection />
         <AboutSection />
+        <FeaturesSection />
         <SystemsContextSections />
         <ServicesSection />
         <ProjectsSection />

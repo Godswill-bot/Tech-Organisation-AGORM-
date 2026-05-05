@@ -1,8 +1,11 @@
+"use client";
+
 import Image from "next/image";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLayoutEffect, useRef } from "react";
+import { GsapWordReveal } from "@/components/site/gsap-word-reveal";
 import { SectionReveal } from "@/components/site/section-reveal";
-import { SectionTitle } from "@/components/site/section-title";
 import ReferenceBg from "../../../flat-design-minimal-technology-landing-page_23-2149113339.avif";
 
 const points = [
@@ -34,79 +37,140 @@ const operatingPrinciples = [
 ];
 
 export function AboutSection() {
-  const ref = useRef<HTMLElement | null>(null);
-  const inView = useInView(ref, { once: true, margin: "-20% 0px -10% 0px" });
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const animationSlotRef = useRef<HTMLDivElement | null>(null);
+  const storyCardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useLayoutEffect(() => {
+    if (!sectionRef.current) {
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      if (animationSlotRef.current) {
+        gsap.to(animationSlotRef.current, {
+          yPercent: -6,
+          scale: 1.02,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
+      }
+
+      gsap.fromTo(
+        storyCardRefs.current.filter(Boolean),
+        { opacity: 0, y: 32, scale: 0.98 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          stagger: 0.1,
+          duration: 0.85,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 75%",
+            once: true,
+          },
+        },
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section ref={ref} id="about" className="relative overflow-hidden bg-white px-5 py-22 text-slate-900 sm:px-8 sm:py-30">
-      <motion.div
-        className="pointer-events-none absolute inset-0"
-        initial={{ opacity: 0 }}
-        animate={inView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <Image
-          src={ReferenceBg}
-          alt=""
-          fill
-          aria-hidden="true"
-          className="object-cover object-center opacity-45 blur-[1px]"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-white/55" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(15,23,42,0.14),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(15,23,42,0.1),transparent_28%)]" />
-      </motion.div>
+    <section ref={sectionRef} id="about" className="relative overflow-hidden bg-slate-950 px-5 py-22 text-white sm:px-8 sm:py-30">
+      <div className="pointer-events-none absolute inset-0">
+        <Image src={ReferenceBg} alt="" fill aria-hidden="true" sizes="100vw" className="object-cover object-center opacity-30 blur-[1px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.82),rgba(2,6,23,0.94))]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.08),transparent_28%)]" />
+      </div>
 
       <div className="relative mx-auto max-w-7xl">
         <SectionReveal>
-          <div className="mb-14 grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-            <SectionTitle
-              eyebrow="About AGOM"
-              title="A Product Engineering Team Built For Serious System Delivery"
-              description="AGOM partners with institutions, startups, and growth-stage businesses to design and deploy digital systems that reduce friction, improve visibility, and support long-term scale."
-              eyebrowClassName="text-slate-600"
-              titleClassName="text-slate-900"
-              descriptionClassName="text-slate-700"
-              titleHoverClassName="text-hover-ink"
-              descriptionHoverClassName="text-hover-ink"
-            />
-            <div className="rounded-3xl bg-slate-50 p-6 shadow-[0_14px_36px_rgba(15,23,42,0.06)]">
-              <p className="text-xs uppercase tracking-[0.24em] text-slate-600">Mission</p>
-              <p className="mt-3 text-base leading-8 text-slate-700">
-                To translate bold ideas into reliable software systems through disciplined strategy, intentional product design, and high-quality engineering.
+          <div className="grid gap-10 lg:grid-cols-[1fr_0.92fr] lg:items-start">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.36em] text-slate-400">About AGOM</p>
+              <GsapWordReveal
+                tag="h2"
+                text="A Product Engineering Team Built For Serious System Delivery"
+                className="mt-4 text-balance text-4xl font-semibold leading-[1.04] text-white sm:text-5xl lg:text-6xl"
+                wordClassName="will-change-transform"
+              />
+              <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
+                AGOM partners with institutions, startups, and growth-stage businesses to design and deploy digital systems that reduce friction, improve visibility, and support long-term scale.
               </p>
-              <p className="mt-4 text-base leading-8 text-slate-700">
-                We focus on practical delivery: systems teams can operate, maintain, and improve without unnecessary complexity.
-              </p>
+
+              <div className="mt-8 flex flex-wrap gap-3">
+                {capabilities.map((capability) => (
+                  <span key={capability} className="rounded-full border border-white/12 bg-white/6 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-slate-200 backdrop-blur-sm">
+                    {capability}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-4xl border border-white/10 bg-white/6 p-5 shadow-[0_18px_60px_rgba(0,0,0,0.26)] backdrop-blur-md sm:p-6">
+              {/* ABOUT_ANIMATION_SLOT: replace this panel with a 3D model, a Blender render, or a motion graphic. */}
+              <div ref={animationSlotRef} className="relative min-h-104 overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-slate-900 via-slate-950 to-black">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.16),transparent_28%)]" />
+                <div className="absolute inset-0 grid place-items-center p-6 text-center">
+                  <div className="max-w-sm rounded-3xl border border-dashed border-white/18 bg-white/6 p-6 backdrop-blur-md">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.4em] text-slate-400">ABOUT_ANIMATION_SLOT</p>
+                    <p className="mt-4 text-2xl font-semibold text-white">[3D Model / Motion Panel]</p>
+                    <p className="mt-3 text-sm leading-7 text-slate-300">
+                      Use this area for a Sketchfab GLB preview, a Blender export, or a short product animation.
+                    </p>
+                  </div>
+                </div>
+                <div className="absolute bottom-4 left-4 rounded-full border border-white/12 bg-black/35 px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-slate-200">
+                  Cinematic depth
+                </div>
+                <div className="absolute right-4 top-4 rounded-full border border-white/12 bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.28em] text-slate-950">
+                  Motion-led
+                </div>
+              </div>
             </div>
           </div>
         </SectionReveal>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <div className="mt-12 grid gap-8 md:grid-cols-3">
           {points.map((point, index) => (
-            <SectionReveal key={point.title} delay={index * 0.08}>
-              <article className="h-full rounded-3xl bg-slate-50 p-6 shadow-[0_14px_32px_rgba(15,23,42,0.05)]">
-                <h3 className="text-xl font-semibold text-slate-900">{point.title}</h3>
-                <p className="mt-4 text-base leading-8 text-slate-700">{point.body}</p>
-              </article>
-            </SectionReveal>
+            <div
+              key={point.title}
+              ref={(element) => {
+                storyCardRefs.current[index] = element;
+              }}
+              className="h-full rounded-3xl border border-white/10 bg-white/6 p-6 shadow-[0_14px_36px_rgba(0,0,0,0.16)] backdrop-blur-sm"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">0{index + 1}</p>
+              <h3 className="mt-4 text-2xl font-semibold text-white">{point.title}</h3>
+              <p className="mt-4 text-base leading-8 text-slate-300">{point.body}</p>
+            </div>
           ))}
         </div>
 
         <SectionReveal className="mt-12">
-          <div className="-mx-5 grid gap-8 border-y border-black/10 bg-slate-50 px-5 py-12 text-slate-900 shadow-[0_24px_60px_rgba(15,23,42,0.06)] sm:-mx-8 sm:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:px-14">
+          <div className="grid gap-8 rounded-4xl border border-white/10 bg-white/6 p-6 text-white shadow-[0_24px_60px_rgba(0,0,0,0.24)] backdrop-blur-md sm:p-8 lg:grid-cols-[1.05fr_0.95fr]">
             <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-slate-500">Core Capabilities</p>
-              <h3 className="mt-3 text-3xl font-semibold leading-tight text-slate-950 sm:text-4xl">
+              <p className="text-xs uppercase tracking-[0.24em] text-slate-400">Core Capabilities</p>
+              <h3 className="mt-3 text-3xl font-semibold leading-tight text-white sm:text-4xl">
                 Built To Handle Product Complexity End To End
               </h3>
-              <p className="mt-4 max-w-2xl text-base leading-8 text-slate-700">
+              <p className="mt-4 max-w-2xl text-base leading-8 text-slate-300">
                 From discovery workshops to post-launch optimization, AGOM integrates product, engineering, and operational perspectives into one coordinated delivery model.
               </p>
 
               <div className="mt-7 grid gap-3 sm:grid-cols-2">
                 {capabilities.map((capability) => (
-                  <p key={capability} className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm text-slate-700 shadow-sm">
+                  <p key={capability} className="rounded-2xl border border-white/10 bg-black/25 px-4 py-3 text-sm text-slate-200 shadow-sm">
                     {capability}
                   </p>
                 ))}
@@ -114,12 +178,12 @@ export function AboutSection() {
             </div>
 
             <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-slate-500">How We Operate</p>
+              <p className="text-xs uppercase tracking-[0.24em] text-slate-400">How We Operate</p>
               <div className="mt-4 space-y-4">
                 {operatingPrinciples.map((principle, index) => (
-                  <div key={principle} className="rounded-2xl border border-black/10 bg-white p-4 shadow-sm">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">0{index + 1}</p>
-                    <p className="mt-2 text-sm leading-7 text-slate-700">{principle}</p>
+                  <div key={principle} className="rounded-2xl border border-white/10 bg-black/25 p-4 shadow-sm">
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">0{index + 1}</p>
+                    <p className="mt-2 text-sm leading-7 text-slate-300">{principle}</p>
                   </div>
                 ))}
               </div>

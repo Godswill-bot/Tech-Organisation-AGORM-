@@ -1,12 +1,19 @@
 "use client";
 
+import gsap from "gsap";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useLayoutEffect, useRef } from "react";
+import { GsapWordReveal } from "@/components/site/gsap-word-reveal";
 
 export function HeroSection() {
   const { scrollY } = useScroll();
   const yOne = useTransform(scrollY, [0, 800], [0, -120]);
   const yTwo = useTransform(scrollY, [0, 800], [0, 100]);
   const scaleHero = useTransform(scrollY, [0, 400], [1, 0.95]);
+  const heroRef = useRef<HTMLElement | null>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const mediaRef = useRef<HTMLDivElement | null>(null);
+  const statRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const heroStats = [
     { value: "0 clutter", label: "interfaces that slow teams down" },
@@ -14,10 +21,39 @@ export function HeroSection() {
     { value: "0 guesswork", label: "with clear delivery and direction" },
   ];
 
+  useLayoutEffect(() => {
+    if (!heroRef.current) {
+      return;
+    }
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        contentRef.current,
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.9, ease: "power3.out" },
+      );
+
+      gsap.fromTo(
+        mediaRef.current,
+        { opacity: 0, y: 24, scale: 0.98 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.95, ease: "power3.out", delay: 0.12 },
+      );
+
+      gsap.fromTo(
+        statRefs.current.filter(Boolean),
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, stagger: 0.08, duration: 0.7, ease: "power3.out", delay: 0.25 },
+      );
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="top" className="relative isolate flex min-h-svh items-center overflow-hidden px-4 pb-18 pt-30 sm:px-6 lg:px-8 lg:pt-32">
+    <section ref={heroRef} id="top" className="relative isolate flex min-h-svh items-center overflow-hidden px-4 pb-18 pt-30 sm:px-6 lg:px-8 lg:pt-32">
       <div className="pointer-events-none absolute inset-0 z-0 bg-slate-950" />
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        {/* HERO_ANIMATION_SLOT: swap this video for a Blender MP4 or a Three.js / GLB scene when ready. */}
         <video
           className="absolute inset-0 h-full w-full object-cover"
           src="/13007245_3840_2160_30fps.mp4"
@@ -43,44 +79,28 @@ export function HeroSection() {
           style={{ scale: scaleHero }}
         >
           <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div className="relative z-10">
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.1 }}
-                className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2"
-              >
+            <div ref={contentRef} className="relative z-10">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2">
                 <span className="h-2 w-2 animate-pulse rounded-full bg-white" />
                 <span className="text-xs font-semibold uppercase tracking-[0.32em] text-white">Premium Digital Solutions</span>
-              </motion.div>
+              </div>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.15 }}
+              <GsapWordReveal
+                tag="h1"
+                text="We Build Digital Systems That Feel Clear, Fast, And Built For Adoption"
                 className="mb-6 max-w-4xl text-5xl font-bold leading-[0.96] text-white sm:text-6xl lg:text-[5.7rem]"
-              >
-                We Build Digital Systems
-                <span className="mt-2 block w-fit bg-linear-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">
-                  That Feel Clear, Fast, And Built For Adoption
-                </span>
-              </motion.h1>
+                wordClassName="will-change-transform"
+              />
 
-              <motion.p
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+              <GsapWordReveal
+                tag="p"
+                text="AGOM engineers high-impact platforms from strategy to launch, pairing bold product thinking with disciplined technical execution and smooth interfaces people can actually use."
                 className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-100 sm:text-xl"
-              >
-                AGOM engineers high-impact platforms from strategy to launch, pairing bold product thinking with disciplined technical execution and smooth interfaces people can actually use.
-              </motion.p>
+                wordClassName="will-change-transform"
+                stagger={0.02}
+              />
 
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.25 }}
-                className="mb-8 flex flex-col gap-4 sm:flex-row"
-              >
+              <div className="mb-8 flex flex-col gap-4 sm:flex-row">
                 <motion.a href="#contact" className="btn-primary flex items-center justify-center group px-10 py-4 text-base" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                   Work With Us
                   <motion.span className="ml-2" animate={{ x: [0, 4, 0] }} transition={{ duration: 2, repeat: Infinity }}>
@@ -91,43 +111,34 @@ export function HeroSection() {
                 <motion.a href="#projects" className="flex items-center justify-center rounded-md border-2 border-white bg-white px-10 py-4 text-base font-semibold text-slate-950 transition-all duration-300 hover:bg-slate-50 hover:shadow-[0_12px_32px_rgba(255,255,255,0.2)]" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                   View Projects
                 </motion.a>
-              </motion.div>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="grid gap-3 sm:grid-cols-3"
-              >
-                {heroStats.map((stat, i) => (
-                  <motion.div
+              <div className="grid gap-3 sm:grid-cols-3">
+                {heroStats.map((stat, index) => (
+                  <div
                     key={stat.value}
+                    ref={(element) => {
+                      statRefs.current[index] = element;
+                    }}
                     className="rounded-2xl border border-white/10 bg-white/5 p-4 text-white backdrop-blur-sm transition-all duration-300 hover:border-white/25 hover:bg-white/10"
-                    whileHover={{ y: -2 }}
-                    transition={{ delay: i * 0.05 }}
                   >
                     <p className="text-2xl font-semibold tracking-tight">{stat.value}</p>
                     <p className="mt-2 text-xs leading-6 uppercase tracking-[0.18em] text-slate-300">{stat.label}</p>
-                  </motion.div>
+                  </div>
                 ))}
-              </motion.div>
+              </div>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.22 }}
-              className="relative"
-            >
+            <div ref={mediaRef} className="relative">
               <div className="rounded-4xl border border-white/12 bg-white/8 p-4 shadow-[0_24px_70px_rgba(0,0,0,0.25)] backdrop-blur-md sm:p-5">
                 <div className="relative min-h-112 overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-black via-slate-950 to-slate-800">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.08),transparent_28%)]" />
                   <div className="absolute inset-0 grid place-items-center p-8 text-center">
                     <div className="max-w-sm rounded-3xl border border-dashed border-white/25 bg-white/5 p-6 backdrop-blur-sm">
-                      <p className="text-[10px] font-semibold uppercase tracking-[0.4em] text-slate-300">Image Placeholder</p>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.4em] text-slate-300">HERO_ANIMATION_SLOT</p>
                       <p className="mt-4 text-2xl font-semibold text-white">[Hero Visual / Product Image]</p>
                       <p className="mt-3 text-sm leading-7 text-slate-300">
-                        Drop in a strong visual here when you have one. This block keeps the layout balanced and editorial.
+                        Drop in a strong visual here when you have one. This block keeps the layout balanced and editorial. It can hold a Blender export or a Three.js scene.
                       </p>
                     </div>
                   </div>
@@ -139,7 +150,7 @@ export function HeroSection() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </motion.div>
       </div>
