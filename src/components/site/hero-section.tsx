@@ -57,7 +57,7 @@ export function HeroSection() {
         <motion.img
           src="/hero-background.png"
           alt=""
-          className="absolute inset-0 h-full w-full object-cover will-change-transform"
+          className="absolute inset-8 h-[calc(100%-4rem)] w-[calc(100%-4rem)] object-cover will-change-transform rounded-3xl"
           style={{ y: yOne }}
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
