@@ -33,8 +33,8 @@ const generateDecorations = (): DecorElement[] => {
       delay: Math.random() * 2,
       duration: 8 + Math.random() * 6,
       rotation: Math.random() * 360,
-      opacity: 0.03 + Math.random() * 0.08,
-      size: isBox ? 40 + Math.random() * 120 : 60 + Math.random() * 80,
+      opacity: 0.15 + Math.random() * 0.25,
+      size: isBox ? 40 + Math.random() * 120 : 100 + Math.random() * 150,
       iconIndex: isBox ? undefined : Math.floor(Math.random() * icons.length),
     });
   }
