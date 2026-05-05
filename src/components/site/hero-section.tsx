@@ -57,7 +57,7 @@ export function HeroSection() {
         <motion.img
           src="/hero-background.png"
           alt=""
-          className="absolute inset-8 h-[calc(100%-4rem)] w-[calc(100%-4rem)] object-cover will-change-transform rounded-3xl"
+          className="absolute top-8 bottom-8 left-20 right-4 object-cover will-change-transform rounded-3xl"
           style={{ y: yOne }}
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
@@ -107,14 +107,14 @@ export function HeroSection() {
               />
 
               <div className="mb-8 flex flex-col gap-4 sm:flex-row">
-                <motion.a href="#contact" className="btn-primary flex items-center justify-center group px-10 py-4 text-base" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                <motion.a href="#contact" className="flex items-center justify-center rounded-md border-2 border-white bg-transparent px-10 py-4 text-base font-semibold text-white transition-all duration-300 hover:bg-white/10" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                   Work With Us
                   <motion.span className="ml-2" animate={{ x: [0, 4, 0] }} transition={{ duration: 2, repeat: Infinity }}>
                     →
                   </motion.span>
                 </motion.a>
 
-                <motion.a href="#projects" className="flex items-center justify-center rounded-md border-2 border-white bg-white px-10 py-4 text-base font-semibold text-slate-950 transition-all duration-300 hover:bg-slate-50 hover:shadow-[0_12px_32px_rgba(255,255,255,0.2)]" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                <motion.a href="#projects" className="flex items-center justify-center rounded-md border-2 border-white bg-transparent px-10 py-4 text-base font-semibold text-white transition-all duration-300 hover:bg-white/10" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                   View Projects
                 </motion.a>
               </div>
