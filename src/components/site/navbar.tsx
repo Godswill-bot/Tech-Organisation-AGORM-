@@ -126,7 +126,7 @@ export function Navbar() {
 
         <motion.a
           href={pathname === "/team" ? "#lets-talk" : resolveHref("#contact", "Contact")}
-          className="hidden rounded-full bg-[#10372f] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(16,55,47,0.22)] transition-all duration-300 md:inline-flex"
+          className="hidden rounded-full bg-[#09100f] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(16,55,47,0.22)] transition-all duration-300 md:inline-flex"
           whileHover={{ scale: 1.04, boxShadow: "0 20px 50px rgba(16, 55, 47, 0.28)" }}
           whileTap={{ scale: 0.98 }}
         >

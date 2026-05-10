@@ -1,195 +1,532 @@
 "use client";
 
-import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useLayoutEffect, useRef } from "react";
-import { GsapWordReveal } from "@/components/site/gsap-word-reveal";
-import { SectionReveal } from "@/components/site/section-reveal";
-import ReferenceBg from "../../../peopelooking.png";
 
-const points = [
-  {
-    title: "Who We Are",
-    body: "A product-focused team of engineers and designers building meaningful software that scales.",
-  },
-  {
-    title: "Mission & Vision",
-    body: "To help organizations turn ambitious ideas into reliable digital systems that create real impact.",
-  },
-  {
-    title: "What Makes AGOM Different",
-    body: "We blend startup speed with enterprise-grade quality, combining strategy, design, and engineering in one execution flow.",
-  },
+import {
+  ShieldCheck,
+  Sparkles,
+  Globe2,
+  Zap,
+} from "lucide-react";
+
+const valuePills = [
+  { label: "Clarity", top: "8%", left: "62%" },
+  { label: "Reliability", top: "18%", left: "78%" },
+  { label: "Efficiency", top: "44%", left: "-6%" },
+  { label: "Adaptability", top: "82%", left: "12%" },
+  { label: "Partnership", top: "84%", left: "60%" },
 ];
 
-const capabilities = [
-  "System architecture and product planning",
-  "Workflow automation and process digitization",
-  "Secure API and platform engineering",
-  "Product analytics and continuous optimization",
-];
-
-const operatingPrinciples = [
-  "We build around your existing operational reality, not assumptions.",
-  "Every delivery phase includes measurable outcomes and checkpoint reviews.",
-  "We design for adoption, so teams can use systems confidently from day one.",
+const features = [
+  {
+    icon: ShieldCheck,
+    title: "Zero Disruption",
+    body: "Your existing systems keep running. We add layers, not replacements.",
+  },
+  {
+    icon: Sparkles,
+    title: "Built to be Used",
+    body: "Interfaces your team adopts on day one — no week-long onboarding required.",
+  },
+  {
+    icon: Globe2,
+    title: "Local Reality",
+    body: "Engineered around the constraints, infrastructure, and pace of African business.",
+  },
+  {
+    icon: Zap,
+    title: "Weeks, Not Quarters",
+    body: "Discovery to deployment in a timeline that matches how fast you actually move.",
+  },
 ];
 
 export function AboutSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const animationSlotRef = useRef<HTMLDivElement | null>(null);
-  const storyCardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const aboutTitleRef = useRef<HTMLDivElement | null>(null);
+  const subTitleRef = useRef<HTMLHeadingElement | null>(null);
+  const numeralRef = useRef<HTMLSpanElement | null>(null);
+  const pillRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   useLayoutEffect(() => {
-    if (!sectionRef.current) {
-      return;
-    }
-
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
-      if (animationSlotRef.current) {
-        gsap.to(animationSlotRef.current, {
-          yPercent: -4,
-          scale: 1.01,
-          ease: "none",
+      if (aboutTitleRef.current) {
+        const letters =
+          aboutTitleRef.current.querySelectorAll<HTMLElement>(
+            ".about-hero-letter"
+          );
+
+        const accent =
+          aboutTitleRef.current.querySelector<HTMLElement>(
+            ".about-hero-accent"
+          );
+
+        const eyebrow =
+          aboutTitleRef.current.querySelector<HTMLElement>(
+            ".about-hero-eyebrow"
+          );
+
+        gsap.set(letters, {
+          willChange: "transform, opacity",
+        });
+
+        const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
+            trigger: aboutTitleRef.current,
+            start: "top 75%",
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        if (eyebrow) {
+          tl.from(eyebrow, {
+            y: 16,
+            opacity: 0,
+            duration: 0.5,
+            ease: "power3.out",
+          });
+        }
+
+        tl.from(
+          letters,
+          {
+            y: 100,
+            opacity: 0,
+            rotate: 6,
+            duration: 0.9,
+            stagger: 0.07,
+            ease: "power4.out",
+            force3D: true,
+            onComplete: () =>
+              gsap.set(letters, {
+                willChange: "auto",
+              }),
+          },
+          "-=0.2"
+        );
+
+        if (accent) {
+          tl.from(
+            accent,
+            {
+              scaleX: 0,
+              transformOrigin: "left center",
+              duration: 0.8,
+              ease: "power3.out",
+            },
+            "-=0.4"
+          );
+        }
+      }
+
+      if (subTitleRef.current) {
+        const words =
+          subTitleRef.current.querySelectorAll<HTMLElement>(
+            ".about-word"
+          );
+
+        gsap.from(words, {
+          y: 30,
+          opacity: 0,
+          duration: 0.7,
+          stagger: 0.06,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: subTitleRef.current,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
           },
         });
       }
 
-      gsap.fromTo(
-        storyCardRefs.current.filter(Boolean),
-        { opacity: 0, y: 24, scale: 0.99 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          stagger: 0.08,
-          duration: 0.7,
+      if (numeralRef.current) {
+        gsap.from(numeralRef.current, {
+          y: 50,
+          opacity: 0,
+          duration: 1,
           ease: "power3.out",
           scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 75%",
-            once: true,
+            trigger: numeralRef.current,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
           },
-        },
-      );
+        });
+      }
+
+      pillRefs.current.forEach((el, i) => {
+        if (!el) return;
+
+        gsap.fromTo(
+          el,
+          {
+            opacity: 0,
+            scale: 0.6,
+          },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 0.6,
+            delay: 0.4 + i * 0.1,
+            ease: "back.out(1.6)",
+            scrollTrigger: {
+              trigger: numeralRef.current,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+
+        gsap.to(el, {
+          y: i % 2 === 0 ? -8 : 8,
+          duration: 3 + i * 0.3,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+          delay: i * 0.2,
+        });
+      });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} id="about" className="relative overflow-hidden bg-slate-950 px-5 py-22 text-white sm:px-8 sm:py-30">
-      <div className="pointer-events-none absolute inset-0">
-        <Image src={ReferenceBg} alt="" fill aria-hidden="true" sizes="100vw" className="object-contain object-center opacity-30 blur-[1px]" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.82),rgba(2,6,23,0.94))]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.08),transparent_28%)]" />
-      </div>
+    <section
+    data-cursor-theme="light"
+      ref={sectionRef}
+      id="about"
+      className="
+        relative
+        overflow-hidden
+        bg-[radial-gradient(circle_at_top,_rgba(255,255,255,1)_0%,_rgba(248,248,248,1)_35%,_rgba(241,241,241,1)_65%,_rgba(255,255,255,1)_100%)]
+        px-5
+        py-24
+        text-black
+        sm:px-8
+        sm:py-32
+        lg:px-14
+      "
+    >
+      {/* Background blobs */}
+      <div
+        aria-hidden
+        className="
+          pointer-events-none
+          absolute
+          -right-32
+          top-20
+          h-[28rem]
+          w-[28rem]
+          rounded-full
+          bg-black
+          
+        "
+      />
+
+      <div
+        aria-hidden
+        className="
+          pointer-events-none
+          absolute
+          -left-60
+          bottom-10
+          h-[32rem]
+          w-[32rem]
+          rounded-full
+          bg-black
+          
+        "
+      />
 
       <div className="relative mx-auto max-w-7xl">
-        <SectionReveal>
-          <div className="grid gap-10 lg:grid-cols-[1fr_0.92fr] lg:items-start">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.36em] text-slate-400">About AGOM</p>
-              <GsapWordReveal
-                tag="h2"
-                text="A Product Engineering Team Built For Serious System Delivery"
-                className="mt-4 text-balance text-4xl font-semibold leading-[1.04] text-white sm:text-5xl lg:text-6xl"
-                wordClassName="will-change-transform"
-              />
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-300">
-                AGOM partners with institutions, startups, and growth-stage businesses to design and deploy digital systems that reduce friction, improve visibility, and support long-term scale.
-              </p>
+        {/* HERO */}
+        <div ref={aboutTitleRef} className="relative">
+          <span
+            className="
+              about-hero-eyebrow
+              inline-flex
+              items-center
+              gap-3
+              rounded-full
+              border
+              border-zinc-300
+              bg-white/70
+              px-5
+              py-2
+              text-xs
+              font-semibold
+              uppercase
+              tracking-[0.32em]
+              text-zinc-900
+              backdrop-blur-xl
+            "
+          >
+            <span className="h-1.5 w-1.5 rounded-full bg-black" />
+            Who We Are
+          </span>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                {capabilities.map((capability) => (
-                  <span key={capability} className="rounded-full border border-white/12 bg-white/6 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-slate-200 backdrop-blur-sm">
-                    {capability}
-                  </span>
-                ))}
-              </div>
-            </div>
+          <div
+            className="
+              relative
+              mt-6
+              flex
+              items-baseline
+              overflow-hidden
+              pb-3
+            "
+          >
+            {["A", "B", "O", "U", "T"].map((ch) => (
+              <span
+                key={ch}
+                className="
+                  about-hero-letter
+                  inline-block
+                  font-black
+                  leading-[0.85]
+                  tracking-[-0.06em]
+                  text-zinc-950
+                  text-[clamp(5rem,18vw,16rem)]
+                "
+              >
+                {ch}
+              </span>
+            ))}
 
-            <div className="rounded-4xl border border-white/10 bg-white/6 p-5 shadow-[0_18px_60px_rgba(0,0,0,0.26)] backdrop-blur-md sm:p-6">
-              {/* ABOUT_ANIMATION_SLOT: replace this panel with a 3D model, a Blender render, or a motion graphic. */}
-              <div ref={animationSlotRef} className="relative min-h-104 overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-slate-900 via-slate-950 to-black will-change-transform">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.16),transparent_28%)]" />
-                <div className="absolute inset-0 grid place-items-center p-6 text-center">
-                  <div className="max-w-sm rounded-3xl border border-dashed border-white/18 bg-white/6 p-6 backdrop-blur-md">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.4em] text-slate-400">ABOUT_ANIMATION_SLOT</p>
-                    <p className="mt-4 text-2xl font-semibold text-white">[3D Model / Motion Panel]</p>
-                    <p className="mt-3 text-sm leading-7 text-slate-300">
-                      Use this area for a Sketchfab GLB preview, a Blender export, or a short product animation.
-                    </p>
-                  </div>
-                </div>
-                <div className="absolute bottom-4 left-4 rounded-full border border-white/12 bg-black/35 px-3 py-1 text-[10px] uppercase tracking-[0.28em] text-slate-200">
-                  Cinematic depth
-                </div>
-                <div className="absolute right-4 top-4 rounded-full border border-white/12 bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.28em] text-slate-950">
-                  Motion-led
-                </div>
-              </div>
-            </div>
+            <span
+              className="
+                about-hero-letter
+                ml-3
+                mt-[1.5rem]
+                inline-block
+                h-4
+                w-4
+                self-start
+                rounded-full
+                bg-black
+                sm:h-6
+                sm:w-6
+              "
+            />
           </div>
-        </SectionReveal>
 
-        <div className="mt-12 grid gap-10 md:grid-cols-3">
-          {points.map((point, index) => (
-            <div
-              key={point.title}
-              ref={(element) => {
-                storyCardRefs.current[index] = element;
-              }}
-              className="h-full rounded-3xl border border-white/10 bg-white/6 p-6 shadow-[0_14px_36px_rgba(0,0,0,0.16)] backdrop-blur-sm"
-            >
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">0{index + 1}</p>
-              <h3 className="mt-4 text-2xl font-semibold text-white">{point.title}</h3>
-              <p className="mt-4 text-base leading-8 text-slate-300">{point.body}</p>
-            </div>
-          ))}
+          <div
+            className="
+              about-hero-accent
+              mt-2
+              h-[3px]
+              w-48
+              rounded-full
+              bg-gradient-to-r
+              from-zinc-300
+              via-zinc-500
+              to-transparent
+            "
+          />
         </div>
 
-        <SectionReveal className="mt-32">
-          <div className="grid gap-8 rounded-4xl border border-white/10 bg-white/6 p-6 text-white shadow-[0_24px_60px_rgba(0,0,0,0.24)] backdrop-blur-md sm:p-8 lg:grid-cols-[1.05fr_0.95fr]">
-            <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-slate-400">Core Capabilities</p>
-              <h3 className="mt-3 text-3xl font-semibold leading-tight text-white sm:text-4xl">
-                Built To Handle Product Complexity End To End
-              </h3>
-              <p className="mt-4 max-w-2xl text-base leading-8 text-slate-300">
-                From discovery workshops to post-launch optimization, AGOM integrates product, engineering, and operational perspectives into one coordinated delivery model.
-              </p>
+        {/* MAIN CONTENT */}
+        <div className="mt-24 grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+          {/* LEFT */}
+          <div className="relative h-[26rem] lg:h-[32rem]">
+            <span
+              className="
+                inline-flex
+                items-center
+                rounded-full
+                border
+                border-zinc-300
+                bg-white/70
+                px-5
+                py-2
+                text-xs
+                font-semibold
+                uppercase
+                tracking-[0.24em]
+                text-zinc-900
+                backdrop-blur-xl
+              "
+            >
+              What We Stand By
+            </span>
 
-              <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                {capabilities.map((capability) => (
-                  <p key={capability} className="rounded-2xl border border-white/10 bg-black/25 px-5 py-4 text-sm text-slate-200 shadow-sm">
-                    {capability}
-                  </p>
-                ))}
-              </div>
-            </div>
+            <div className="relative mt-8 h-full">
+              <span
+                ref={numeralRef}
+                style={{ willChange: "transform" }}
+                className="
+                  block
+                  font-black
+                  leading-none
+                  tracking-tight
+                  text-zinc-900/90
+                  text-[14rem]
+                  sm:text-[18rem]
+                  lg:text-[22rem]
+                "
+              >
+                05
+              </span>
 
-            <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-slate-400">How We Operate</p>
-              <div className="mt-6 space-y-5">
-                {operatingPrinciples.map((principle, index) => (
-                  <div key={principle} className="rounded-2xl border border-white/10 bg-black/25 p-5 shadow-sm">
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">0{index + 1}</p>
-                    <p className="mt-2 text-sm leading-7 text-slate-300">{principle}</p>
-                  </div>
-                ))}
-              </div>
+              {valuePills.map((p, i) => (
+                <span
+                  key={p.label}
+                  ref={(el) => {
+                    pillRefs.current[i] = el;
+                  }}
+                  style={{
+                    top: p.top,
+                    left: p.left,
+                    willChange: "transform",
+                  }}
+                  className="
+                    absolute
+                    rounded-full
+                    border
+                    border-zinc-200
+                    bg-gradient-to-br
+                    from-white
+                    via-zinc-50
+                    to-zinc-100
+                    px-4
+                    py-2
+                    text-xs
+                    font-semibold
+                    text-zinc-900
+                    shadow-[0_10px_30px_rgba(0,0,0,0.06)]
+                    sm:text-sm
+                  "
+                >
+                  {p.label}
+                </span>
+              ))}
             </div>
           </div>
-        </SectionReveal>
+
+          {/* RIGHT */}
+          <div>
+            <h2
+              ref={subTitleRef}
+              className="
+                text-5xl
+                font-black
+                leading-[1.05]
+                tracking-tight
+                text-zinc-950
+                sm:text-6xl
+                lg:text-7xl
+              "
+            >
+              <span className="about-word inline-block">
+                Engineering
+              </span>{" "}
+              <span className="about-word inline-block">
+                With
+              </span>
+              <br />
+              <span className="about-word inline-block font-serif italic font-medium">
+                Intent
+              </span>{" "}
+              <span className="about-word inline-block font-serif italic font-medium">
+                & Restraint
+              </span>
+            </h2>
+
+            <div className="mt-8 flex items-center gap-5">
+              <p className="text-5xl font-bold text-zinc-950">
+                4.9
+              </p>
+
+              <div>
+                <div className="flex gap-1 text-amber-500">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <span key={i}>★</span>
+                  ))}
+                </div>
+
+                <p className="mt-1 text-xs uppercase tracking-[0.18em] text-zinc-500">
+                  Client Confidence Score
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-10 space-y-5 text-base leading-8 text-zinc-700">
+              <p>
+                AGOM was built around a simple idea:
+                digitization should be additive,
+                not destructive. Most teams don&apos;t
+                need a clean-slate rebuild — they
+                need clarity, leverage, and tools
+                that respect how they already work.
+              </p>
+
+              <p>
+                We sit beside operations, learn
+                what already functions, and engineer
+                the parts that genuinely move the
+                needle. Software that earns its
+                place. Systems that stay used after
+                launch.
+              </p>
+            </div>
+
+            <div className="mt-10">
+              <p className="text-xl font-semibold text-zinc-950">
+                Tools shaped to your team — not the inverse.
+              </p>
+
+              <p className="mt-2 text-sm uppercase tracking-[0.22em] text-zinc-500">
+                That&apos;s the AGOM way
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* FEATURES */}
+        <div className="mt-28 grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          {features.map((f) => {
+            const Icon = f.icon;
+
+            return (
+              <div key={f.title} className="group">
+                <div
+                  className="
+                    flex
+                    h-12
+                    w-12
+                    items-center
+                    justify-center
+                    rounded-xl
+                    bg-gradient-to-br
+                    from-white
+                    via-zinc-50
+                    to-zinc-100
+                    text-zinc-900
+                    shadow-[0_10px_30px_rgba(0,0,0,0.05)]
+                    transition-transform
+                    duration-500
+                    group-hover:-translate-y-1
+                  "
+                >
+                  <Icon
+                    className="h-6 w-6"
+                    strokeWidth={1.6}
+                  />
+                </div>
+
+                <h3 className="mt-6 text-2xl font-bold text-zinc-950">
+                  {f.title}
+                </h3>
+
+                <p className="mt-3 text-base leading-7 text-zinc-600">
+                  {f.body}
+                </p>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

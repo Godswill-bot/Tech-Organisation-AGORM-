@@ -147,7 +147,7 @@ export const projects: Project[] = [
 export const teamMembers: TeamMember[] = [
   {
     name: "Godswill Nwafor",
-    role: "Full-Stack Developer",
+    role: "Frontend Developer and AI tool specialist",
     bio: "Builds resilient web architectures and API ecosystems designed for scale, reliability, and maintainability.",
     expertise: ["Web application engineering", "API development", "Scalable architecture"],
     phone: "+234 9064071165",
@@ -158,7 +158,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     name: "Omoyowho Miracle",
-    role: "Data Engineer and Data Analyst",
+    role: "Data Engineer and Backend specialist",
     bio: "Designs dependable data workflows, transforms complex datasets into actionable insights, and supports business decision-making with analytical precision.",
     expertise: ["Data engineering", "Data analysis", "Reporting and insights"],
     phone: "+234 803 376 8018",
@@ -179,7 +179,7 @@ export const teamMembers: TeamMember[] = [
   {
     name: "Fatona Ayomide",
     role: "Robotics Engineer",
-    bio: "Develops intelligent robotic systems and hardware-driven solutions that bridge automation, precision, and practical engineering delivery.",
+    bio: "Develops intelligent robotic systems and hardware-driven solutions that bridge automation, precision, Leadership and Coordination, Creative strategy and branding, Product Ideation and Innovation, Team Organization, Networking and Business Development.",
     expertise: ["Robotics engineering", "Automation systems", "Hardware integration"],
     phone: "+234 901 814 9337",
     linkedin: "https://www.linkedin.com/in/fatona-ayomide",

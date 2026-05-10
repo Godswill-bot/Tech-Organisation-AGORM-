@@ -346,4 +346,58 @@ textarea:focus {
   background: #111111;
 }
 
+/* ============================================================
+   APPEND THESE RULES TO YOUR EXISTING globals.css
+   (Don't replace the file — just paste these at the end.)
+   ============================================================ */
 
+/* Bind the new serif variable so `font-serif` Tailwind utility works
+   out of the box for the italic accent text. */
+@layer base {
+  :root {
+    --font-serif-stack: var(--font-serif), Georgia, "Times New Roman", serif;
+  }
+
+  .font-serif {
+    font-family: var(--font-serif-stack);
+  }
+}
+
+/* Smooth scroll, but only when the user hasn't asked for reduced motion.
+   This adds a perceptible "premium" feel without a JS smooth-scroll library
+   like Lenis (which is heavy and can fight with native scroll on mobile). */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Hide native cursor over interactive elements when our custom cursor is on.
+   The `cursor-follow-enabled` class is added to <body> by CursorFollower. */
+body.cursor-follow-enabled,
+body.cursor-follow-enabled a,
+body.cursor-follow-enabled button,
+body.cursor-follow-enabled [role="button"] {
+  cursor: none;
+}
+
+/* Performance: hint the browser that anything scrolled into view should be
+   GPU-accelerated. `content-visibility: auto` lets the browser skip rendering
+   off-screen sections entirely — huge win for long pages. Be careful: only
+   apply on sections that have predictable height. */
+section[data-perf-skip] {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 800px;
+}
+
+/* Throttle expensive `backdrop-filter` if it ever appears on mobile —
+   replace it with a solid background under 1024px width. */
+@media (max-width: 1024px) {
+  .backdrop-blur-xl,
+  .backdrop-blur-lg,
+  .backdrop-blur-md,
+  .backdrop-blur-sm {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}

@@ -1,10 +1,33 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Rocket, Zap, Grid3x3, Code, Sparkles, Orbit, ShieldCheck, LayoutGrid, Lightbulb, Target } from "lucide-react";
-import React from "react";
+import {
+  Rocket,
+  Zap,
+  Grid3x3,
+  Code,
+  Sparkles,
+  Orbit,
+  ShieldCheck,
+  LayoutGrid,
+  Lightbulb,
+  Target,
+} from "lucide-react";
 
-const icons = [Rocket, Zap, Grid3x3, Code, Sparkles, Orbit, ShieldCheck, LayoutGrid, Lightbulb, Target];
+import React, { useEffect, useMemo, useState } from "react";
+
+const icons = [
+  Rocket,
+  Zap,
+  Grid3x3,
+  Code,
+  Sparkles,
+  Orbit,
+  ShieldCheck,
+  LayoutGrid,
+  Lightbulb,
+  Target,
+];
 
 interface DecorElement {
   id: number;
@@ -17,38 +40,52 @@ interface DecorElement {
   opacity: number;
   size: number;
   iconIndex?: number;
+  xOffset: number;
 }
 
-// Generate random decoration elements
-const generateDecorations = (): DecorElement[] => {
-  const elements: DecorElement[] = [];
-  
-  for (let i = 0; i < 40; i++) {
-    const isBox = Math.random() > 0.4;
-    elements.push({
-      id: i,
-      type: isBox ? "box" : "icon",
-      top: `${Math.random() * 100}%`,
-      left: `${Math.random() * 100}%`,
-      delay: Math.random() * 2,
-      duration: 8 + Math.random() * 6,
-      rotation: Math.random() * 360,
-      opacity: 0.15 + Math.random() * 0.25,
-      size: isBox ? 40 + Math.random() * 120 : 100 + Math.random() * 150,
-      iconIndex: isBox ? undefined : Math.floor(Math.random() * icons.length),
-    });
-  }
-  return elements;
-};
-
 export function BackgroundDecorations() {
-  const decorations = React.useMemo(() => generateDecorations(), []);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const decorations = useMemo(() => {
+    return Array.from({ length: 40 }).map((_, i) => {
+      const isBox = Math.random() > 0.4;
+
+      return {
+        id: i,
+        type: isBox ? "box" : "icon",
+        top: `${Math.random() * 100}%`,
+        left: `${Math.random() * 100}%`,
+        delay: Math.random() * 2,
+        duration: 8 + Math.random() * 6,
+        rotation: Math.random() * 360,
+        opacity: 0.15 + Math.random() * 0.25,
+        size: isBox
+          ? 40 + Math.random() * 80
+          : 60 + Math.random() * 80,
+        iconIndex: isBox
+          ? undefined
+          : Math.floor(Math.random() * icons.length),
+        xOffset: Math.random() > 0.5 ? 20 : -20,
+      };
+    });
+  }, []);
+
+  // 🚨 IMPORTANT
+  // prevents server rendering completely
+  if (!mounted) return null;
 
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10">
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       {decorations.map((element) => {
-        const Icon = element.iconIndex !== undefined ? icons[element.iconIndex] : null;
-        
+        const Icon =
+          element.iconIndex !== undefined
+            ? icons[element.iconIndex]
+            : null;
+
         return (
           <motion.div
             key={element.id}
@@ -60,7 +97,7 @@ export function BackgroundDecorations() {
             }}
             animate={{
               y: [0, -30, 0],
-              x: [0, Math.random() > 0.5 ? 20 : -20, 0],
+              x: [0, element.xOffset, 0],
               rotate: [0, 180, 360],
             }}
             transition={{
@@ -72,7 +109,7 @@ export function BackgroundDecorations() {
           >
             {element.type === "box" ? (
               <div
-                className="rounded-lg border-2 border-slate-400/30 bg-slate-400/5"
+                className="rounded-lg border border-slate-400/20 bg-slate-400/5"
                 style={{
                   width: `${element.size}px`,
                   height: `${element.size}px`,
@@ -82,7 +119,7 @@ export function BackgroundDecorations() {
             ) : Icon ? (
               <Icon
                 size={element.size}
-                className="text-slate-500/50"
+                className="text-slate-500/40"
                 strokeWidth={1.5}
               />
             ) : null}

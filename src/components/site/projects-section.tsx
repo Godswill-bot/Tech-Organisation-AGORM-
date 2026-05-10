@@ -1,240 +1,386 @@
 "use client";
 
-import { useRef } from "react";
-import { motion } from "framer-motion";
-import { ExternalLink, ChevronRight, Rocket } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { SectionReveal } from "@/components/site/section-reveal";
-import { SectionTitle } from "@/components/site/section-title";
+import { ArrowRight } from "lucide-react";
+
 import { projects } from "@/data/site-content";
 
 export function ProjectsSection() {
-  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-  const featuredProject = projects[0];
-  const otherProjects = projects.slice(1);
+  const [hovered, setHovered] = useState<number | null>(null);
+  const [visible, setVisible] = useState(false);
+  const gridRef = useRef<HTMLDivElement | null>(null);
 
-  const scroll = (direction: "left" | "right") => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = 400;
-      if (direction === "left") {
-        scrollContainerRef.current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-      } else {
-        scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-      }
-    }
-  };
+  useEffect(() => {
+    if (!gridRef.current) return;
+
+    const el = gridRef.current;
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    obs.observe(el);
+
+    return () => obs.disconnect();
+  }, []);
+
+  const showcase = projects.slice(
+    0,
+    Math.max(3, projects.length)
+  );
 
   return (
-    <section id="projects" className="px-5 py-22 sm:px-8 sm:py-30">
-      <div className="mx-auto max-w-[90rem]">
-        <SectionReveal>
-          <div className="flex items-end gap-6">
-            <Rocket size={80} className="text-slate-900" strokeWidth={1.5} />
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.36em] text-slate-500">Portfolio</p>
-              <h2 className="mt-2 text-5xl font-bold leading-tight text-slate-950 lg:text-6xl">Large-Scale Project Showcases</h2>
-              <p className="mt-3 max-w-2xl text-lg leading-8 text-slate-700">Each project is presented as a full showcase section, with richer context and larger visuals for clearer product storytelling.</p>
-            </div>
-          </div>
-        </SectionReveal>
+    <section
+      id="projects"
+      className="
+        relative
+        overflow-hidden
+        bg-gradient-to-br
+        from-white
+        via-stone-50
+        to-neutral-100
+        py-24
+        sm:py-32
+      "
+    >
+      {/* TOP LEFT GLOW */}
+      <div
+        aria-hidden
+        className="
+          pointer-events-none
+          absolute
+          -left-40
+          top-10
+          h-[34rem]
+          w-[34rem]
+          rounded-full
+          bg-white
+          opacity-80
+          blur-3xl
+        "
+      />
 
-        {/* Featured Project with Sidebar Layout */}
-        <div className="mt-16 grid gap-8 lg:grid-cols-[1fr_2fr_1fr]">
-          {/* Left Sidebar - Featured Project */}
-          <SectionReveal>
-            <motion.div
-              className="flex flex-col justify-between rounded-2xl border border-slate-900/20 bg-slate-50 p-6 h-full"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-15% 0px -10% 0px" }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div>
-                <h3 className="text-2xl font-bold text-slate-950">{featuredProject.title}</h3>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <span className="inline-block rounded-full bg-slate-900/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.1em] text-slate-900">
-                    {featuredProject.category}
-                  </span>
-                </div>
-                <p className="mt-4 text-sm leading-6 text-slate-700">{featuredProject.summary}</p>
-              </div>
+      {/* RIGHT FADE */}
+      <div
+        aria-hidden
+        className="
+          pointer-events-none
+          absolute
+          right-[-10rem]
+          top-1/3
+          h-[30rem]
+          w-[30rem]
+          rounded-full
+          bg-stone-200/50
+          blur-3xl
+        "
+      />
 
-              {/* Featured Project Image */}
-              <div className="mt-6 overflow-hidden rounded-xl border border-slate-900/10">
-                {featuredProject.previewImage ? (
-                  <Image
-                    src={featuredProject.previewImage}
-                    alt={`${featuredProject.title} preview`}
-                    width={1600}
-                    height={1000}
-                    className="h-[16rem] w-full object-cover object-top"
-                  />
-                ) : (
-                  <div className="grid h-[16rem] place-items-center px-4 text-center text-[10px] uppercase tracking-[0.2em] text-slate-500">
-                    [IMAGE PLACEHOLDER]
-                  </div>
-                )}
-              </div>
+      {/* BOTTOM SOFT FADE */}
+      <div
+        aria-hidden
+        className="
+          pointer-events-none
+          absolute
+          bottom-[-12rem]
+          left-1/2
+          h-[28rem]
+          w-[48rem]
+          -translate-x-1/2
+          rounded-full
+          bg-neutral-200/40
+          blur-3xl
+        "
+      />
 
-              {/* View More Button */}
-              <a
-                href={featuredProject.websiteUrl || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#CCFF00] px-6 py-3 text-xs font-bold uppercase tracking-[0.1em] text-slate-950 transition-all hover:bg-[#B3E600] hover:gap-3"
-              >
-                View More <ChevronRight size={16} />
-              </a>
-            </motion.div>
-          </SectionReveal>
-
-          {/* Main Featured Project Details */}
-          <SectionReveal delay={0.08}>
-            <motion.article
-              className="relative overflow-hidden rounded-2xl border border-slate-900/10 bg-white p-8 lg:p-10"
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-15% 0px -10% 0px" }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="flex items-center gap-2 mb-2">
-                <div className="h-2 w-6 bg-slate-900" />
-                <p className="text-xs uppercase tracking-[0.2em] text-slate-900 font-semibold">{featuredProject.category}</p>
-              </div>
-              <h2 className="mt-3 text-4xl font-bold leading-tight text-slate-950 lg:text-5xl">{featuredProject.title}</h2>
-              <p className="mt-5 text-lg leading-8 text-slate-700">{featuredProject.summary}</p>
-
-              <div className="mt-7 grid gap-4 border-l-2 border-slate-900 pl-4 text-sm leading-7 text-slate-700 sm:text-[15px]">
-                <p><span className="font-medium text-slate-900">Challenge:</span> {featuredProject.challenge}</p>
-                <p><span className="font-medium text-slate-900">Solution:</span> {featuredProject.solution}</p>
-                <p><span className="font-medium text-slate-900">Impact:</span> {featuredProject.impact}</p>
-              </div>
-
-              <p className="mt-6 text-lg font-semibold text-slate-900">{featuredProject.metric}</p>
-
-              {featuredProject.websiteUrl || featuredProject.trackerUrl ? (
-                <div className="mt-6 flex flex-wrap gap-3">
-                  {featuredProject.websiteUrl ? (
-                    <a
-                      href={featuredProject.websiteUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full border-2 border-slate-900 bg-slate-900 px-5 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-white hover:text-slate-900"
-                    >
-                      Explore <ExternalLink size={14} />
-                    </a>
-                  ) : null}
-                  {featuredProject.trackerUrl ? (
-                    <a
-                      href={featuredProject.trackerUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full border-2 border-slate-900 bg-slate-900 px-5 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-colors hover:bg-white hover:text-slate-900"
-                    >
-                      Track <ExternalLink size={14} />
-                    </a>
-                  ) : null}
-                </div>
-              ) : null}
-            </motion.article>
-          </SectionReveal>
-
-          {/* Right Sidebar - Stats/Meta */}
-          <SectionReveal delay={0.16}>
-            <motion.div
-              className="flex flex-col gap-6"
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-15% 0px -10% 0px" }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="rounded-2xl border border-slate-900/10 bg-slate-50 p-6">
-                <p className="text-xs uppercase tracking-[0.1em] text-slate-600 font-semibold">Key Metric</p>
-                <p className="mt-2 text-2xl font-bold text-slate-950">{featuredProject.metric}</p>
-              </div>
-              <div className="rounded-2xl border border-slate-900/10 bg-white p-6 text-center">
-                <p className="text-xs uppercase tracking-[0.1em] text-slate-600 font-semibold mb-3">Project Type</p>
-                <span className="inline-block rounded-full bg-slate-950 px-4 py-2 text-sm font-bold text-white">
-                  {featuredProject.category}
-                </span>
-              </div>
-            </motion.div>
-          </SectionReveal>
+      {/* HEADER */}
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+        <div
+          className="
+            inline-flex
+            items-center
+            rounded-full
+            border
+            border-black/10
+            bg-white/80
+            px-5
+            py-2
+            text-xs
+            font-semibold
+            uppercase
+            tracking-[0.24em]
+            text-black/70
+            backdrop-blur-xl
+          "
+        >
+          Selected Work
         </div>
 
-        {/* Horizontal Carousel of Other Projects */}
-        {otherProjects.length > 0 && (
-          <div className="mt-20">
-            <SectionReveal>
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold text-slate-950">Other Projects</h3>
-                <div className="flex gap-3">
-                  <button
-                    onClick={() => scroll("left")}
-                    className="rounded-full border border-slate-900/20 p-2 transition-colors hover:bg-slate-900/5"
-                    aria-label="Scroll left"
+        <div className="mt-7 grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end">
+          <h2
+            className="
+              text-5xl
+              font-black
+              leading-[1.05]
+              tracking-tight
+              text-black
+              sm:text-6xl
+              lg:text-7xl
+            "
+          >
+            Shipped Products,
+            <br />
+            <span className="font-serif italic font-medium text-black/80">
+              Quietly Working
+            </span>
+          </h2>
+
+          <p
+            className="
+              text-base
+              leading-8
+              text-black/60
+              lg:text-right
+            "
+          >
+            Each project below is live somewhere — running for a
+            real team, solving a real problem. We measure success
+            by what stays in production after the launch glow
+            fades.
+          </p>
+        </div>
+      </div>
+
+      {/* GRID */}
+      <div
+        ref={gridRef}
+        className="
+          relative
+          mt-16
+          grid
+          grid-cols-1
+          gap-0
+          sm:grid-cols-2
+          lg:grid-cols-3
+        "
+        onMouseLeave={() => setHovered(null)}
+      >
+        {showcase.map((project, index) => {
+          const isHovered = hovered === index;
+          const dimmed =
+            hovered !== null && hovered !== index;
+
+          return (
+            <a
+              key={project.id}
+              href={project.websiteUrl || "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseEnter={() => setHovered(index)}
+              style={{
+                transitionDelay: visible
+                  ? `${index * 80}ms`
+                  : "0ms",
+              }}
+              className={`
+                group
+                relative
+                block
+                h-[32rem]
+                overflow-hidden
+                border
+                border-black/5
+                transition-all
+                duration-700
+                ease-[cubic-bezier(0.22,1,0.36,1)]
+                lg:h-[38rem]
+                ${
+                  visible
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-12 opacity-0"
+                }
+                ${
+                  dimmed
+                    ? "scale-[0.98] opacity-50"
+                    : "scale-100"
+                }
+              `}
+            >
+              {project.previewImage ? (
+                <Image
+                  src={project.previewImage}
+                  alt={project.title}
+                  fill
+                  sizes="
+                    (max-width: 640px) 100vw,
+                    (max-width: 1024px) 50vw,
+                    33vw
+                  "
+                  className={`
+                    object-cover
+                    transition-transform
+                    duration-[1200ms]
+                    ease-[cubic-bezier(0.22,1,0.36,1)]
+                    ${
+                      isHovered
+                        ? "scale-110"
+                        : "scale-100"
+                    }
+                  `}
+                />
+              ) : (
+                <div
+                  className="
+                    grid
+                    h-full
+                    place-items-center
+                    bg-neutral-100
+                    text-xs
+                    uppercase
+                    tracking-[0.2em]
+                    text-black/40
+                  "
+                >
+                  Project Preview
+                </div>
+              )}
+
+              {/* WHITE / BLACK OVERLAY */}
+              <div
+                className={`
+                  absolute
+                  inset-0
+                  bg-gradient-to-t
+                  from-black/75
+                  via-black/25
+                  to-white/10
+                  transition-opacity
+                  duration-500
+                  ${
+                    isHovered
+                      ? "opacity-95"
+                      : "opacity-75"
+                  }
+                `}
+              />
+
+              {/* SOFT LIGHT */}
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-0
+                  bg-gradient-to-br
+                  from-white/10
+                  via-transparent
+                  to-transparent
+                "
+              />
+
+              {/* CONTENT */}
+              <div className="absolute inset-x-0 bottom-0 p-8">
+                <h3
+                  className="
+                    text-3xl
+                    font-bold
+                    text-white
+                    sm:text-4xl
+                  "
+                >
+                  {project.title}
+                </h3>
+
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {project.category
+                    .split(",")
+                    .map((tag) => (
+                      <span
+                        key={tag}
+                        className="
+                          rounded-full
+                          border
+                          border-white/20
+                          bg-white/10
+                          px-3
+                          py-1
+                          text-[10px]
+                          font-semibold
+                          uppercase
+                          tracking-[0.18em]
+                          text-white
+                          backdrop-blur-xl
+                        "
+                      >
+                        {tag.trim()}
+                      </span>
+                    ))}
+                </div>
+
+                {/* BUTTON */}
+                <div
+                  className={`
+                    mt-6
+                    transition-all
+                    duration-500
+                    ease-[cubic-bezier(0.22,1,0.36,1)]
+                    ${
+                      isHovered
+                        ? "translate-y-0 opacity-100"
+                        : "translate-y-3 opacity-0"
+                    }
+                  `}
+                >
+                  <span
+                    className="
+                      inline-flex
+                      items-center
+                      gap-2
+                      rounded-full
+                      border
+                      border-white/30
+                      bg-gradient-to-br
+                      from-white
+                      via-stone-50
+                      to-neutral-100
+                      px-5
+                      py-2.5
+                      text-xs
+                      font-bold
+                      uppercase
+                      tracking-[0.2em]
+                      text-black
+                      shadow-[0_10px_30px_rgba(0,0,0,0.18)]
+                    "
                   >
-                    <ChevronRight size={20} className="rotate-180 text-slate-900" />
-                  </button>
-                  <button
-                    onClick={() => scroll("right")}
-                    className="rounded-full border border-slate-900/20 p-2 transition-colors hover:bg-slate-900/5"
-                    aria-label="Scroll right"
-                  >
-                    <ChevronRight size={20} className="text-slate-900" />
-                  </button>
+                    <ArrowRight className="h-3.5 w-3.5" />
+                    Open Case Study
+                  </span>
                 </div>
               </div>
-            </SectionReveal>
 
-            <div className="relative overflow-hidden">
-              <motion.div
-                ref={scrollContainerRef}
-                className="flex gap-6 overflow-x-auto pb-4 scroll-smooth"
-                style={{ scrollBehavior: "smooth" }}
+              {/* INDEX */}
+              <span
+                className="
+                  absolute
+                  right-6
+                  top-6
+                  text-xs
+                  font-mono
+                  text-white/60
+                "
               >
-                {otherProjects.map((project, index) => (
-                  <SectionReveal key={project.id} delay={index * 0.06}>
-                    <motion.a
-                      href={project.websiteUrl || "#"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group relative min-w-[28rem] flex-shrink-0 overflow-hidden rounded-2xl border border-slate-900/10 transition-all hover:border-slate-900/30 hover:shadow-lg"
-                      initial={{ opacity: 0, y: 12 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-10% 0px 0px 0px" }}
-                      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay: index * 0.06 }}
-                    >
-                      {/* Project Image */}
-                      <div className="overflow-hidden bg-slate-100 h-60">
-                        {project.previewImage ? (
-                          <Image
-                            src={project.previewImage}
-                            alt={project.title}
-                            width={800}
-                            height={600}
-                            className="h-full w-full object-cover transition-transform group-hover:scale-105"
-                          />
-                        ) : (
-                          <div className="grid h-full place-items-center text-center text-xs uppercase tracking-[0.2em] text-slate-400">
-                            [IMAGE]
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Project Info Overlay */}
-                      <div className="border-t border-slate-900/10 bg-white p-5">
-                        <p className="text-xs uppercase tracking-[0.1em] text-slate-600 font-semibold">{project.category}</p>
-                        <h4 className="mt-2 text-lg font-bold text-slate-950 group-hover:text-slate-900 transition-colors">{project.title}</h4>
-                        <p className="mt-2 line-clamp-2 text-sm text-slate-700">{project.summary}</p>
-                      </div>
-                    </motion.a>
-                  </SectionReveal>
-                ))}
-              </motion.div>
-            </div>
-          </div>
-        )}
+                {`0${index + 1}`}
+              </span>
+            </a>
+          );
+        })}
       </div>
     </section>
   );

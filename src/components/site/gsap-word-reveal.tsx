@@ -13,6 +13,19 @@ type GsapWordRevealProps = {
   stagger?: number;
 };
 
+/**
+ * Reveals each word of `text` on scroll-in.
+ *
+ * Performance changes:
+ *  - Uses `force3D: true` so each word becomes its own GPU layer (cheap).
+ *  - Sets `will-change: transform` only for the duration of the animation, then
+ *    clears it (`onComplete: () => gsap.set(..., { willChange: "auto" })`)
+ *    so the browser can free those layers afterward — leaving `will-change`
+ *    on permanently is a known cause of accumulated GPU memory pressure.
+ *  - Kept `once: true` so the animation runs exactly once and ScrollTrigger
+ *    cleans up its listeners.
+ *  - Refs array is rebuilt fresh on each render (no stale element retention).
+ */
 export function GsapWordReveal({
   text,
   tag: Tag = "div",
@@ -25,34 +38,43 @@ export function GsapWordReveal({
   const wordRefs = useRef<HTMLSpanElement[]>([]);
 
   useLayoutEffect(() => {
-    if (!containerRef.current) {
-      return;
-    }
+    if (!containerRef.current) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
+      const targets = wordRefs.current.filter(Boolean);
+      if (targets.length === 0) return;
+
+      gsap.set(targets, { willChange: "transform, opacity" });
+
       gsap.fromTo(
-        wordRefs.current,
-        { opacity: 0, y: 16 },
+        targets,
+        { opacity: 0, y: 20 },
         {
           opacity: 1,
           y: 0,
           stagger,
           duration: 0.6,
           ease: "power3.out",
+          force3D: true,
           scrollTrigger: {
             trigger: containerRef.current,
             start: triggerStart,
             once: true,
           },
-        },
+          onComplete: () => {
+            gsap.set(targets, { willChange: "auto" });
+          },
+        }
       );
     }, containerRef);
 
     return () => ctx.revert();
-  }, [stagger, triggerStart]);
+  }, [stagger, triggerStart, text]);
 
+  // Reset refs each render so unmounted words don't linger.
+  wordRefs.current = [];
   const words = text.split(" ");
 
   return (
@@ -61,11 +83,11 @@ export function GsapWordReveal({
         <span
           key={`${word}-${index}`}
           ref={(element) => {
-            if (element) {
-              wordRefs.current[index] = element;
-            }
+            if (element) wordRefs.current[index] = element;
           }}
-          className={`inline-block ${index < words.length - 1 ? "mr-[0.22em]" : ""} ${wordClassName ?? ""}`}
+          className={`inline-block ${
+            index < words.length - 1 ? "mr-[0.22em]" : ""
+          } ${wordClassName ?? ""}`}
         >
           {word}
         </span>
