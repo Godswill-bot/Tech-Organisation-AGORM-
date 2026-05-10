@@ -278,7 +278,7 @@ export function AboutSection() {
               pb-3
             "
           >
-            {["A", "B", "O", "U", "T"].map((ch) => (
+            {["A", "G", "O", "M",].map((ch) => (
               <span
                 key={ch}
                 className="

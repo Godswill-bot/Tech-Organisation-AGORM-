@@ -132,9 +132,9 @@ function WorkflowSection() {
                 -translate-y-1/2
                 rounded-l-full
                 bg-gradient-to-br
-                from-white
-                via-zinc-50
-                to-zinc-100
+               
+                via-black/50
+                to-black/100
                 sm:h-60
                 sm:w-32
               "
