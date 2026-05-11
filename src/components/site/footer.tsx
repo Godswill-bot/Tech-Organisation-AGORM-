@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Send } from "lucide-react";
 
 const companyLinks = [
@@ -23,7 +24,13 @@ export function Footer() {
   return (
     <>
      {/* ================= NEWSLETTER ================= */}
-<section className="relative overflow-hidden px-5 py-20 text-emerald-950 sm:px-8 sm:py-24">
+<motion.section
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true, margin: "-100px" }}
+  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+  className="relative overflow-hidden px-5 py-20 text-emerald-950 sm:px-8 sm:py-24"
+>
 
   {/* WHITE GRADIENT BACKGROUND LAYER */}
   <div
@@ -73,11 +80,23 @@ export function Footer() {
 
   {/* CONTENT */}
   <div className="relative mx-auto max-w-3xl text-center">
-    <h2 className="text-3xl font-bold sm:text-4xl">
+    <motion.h2
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className="text-3xl font-bold sm:text-4xl"
+    >
       Subcribe for more news.
-    </h2>
+    </motion.h2>
 
-    <form className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-0">
+    <motion.form
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+      className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-0"
+    >
       <input
         type="email"
         required
@@ -117,12 +136,18 @@ export function Footer() {
       >
         Subscribe Now
       </button>
-    </form>
+    </motion.form>
   </div>
-</section>
+</motion.section>
 
       {/* ================= FOOTER ================= */}
-      <footer className="relative overflow-hidden bg-black px-5 py-20 text-white sm:px-8">
+      <motion.footer
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+        className="relative overflow-hidden bg-black px-5 py-20 text-white sm:px-8"
+      >
 
         {/* 🌫️ WHITE GLOW BACKGROUND */}
         <div
@@ -139,7 +164,13 @@ export function Footer() {
 
         <div className="relative mx-auto max-w-7xl">
           {/* GRID */}
-          <div className="grid gap-12 lg:grid-cols-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="grid gap-12 lg:grid-cols-4"
+          >
 
             {/* BRAND */}
             <div>
@@ -242,10 +273,16 @@ export function Footer() {
                 ))}
               </ul>
             </div>
-          </div>
+          </motion.div>
 
           {/* BOTTOM BAR */}
-          <div className="mt-16 flex flex-col justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/50 sm:flex-row sm:items-center">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-16 flex flex-col justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/50 sm:flex-row sm:items-center"
+          >
             <p>© {new Date().getFullYear()} AGOM. All rights reserved.</p>
 
             <div className="flex gap-4">
@@ -257,9 +294,9 @@ export function Footer() {
                 Terms
               </a>
             </div>
-          </div>
+          </motion.div>
         </div>
-      </footer>
+      </motion.footer>
     </>
   );
 }

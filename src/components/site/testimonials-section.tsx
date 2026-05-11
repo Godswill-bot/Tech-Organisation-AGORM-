@@ -1,13 +1,18 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Quote, Star } from "lucide-react";
 
 import { testimonials } from "@/data/site-content";
 
 export function TestimonialsSection() {
   return (
-    <section
+    <motion.section
       id="testimonials"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       className="
         relative
         overflow-hidden
@@ -150,9 +155,13 @@ export function TestimonialsSection() {
 
         {/* TESTIMONIAL GRID */}
         <div className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {testimonials.map((item) => (
-            <article
+          {testimonials.map((item, idx) => (
+            <motion.article
               key={item.author}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
               className="
                 group
                 relative
@@ -253,7 +262,7 @@ export function TestimonialsSection() {
                   {item.role}
                 </p>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
 
@@ -276,6 +285,6 @@ export function TestimonialsSection() {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
