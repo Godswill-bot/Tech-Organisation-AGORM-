@@ -163,13 +163,13 @@ function Panel({
     >
       {/* Top-edge shimmer line */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-px"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px z-20"
         style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.4) 40%, rgba(255,255,255,0.4) 60%, transparent)" }}
       />
 
       {/* Glass highlight — top-left diagonal sheen */}
       <div
-        className="pointer-events-none absolute inset-0 transition-opacity duration-700"
+        className="pointer-events-none absolute inset-0 transition-opacity duration-700 z-10"
         style={{
           background: "linear-gradient(135deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.04) 35%, transparent 60%)",
           opacity: isExpanded ? 1 : 0.5,
@@ -178,25 +178,16 @@ function Panel({
 
       {/* Hover inner glow */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-600"
+        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-600 z-10"
         style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.14) 0%, transparent 55%)" }}
       />
 
-      {/* Bottom vignette so text is always readable */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{ background: "linear-gradient(to top, rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.12) 40%, transparent 65%)" }}
-      />
-
-      {/* Large floating background image */}
+      {/* Full panel background image */}
       {tab.image && (
         <div
-          className="pointer-events-none absolute right-[-30px] top-[-10%] transition-all duration-700 overflow-hidden"
+          className="pointer-events-none absolute inset-0 transition-all duration-700 overflow-hidden z-0"
           style={{
-            width: "280px",
-            height: "320px",
-            opacity: isExpanded ? 0.25 : 0.1,
-            transform: isExpanded ? "scale(1.2) rotate(8deg)" : "scale(1) rotate(0deg)",
+            opacity: isExpanded ? 0.4 : 0.15,
           }}
         >
           <Image
@@ -205,11 +196,12 @@ function Panel({
             fill
             className="object-cover"
             quality={85}
-            sizes="300px"
+            sizes="(max-width: 1024px) 100vw, 12.5vw"
+            priority={false}
           />
         </div>
       )}
-      
+
       {/* Fallback icon if no image */}
       {!tab.image && (
         <div
@@ -223,14 +215,20 @@ function Panel({
         </div>
       )}
 
+      {/* Bottom vignette so text is always readable */}
+      <div
+        className="pointer-events-none absolute inset-0 z-10"
+        style={{ background: "linear-gradient(to top, rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.12) 40%, transparent 65%)" }}
+      />
+
       {/* Index — top left */}
-      <span className="absolute left-5 top-6 font-mono text-[10px] tracking-[0.35em] text-white/40">
+      <span className="absolute left-5 top-6 font-mono text-[10px] tracking-[0.35em] text-white/40 z-20">
         {tab.index}
       </span>
 
       {/* Arrow circle — top right, only when expanded */}
       <div
-        className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full"
+        className="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full z-20"
         style={{
           background: "rgba(255,255,255,0.15)",
           backdropFilter: "blur(12px)",
@@ -246,7 +244,7 @@ function Panel({
       </div>
 
       {/* Bottom content — always visible */}
-      <div className="absolute inset-x-5 bottom-7">
+      <div className="absolute inset-x-5 bottom-7 z-20">
         {/* Subtitle label */}
         <p
           className="mb-2 text-[9px] font-bold uppercase tracking-[0.36em] text-white/60 transition-opacity duration-300"
@@ -289,7 +287,7 @@ function Panel({
 
       {/* Right hairline divider */}
       <div
-        className="pointer-events-none absolute right-0 inset-y-0 w-px"
+        className="pointer-events-none absolute right-0 inset-y-0 w-px z-20"
         style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.06) 60%, transparent)" }}
       />
     </button>
