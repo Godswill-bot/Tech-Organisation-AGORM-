@@ -137,19 +137,16 @@ function Panel({
   tab,
   isExpanded,
   anyExpanded,
-  onClick,
 }: {
   tab: TabMeta;
   isExpanded: boolean;
   anyExpanded: boolean;
-  onClick: () => void;
 }) {
   const Icon = tab.icon;
 
   return (
     <button
       type="button"
-      onClick={onClick}
       className="group relative h-full w-full cursor-pointer overflow-hidden text-left outline-none"
       style={{ background: tab.gradient }}
     >
@@ -272,37 +269,117 @@ function Panel({
 function PanelsRail({ onOpen }: { onOpen: (id: TabId) => void }) {
   const [hoveredId, setHoveredId] = useState<TabId | null>(null);
   const railRef = useRef<HTMLDivElement>(null);
-  const drag = useRef({ active: false, startX: 0, scrollLeft: 0, moved: false, velX: 0, lastX: 0, lastT: 0 });
+  const isProcessingClickRef = useRef(false);
+  const clickedTabRef = useRef<TabId | null>(null);
+  const drag = useRef({ 
+    active: false, 
+    startX: 0, 
+    scrollLeft: 0, 
+    moved: false, 
+    velX: 0, 
+    lastX: 0, 
+    lastT: 0,
+    threshold: 10,
+    targetId: null as TabId | null,
+  });
 
   const onPointerDown = (e: React.PointerEvent) => {
     if (!railRef.current) return;
-    drag.current = { active: true, startX: e.clientX, scrollLeft: railRef.current.scrollLeft, moved: false, velX: 0, lastX: e.clientX, lastT: Date.now() };
+    isProcessingClickRef.current = true;
+    
+    // Find which tab was clicked
+    const target = (e.target as HTMLElement).closest('button');
+    if (target) {
+      const ariaLabel = target.getAttribute('aria-label');
+      const buttonText = target.textContent || '';
+      
+      // Extract tab ID from nearby data or use visual heuristic
+      for (const tab of TABS) {
+        if (buttonText.includes(tab.subtitle) || ariaLabel?.includes(tab.id)) {
+          clickedTabRef.current = tab.id;
+          drag.current.targetId = tab.id;
+          break;
+        }
+      }
+    }
+    
+    drag.current = { 
+      ...drag.current,
+      active: true, 
+      startX: e.clientX, 
+      scrollLeft: railRef.current.scrollLeft, 
+      moved: false, 
+      velX: 0, 
+      lastX: e.clientX, 
+      lastT: Date.now(),
+      threshold: 10,
+    };
     railRef.current.setPointerCapture(e.pointerId);
     railRef.current.style.cursor = "grabbing";
   };
+
   const onPointerMove = (e: React.PointerEvent) => {
     if (!drag.current.active || !railRef.current) return;
+    
     const dx = e.clientX - drag.current.startX;
-    if (Math.abs(dx) > 4) drag.current.moved = true;
+    // Only mark as moved if movement exceeds threshold
+    if (Math.abs(dx) > drag.current.threshold) {
+      drag.current.moved = true;
+      clickedTabRef.current = null;  // No longer a click if we moved
+    }
+    
     const now = Date.now();
     drag.current.velX = (e.clientX - drag.current.lastX) / Math.max(1, now - drag.current.lastT);
     drag.current.lastX = e.clientX;
     drag.current.lastT = now;
-    railRef.current.scrollLeft = drag.current.scrollLeft - dx;
+    
+    // Only update scroll if we've actually moved
+    if (drag.current.moved) {
+      railRef.current.scrollLeft = drag.current.scrollLeft - dx;
+    }
   };
+
   const onPointerUp = (e: React.PointerEvent) => {
     if (!railRef.current) return;
+    
     drag.current.active = false;
     railRef.current.style.cursor = "grab";
-    if (railRef.current.hasPointerCapture(e.pointerId)) railRef.current.releasePointerCapture(e.pointerId);
-    let vel = drag.current.velX * -24;
-    const step = () => {
-      if (!railRef.current || Math.abs(vel) < 0.3) return;
-      railRef.current.scrollLeft += vel;
-      vel *= 0.92;
+    
+    if (railRef.current.hasPointerCapture(e.pointerId)) {
+      railRef.current.releasePointerCapture(e.pointerId);
+    }
+    
+    // If this was a click (no movement), open the tab
+    if (!drag.current.moved && clickedTabRef.current) {
+      onOpen(clickedTabRef.current);
+      clickedTabRef.current = null;
+    }
+    
+    // Apply inertia if we actually dragged
+    if (drag.current.moved) {
+      let vel = drag.current.velX * -24;
+      const step = () => {
+        if (!railRef.current || Math.abs(vel) < 0.3) return;
+        railRef.current.scrollLeft += vel;
+        vel *= 0.92;
+        requestAnimationFrame(step);
+      };
       requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
+    }
+    
+    // Reset for next interaction
+    setTimeout(() => {
+      isProcessingClickRef.current = false;
+      drag.current.moved = false;
+    }, 50);
+  };
+
+  const onPointerCancel = (e: React.PointerEvent) => {
+    drag.current.active = false;
+    if (railRef.current && railRef.current.hasPointerCapture(e.pointerId)) {
+      railRef.current.releasePointerCapture(e.pointerId);
+    }
+    railRef.current!.style.cursor = "grab";
   };
 
   const anyExpanded = hoveredId !== null;
@@ -313,9 +390,8 @@ function PanelsRail({ onOpen }: { onOpen: (id: TabId) => void }) {
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
-      onPointerCancel={onPointerUp}
+      onPointerCancel={onPointerCancel}
       onMouseLeave={() => setHoveredId(null)}
-      onClickCapture={(e) => { if (drag.current.moved) { e.stopPropagation(); drag.current.moved = false; } }}
       className="flex overflow-x-auto overflow-y-hidden select-none"
       style={{
         height: "100vh",
@@ -331,20 +407,29 @@ function PanelsRail({ onOpen }: { onOpen: (id: TabId) => void }) {
         return (
           <div
             key={tab.id}
-            className="relative h-full shrink-0 overflow-hidden"
+            className="relative h-full shrink-0 overflow-hidden transition-all"
             style={{
               flex: `${flexGrow} 1 0%`,
               minWidth: 0,
-              // Longer, spring-feel easing for the accordion expand
-              transition: "flex 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
+              transition: "flex 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
             }}
-            onMouseEnter={() => setHoveredId(tab.id)}
+            onMouseEnter={() => {
+              // Only update hover if not processing a click/pointer action
+              if (!isProcessingClickRef.current && !drag.current.active) {
+                setHoveredId(tab.id);
+              }
+            }}
+            onMouseLeave={() => {
+              // Only reset if not processing a click/pointer action
+              if (!isProcessingClickRef.current && !drag.current.active) {
+                setHoveredId(null);
+              }
+            }}
           >
             <Panel
               tab={tab}
               isExpanded={isExpanded}
               anyExpanded={anyExpanded}
-              onClick={() => { if (!drag.current.moved) onOpen(tab.id); }}
             />
           </div>
         );

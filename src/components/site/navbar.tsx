@@ -1,27 +1,18 @@
-"use client";
-
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { navLinks, services } from "@/data/site-content";
 
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showNavbar, setShowNavbar] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
 
   const resolveHref = (href: string, label?: string) => {
     if (pathname === "/team" && label === "Contact") {
       return "#lets-talk";
     }
-
-    if (href.startsWith("#") && pathname !== "/") {
-      return `/${href}`;
-    }
-
     return href;
   };
 
@@ -62,68 +53,6 @@ export function Navbar() {
           </span>
         </motion.a>
 
-        <div className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => (
-            link.label === "Services" ? (
-              <div
-                key={link.href}
-                className="relative"
-                onMouseEnter={() => setServicesOpen(true)}
-                onMouseLeave={() => setServicesOpen(false)}
-              >
-                <button
-                  type="button"
-                  className="group inline-flex items-center gap-1 text-sm font-medium text-slate-700 transition-colors duration-300 hover:text-slate-950"
-                >
-                  {link.label}
-                  <ChevronDown size={14} className={`transition-transform ${servicesOpen ? "rotate-180" : ""}`} />
-                </button>
-                <AnimatePresence>
-                  {servicesOpen ? (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute left-1/2 top-full z-30 mt-4 w-120 -translate-x-1/2 rounded-2xl border border-slate-200 bg-white p-5 shadow-[0_16px_50px_rgba(15,23,42,0.1)] backdrop-blur-xl"
-                    >
-                      <p className="mb-3 text-xs uppercase tracking-[0.22em] text-slate-500">Capability Menu</p>
-                      <div className="grid grid-cols-2 gap-3">
-                        {services.map((service) => (
-                          <a
-                            key={service.title}
-                            href={resolveHref("#services")}
-                            className="px-1 py-2 text-sm text-slate-700 transition-colors duration-300 hover:text-slate-950"
-                          >
-                            {service.title}
-                          </a>
-                        ))}
-                      </div>
-                    </motion.div>
-                  ) : null}
-                </AnimatePresence>
-              </div>
-            ) : (
-              <motion.a
-                key={link.href}
-                href={resolveHref(link.href, link.label)}
-                className="group relative text-sm font-medium text-slate-700 transition-colors duration-300 hover:text-slate-950"
-                whileHover="hover"
-              >
-                {link.label}
-                <motion.span
-                  className="absolute -bottom-1 left-0 h-0.5 bg-slate-950"
-                  initial={{ width: 0 }}
-                  variants={{
-                    hover: { width: "100%" },
-                  }}
-                  transition={{ duration: 0.25 }}
-                />
-              </motion.a>
-            )
-          ))}
-        </div>
-
         <motion.a
           href={pathname === "/team" ? "#lets-talk" : resolveHref("#contact", "Contact")}
           className="hidden rounded-full bg-[#09100f] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(16,55,47,0.22)] transition-all duration-300 md:inline-flex"
@@ -153,17 +82,6 @@ export function Navbar() {
             className="border-t border-slate-200 bg-white px-5 py-4 md:hidden"
           >
             <div className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <motion.a
-                  key={link.href}
-                  href={resolveHref(link.href, link.label)}
-                  className="text-sm font-medium text-slate-700 transition-colors duration-300 hover:text-slate-950"
-                  onClick={() => setOpen(false)}
-                  whileHover={{ x: 4 }}
-                >
-                  {link.label}
-                </motion.a>
-              ))}
               <motion.a
                 href={pathname === "/team" ? "#lets-talk" : resolveHref("#contact", "Contact")}
                 className="mt-4 inline-flex justify-center rounded-full bg-[#10372f] px-5 py-3 text-center text-sm font-semibold text-white"
