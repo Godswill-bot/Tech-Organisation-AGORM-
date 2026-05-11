@@ -61,7 +61,7 @@ const TABS: TabMeta[] = [
     label: "Engineering\nwith intent",
     subtitle: "About AGOM",
     icon: Sparkles,
-    gradient: "linear-gradient(160deg, #5D4037 0%, #8B6F47 100%)",
+    gradient: "linear-gradient(160deg, #18181b 0%, #3f3f46 100%)",
     textColor: "#ffffff",
   },
   {
@@ -70,7 +70,7 @@ const TABS: TabMeta[] = [
     label: "Solutions that\ndrive success",
     subtitle: "Services",
     icon: Layers,
-    gradient: "linear-gradient(160deg, #8B5A8C 0%, #C4A69D 100%)",
+    gradient: "linear-gradient(160deg, #1e3a8a 0%, #3b82f6 100%)",
     textColor: "#ffffff",
   },
   {
@@ -79,7 +79,7 @@ const TABS: TabMeta[] = [
     label: "Adaptive\ndelivery",
     subtitle: "How We Build",
     icon: Zap,
-    gradient: "linear-gradient(160deg, #A68B7E 0%, #D4A574 100%)",
+    gradient: "linear-gradient(160deg, #92400e 0%, #f59e0b 100%)",
     textColor: "#ffffff",
   },
   {
@@ -88,7 +88,7 @@ const TABS: TabMeta[] = [
     label: "Tools for real\noperations",
     subtitle: "Product Suites",
     icon: Rocket,
-    gradient: "linear-gradient(160deg, #6B5344 0%, #9B7653 100%)",
+    gradient: "linear-gradient(160deg, #064e3b 0%, #10b981 100%)",
     textColor: "#ffffff",
   },
   {
@@ -97,7 +97,7 @@ const TABS: TabMeta[] = [
     label: "Shipped\nproducts",
     subtitle: "Selected Work",
     icon: ArrowUpRight,
-    gradient: "linear-gradient(160deg, #4A3728 0%, #7D5D3A 100%)",
+    gradient: "linear-gradient(160deg, #1c1917 0%, #44403c 100%)",
     textColor: "#ffffff",
   },
   {
@@ -106,7 +106,7 @@ const TABS: TabMeta[] = [
     label: "Notes from the\nworkshop floor",
     subtitle: "Field Notes",
     icon: Lightbulb,
-    gradient: "linear-gradient(160deg, #996D4F 0%, #B8956A 100%)",
+    gradient: "linear-gradient(160deg, #4c1d95 0%, #8b5cf6 100%)",
     textColor: "#ffffff",
   },
   {
@@ -115,7 +115,7 @@ const TABS: TabMeta[] = [
     label: "Meet the\npeople",
     subtitle: "The Team",
     icon: Users,
-    gradient: "linear-gradient(160deg, #8B5A5A 0%, #C7A8A0 100%)",
+    gradient: "linear-gradient(160deg, #9f1239 0%, #f43f5e 100%)",
     textColor: "#ffffff",
   },
   {
@@ -124,7 +124,7 @@ const TABS: TabMeta[] = [
     label: "Let's build\nsomething",
     subtitle: "Contact",
     icon: Mail,
-    gradient: "linear-gradient(160deg, #5D4037 0%, #A0826D 100%)",
+    gradient: "linear-gradient(160deg, #155e75 0%, #06b6d4 100%)",
     textColor: "#ffffff",
   },
 ];
@@ -137,16 +137,19 @@ function Panel({
   tab,
   isExpanded,
   anyExpanded,
+  onClick,
 }: {
   tab: TabMeta;
   isExpanded: boolean;
   anyExpanded: boolean;
+  onClick: () => void;
 }) {
   const Icon = tab.icon;
 
   return (
     <button
       type="button"
+      onClick={onClick}
       className="group relative h-full w-full cursor-pointer overflow-hidden text-left outline-none"
       style={{ background: tab.gradient }}
     >
@@ -269,117 +272,37 @@ function Panel({
 function PanelsRail({ onOpen }: { onOpen: (id: TabId) => void }) {
   const [hoveredId, setHoveredId] = useState<TabId | null>(null);
   const railRef = useRef<HTMLDivElement>(null);
-  const isProcessingClickRef = useRef(false);
-  const clickedTabRef = useRef<TabId | null>(null);
-  const drag = useRef({ 
-    active: false, 
-    startX: 0, 
-    scrollLeft: 0, 
-    moved: false, 
-    velX: 0, 
-    lastX: 0, 
-    lastT: 0,
-    threshold: 10,
-    targetId: null as TabId | null,
-  });
+  const drag = useRef({ active: false, startX: 0, scrollLeft: 0, moved: false, velX: 0, lastX: 0, lastT: 0 });
 
   const onPointerDown = (e: React.PointerEvent) => {
     if (!railRef.current) return;
-    isProcessingClickRef.current = true;
-    
-    // Find which tab was clicked
-    const target = (e.target as HTMLElement).closest('button');
-    if (target) {
-      const ariaLabel = target.getAttribute('aria-label');
-      const buttonText = target.textContent || '';
-      
-      // Extract tab ID from nearby data or use visual heuristic
-      for (const tab of TABS) {
-        if (buttonText.includes(tab.subtitle) || ariaLabel?.includes(tab.id)) {
-          clickedTabRef.current = tab.id;
-          drag.current.targetId = tab.id;
-          break;
-        }
-      }
-    }
-    
-    drag.current = { 
-      ...drag.current,
-      active: true, 
-      startX: e.clientX, 
-      scrollLeft: railRef.current.scrollLeft, 
-      moved: false, 
-      velX: 0, 
-      lastX: e.clientX, 
-      lastT: Date.now(),
-      threshold: 10,
-    };
+    drag.current = { active: true, startX: e.clientX, scrollLeft: railRef.current.scrollLeft, moved: false, velX: 0, lastX: e.clientX, lastT: Date.now() };
     railRef.current.setPointerCapture(e.pointerId);
     railRef.current.style.cursor = "grabbing";
   };
-
   const onPointerMove = (e: React.PointerEvent) => {
     if (!drag.current.active || !railRef.current) return;
-    
     const dx = e.clientX - drag.current.startX;
-    // Only mark as moved if movement exceeds threshold
-    if (Math.abs(dx) > drag.current.threshold) {
-      drag.current.moved = true;
-      clickedTabRef.current = null;  // No longer a click if we moved
-    }
-    
+    if (Math.abs(dx) > 4) drag.current.moved = true;
     const now = Date.now();
     drag.current.velX = (e.clientX - drag.current.lastX) / Math.max(1, now - drag.current.lastT);
     drag.current.lastX = e.clientX;
     drag.current.lastT = now;
-    
-    // Only update scroll if we've actually moved
-    if (drag.current.moved) {
-      railRef.current.scrollLeft = drag.current.scrollLeft - dx;
-    }
+    railRef.current.scrollLeft = drag.current.scrollLeft - dx;
   };
-
   const onPointerUp = (e: React.PointerEvent) => {
     if (!railRef.current) return;
-    
     drag.current.active = false;
     railRef.current.style.cursor = "grab";
-    
-    if (railRef.current.hasPointerCapture(e.pointerId)) {
-      railRef.current.releasePointerCapture(e.pointerId);
-    }
-    
-    // If this was a click (no movement), open the tab
-    if (!drag.current.moved && clickedTabRef.current) {
-      onOpen(clickedTabRef.current);
-      clickedTabRef.current = null;
-    }
-    
-    // Apply inertia if we actually dragged
-    if (drag.current.moved) {
-      let vel = drag.current.velX * -24;
-      const step = () => {
-        if (!railRef.current || Math.abs(vel) < 0.3) return;
-        railRef.current.scrollLeft += vel;
-        vel *= 0.92;
-        requestAnimationFrame(step);
-      };
+    if (railRef.current.hasPointerCapture(e.pointerId)) railRef.current.releasePointerCapture(e.pointerId);
+    let vel = drag.current.velX * -24;
+    const step = () => {
+      if (!railRef.current || Math.abs(vel) < 0.3) return;
+      railRef.current.scrollLeft += vel;
+      vel *= 0.92;
       requestAnimationFrame(step);
-    }
-    
-    // Reset for next interaction
-    setTimeout(() => {
-      isProcessingClickRef.current = false;
-      drag.current.moved = false;
-    }, 50);
-  };
-
-  const onPointerCancel = (e: React.PointerEvent) => {
-    drag.current.active = false;
-    if (railRef.current && railRef.current.hasPointerCapture(e.pointerId)) {
-      railRef.current.releasePointerCapture(e.pointerId);
-    }
-    railRef.current!.style.cursor = "grab";
+    };
+    requestAnimationFrame(step);
   };
 
   const anyExpanded = hoveredId !== null;
@@ -390,8 +313,9 @@ function PanelsRail({ onOpen }: { onOpen: (id: TabId) => void }) {
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
-      onPointerCancel={onPointerCancel}
+      onPointerCancel={onPointerUp}
       onMouseLeave={() => setHoveredId(null)}
+      onClickCapture={(e) => { if (drag.current.moved) { e.stopPropagation(); drag.current.moved = false; } }}
       className="flex overflow-x-auto overflow-y-hidden select-none"
       style={{
         height: "100vh",
@@ -407,29 +331,20 @@ function PanelsRail({ onOpen }: { onOpen: (id: TabId) => void }) {
         return (
           <div
             key={tab.id}
-            className="relative h-full shrink-0 overflow-hidden transition-all"
+            className="relative h-full shrink-0 overflow-hidden"
             style={{
               flex: `${flexGrow} 1 0%`,
               minWidth: 0,
-              transition: "flex 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+              // Longer, spring-feel easing for the accordion expand
+              transition: "flex 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
             }}
-            onMouseEnter={() => {
-              // Only update hover if not processing a click/pointer action
-              if (!isProcessingClickRef.current && !drag.current.active) {
-                setHoveredId(tab.id);
-              }
-            }}
-            onMouseLeave={() => {
-              // Only reset if not processing a click/pointer action
-              if (!isProcessingClickRef.current && !drag.current.active) {
-                setHoveredId(null);
-              }
-            }}
+            onMouseEnter={() => setHoveredId(tab.id)}
           >
             <Panel
               tab={tab}
               isExpanded={isExpanded}
               anyExpanded={anyExpanded}
+              onClick={() => { if (!drag.current.moved) onOpen(tab.id); }}
             />
           </div>
         );
@@ -445,102 +360,10 @@ function PanelsRail({ onOpen }: { onOpen: (id: TabId) => void }) {
 export function TabsStackSection() {
   const [activeTab, setActiveTab] = useState<TabId | null>(null);
   const activeTabMeta = TABS.find((t) => t.id === activeTab) ?? null;
-  const sectionRef = useRef<HTMLElement | null>(null);
-
-  // Navigate to section when tab is opened
-  const handleTabOpen = (id: TabId) => {
-    setActiveTab(id);
-    // Schedule navigation after modal opens
-    setTimeout(() => {
-      // Modal keeps the content focused when opened
-      // Keep the modal open, don't navigate away
-    }, 100);
-  };
 
   return (
     <>
-      <section id="explore" className="relative w-full bg-gradient-to-b from-[#F5F1ED] via-[#FBF7F3] to-[#EFE8E3]" style={{ isolation: "isolate" }}>
-        
-        {/* CLOUDY FADING BACKGROUND EFFECT - Warm Muted Colors */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2 }}
-          className="
-            pointer-events-none
-            absolute
-            inset-0
-            -z-5
-            overflow-hidden
-          "
-        >
-          {/* Top-left cloud effect - Warm brown */}
-          <motion.div
-            animate={{ 
-              x: [0, 20, -10, 0],
-              y: [0, -15, 10, 0],
-              opacity: [0.2, 0.35, 0.25, 0.2]
-            }}
-            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-            className="
-              absolute
-              top-0
-              left-1/4
-              w-96
-              h-80
-              bg-gradient-to-br
-              from-[#D4A574]/40
-              to-[#A68B7E]/10
-              rounded-full
-              blur-[120px]
-              -translate-x-1/2
-            "
-          />
-
-          {/* Top-right cloud effect - Burgundy */}
-          <motion.div
-            animate={{ 
-              x: [0, -15, 20, 0],
-              y: [0, 15, -10, 0],
-              opacity: [0.15, 0.3, 0.2, 0.15]
-            }}
-            transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="
-              absolute
-              top-1/4
-              right-1/4
-              w-80
-              h-72
-              bg-gradient-to-bl
-              from-[#8B5A8C]/35
-              to-[#C7A88B]/10
-              rounded-full
-              blur-[140px]
-            "
-          />
-
-          {/* Bottom center cloud effect - Warm earth tone */}
-          <motion.div
-            animate={{ 
-              x: [0, 25, -20, 0],
-              opacity: [0.15, 0.3, 0.2, 0.15]
-            }}
-            transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 4 }}
-            className="
-              absolute
-              bottom-0
-              left-1/2
-              -translate-x-1/2
-              w-full
-              h-96
-              bg-gradient-to-t
-              from-[#9B7653]/25
-              to-transparent
-              blur-[150px]
-            "
-          />
-        </motion.div>
+      <section id="explore" className="relative w-full bg-zinc-50" style={{ isolation: "isolate" }}>
 
         {/* ── "Pick a door" header ── */}
         <div className="mx-auto max-w-7xl px-5 pb-10 pt-20 sm:px-10 sm:pt-28">
@@ -591,7 +414,7 @@ export function TabsStackSection() {
         </div>
 
         {/* ── Panels — full bleed ── */}
-        <PanelsRail onOpen={(id) => handleTabOpen(id)} />
+        <PanelsRail onOpen={(id) => setActiveTab(id)} />
 
         {/* ── Hint below (mobile only) ── */}
         <div className="bg-zinc-50 px-5 py-4 sm:px-10 lg:hidden">
@@ -646,14 +469,14 @@ function Takeover({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.3 }}
       className="fixed inset-0 z-[100]"
     >
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.4 }}
         className="absolute inset-0 bg-black/40 backdrop-blur-md"
         onClick={onClose}
       />
@@ -662,24 +485,24 @@ function Takeover({
         initial={{ y: "100%", borderRadius: "2rem" }}
         animate={{ y: 0, borderRadius: "0rem" }}
         exit={{ y: "100%", borderRadius: "2rem" }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute inset-0 overflow-y-auto bg-gradient-to-br from-[#F5F1ED] via-[#FBF7F3] to-[#EFE8E3] text-[#5D4037]"
+        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute inset-0 overflow-y-auto bg-gradient-to-br from-white via-zinc-50 to-white text-zinc-950"
       >
         {/* Sticky header */}
-        <div className="sticky top-0 z-10 border-b border-[#D4A574]/30 bg-white/70 backdrop-blur-2xl">
+        <div className="sticky top-0 z-10 border-b border-zinc-200/70 bg-white/85 backdrop-blur-2xl">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
             <div className="flex items-center gap-3">
               <div
-                className="flex h-9 w-9 items-center justify-center rounded-full text-white shadow-lg"
+                className="flex h-9 w-9 items-center justify-center rounded-full text-white"
                 style={{ background: tab.gradient }}
               >
                 <Icon className="h-4 w-4" />
               </div>
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#8B6F47]">
+                <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-zinc-400">
                   {tab.index} — {tab.subtitle}
                 </p>
-                <h2 className="text-lg font-black tracking-tight text-[#5D4037] sm:text-xl leading-tight">
+                <h2 className="text-lg font-black tracking-tight text-zinc-950 sm:text-xl leading-tight">
                   {tab.label.replace("\n", " ")}
                 </h2>
               </div>
@@ -690,9 +513,9 @@ function Takeover({
               onClick={onClose}
               className="
                 group flex items-center gap-2 rounded-full
-                border border-[#D4A574]/40 bg-white/60 backdrop-blur-sm px-4 py-2 text-[11px]
-                font-bold uppercase tracking-[0.18em] text-[#5D4037]
-                transition-all hover:bg-[#8B5A8C] hover:text-white hover:border-[#8B5A8C]
+                border border-zinc-200 bg-white px-4 py-2 text-[11px]
+                font-bold uppercase tracking-[0.18em] text-zinc-900
+                transition-colors hover:bg-zinc-900 hover:text-white
               "
             >
               <X className="h-3.5 w-3.5 transition-transform group-hover:rotate-90" />
@@ -705,7 +528,7 @@ function Takeover({
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-20 text-[#5D4037]"
+          className="mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-20"
         >
           {children}
         </motion.div>
@@ -728,17 +551,8 @@ function AboutContent() {
   const values = ["Clarity", "Reliability", "Efficiency", "Adaptability", "Partnership"];
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]"
-      >
+    <div>
+      <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr]">
         <div>
           <h3 className="font-black leading-[0.95] tracking-[-0.04em] text-[clamp(3rem,8vw,6rem)]">
             Engineering with{" "}
@@ -756,12 +570,7 @@ function AboutContent() {
             genuinely move the needle.
           </p>
         </div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="rounded-[2rem] border border-zinc-200 bg-white p-8"
-        >
+        <div className="rounded-[2rem] border border-zinc-200 bg-white p-8">
           <p className="text-7xl font-black leading-none text-zinc-950">4.9</p>
           <div className="mt-2 flex gap-1 text-amber-500">
             {Array.from({ length: 5 }).map((_, i) => <span key={i}>★</span>)}
@@ -773,31 +582,20 @@ function AboutContent() {
                 key={v}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5 + i * 0.08, type: "spring", stiffness: 200, damping: 15 }}
+                transition={{ delay: 0.3 + i * 0.08, type: "spring" }}
                 className="rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1.5 text-xs font-semibold text-zinc-800"
               >
                 {v}
               </motion.span>
             ))}
           </div>
-        </motion.div>
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
-      >
+        </div>
+      </div>
+      <div className="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {features.map((f, i) => {
           const Icon = f.icon;
           return (
-            <motion.div
-              key={f.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="group"
-            >
+            <motion.div key={f.title} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 + i * 0.1 }} className="group">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-zinc-900 shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
                 <Icon className="h-6 w-6" />
               </div>
@@ -806,39 +604,25 @@ function AboutContent() {
             </motion.div>
           );
         })}
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
 function ServicesContent() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-    >
-      <motion.h3
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="font-black leading-[0.95] tracking-[-0.04em] text-[clamp(3rem,8vw,6rem)]"
-      >
+    <div>
+      <h3 className="font-black leading-[0.95] tracking-[-0.04em] text-[clamp(3rem,8vw,6rem)]">
         Solutions that <span className="font-serif italic font-medium">drive</span>
         <br />digital success.
-      </motion.h3>
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-      >
+      </h3>
+      <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((s, i) => (
           <motion.article
             key={s.title}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: i * 0.08 }}
             className="group relative overflow-hidden rounded-[1.75rem] border border-zinc-200 bg-white p-8 transition-all duration-500 hover:-translate-y-1 hover:border-zinc-900 hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.2)]"
           >
             <span className="font-mono text-xs text-zinc-400">{`{ 0${i + 1} }`}</span>
@@ -850,45 +634,30 @@ function ServicesContent() {
             </div>
           </motion.article>
         ))}
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
 function WorkflowContent() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <h3 className="font-black leading-[0.95] tracking-[-0.04em] text-[clamp(3rem,8vw,6rem)]">
-          Adaptive delivery,
-          <br />
-          <span className="font-serif italic font-medium">designed around you.</span>
-        </h3>
-        <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-700">
-          We don&apos;t arrive with a fixed playbook. Every engagement starts with how your team already
-          operates — then we layer in the systems that make it sharper.
-        </p>
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
-      >
+    <div>
+      <h3 className="font-black leading-[0.95] tracking-[-0.04em] text-[clamp(3rem,8vw,6rem)]">
+        Adaptive delivery,
+        <br />
+        <span className="font-serif italic font-medium">designed around you.</span>
+      </h3>
+      <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-700">
+        We don&apos;t arrive with a fixed playbook. Every engagement starts with how your team already
+        operates — then we layer in the systems that make it sharper.
+      </p>
+      <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {workflowSteps.map((step, i) => (
           <motion.article
             key={step.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: i * 0.1 }}
             className="group rounded-[1.5rem] border border-zinc-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-400 hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)]"
           >
             <p className="font-mono text-xs font-semibold tracking-[0.2em] text-zinc-400">{`{ ${step.id} }`}</p>
@@ -896,43 +665,28 @@ function WorkflowContent() {
             <p className="mt-5 text-sm leading-7 text-zinc-600">{step.description}</p>
           </motion.article>
         ))}
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
 function SuitesContent() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <h3 className="font-black leading-[0.95] tracking-[-0.04em] text-[clamp(3rem,8vw,6rem)]">
-          Tools built for <span className="font-serif italic font-medium">real operations.</span>
-        </h3>
-        <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-700">
-          From academic platforms to credit intelligence — every product in our suite started as a
-          problem worth solving.
-        </p>
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-16 grid gap-6 sm:grid-cols-2"
-      >
+    <div>
+      <h3 className="font-black leading-[0.95] tracking-[-0.04em] text-[clamp(3rem,8vw,6rem)]">
+        Tools built for <span className="font-serif italic font-medium">real operations.</span>
+      </h3>
+      <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-700">
+        From academic platforms to credit intelligence — every product in our suite started as a
+        problem worth solving.
+      </p>
+      <div className="mt-16 grid gap-6 sm:grid-cols-2">
         {productSuites.map((suite, i) => (
           <motion.article
             key={suite.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: i * 0.1 }}
             className="group relative overflow-hidden rounded-[1.75rem] border border-zinc-200 bg-white p-10 transition-all duration-500 hover:-translate-y-1 hover:border-zinc-900 hover:shadow-[0_24px_60px_-20px_rgba(0,0,0,0.2)]"
           >
             <div className="flex items-center gap-4">
@@ -951,8 +705,8 @@ function SuitesContent() {
             </div>
           </motion.article>
         ))}
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
@@ -964,31 +718,18 @@ function ProjectsContent() {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <h3 className="font-black leading-[0.95] tracking-[-0.04em] text-[clamp(3rem,8vw,6rem)]">
-          Shipped products,
-          <br />
-          <span className="font-serif italic font-medium">quietly working.</span>
-        </h3>
-        <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-700">
-          Each project below is live somewhere — running for a real team, solving a real problem. We
-          measure success by what stays in production after the launch glow fades.
-        </p>
-      </motion.div>
+    <div>
+      <h3 className="font-black leading-[0.95] tracking-[-0.04em] text-[clamp(3rem,8vw,6rem)]">
+        Shipped products,
+        <br />
+        <span className="font-serif italic font-medium">quietly working.</span>
+      </h3>
+      <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-700">
+        Each project below is live somewhere — running for a real team, solving a real problem. We
+        measure success by what stays in production after the launch glow fades.
+      </p>
 
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+      <div
         className="mt-16 grid grid-cols-1 gap-0 sm:grid-cols-2 lg:grid-cols-3 overflow-hidden rounded-[1.5rem]"
         onMouseLeave={() => setHovered(null)}
       >
@@ -996,14 +737,11 @@ function ProjectsContent() {
           const isHovered = hovered === index;
           const dimmed = hovered !== null && hovered !== index;
           return (
-            <motion.a
+            <a
               key={project.id}
               href={project.websiteUrl || "#"}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: index * 0.1 }}
               onMouseEnter={() => setHovered(index)}
               className={`
                 group relative block h-[28rem] overflow-hidden border border-black/5
@@ -1034,52 +772,32 @@ function ProjectsContent() {
                     </span>
                   ))}
                 </div>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 3 }}
-                  transition={{ duration: 0.4 }}
-                  className="mt-6"
-                >
+                <div className={`mt-6 transition-all duration-500 ${isHovered ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}`}>
                   <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white px-5 py-2.5 text-xs font-bold uppercase tracking-[0.2em] text-black">
                     <ArrowRight className="h-3.5 w-3.5" />
                     Open Case Study
                   </span>
-                </motion.div>
+                </div>
               </div>
               <span className="absolute right-6 top-6 font-mono text-xs text-white/60">{`0${index + 1}`}</span>
-            </motion.a>
+            </a>
           );
         })}
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
 function InsightsContent() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <h3 className="font-black leading-[0.95] tracking-[-0.04em] text-[clamp(3rem,8vw,6rem)]">
-          Notes from the <span className="font-serif italic font-medium">workshop floor.</span>
-        </h3>
-        <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-700">
-          Lessons we&apos;ve picked up from active builds — written for teams navigating the same questions.
-        </p>
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
-      >
+    <div>
+      <h3 className="font-black leading-[0.95] tracking-[-0.04em] text-[clamp(3rem,8vw,6rem)]">
+        Notes from the <span className="font-serif italic font-medium">workshop floor.</span>
+      </h3>
+      <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-700">
+        Lessons we&apos;ve picked up from active builds — written for teams navigating the same questions.
+      </p>
+      <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {insightUpdates.map((insight, i) => {
           const image = (insight as unknown as { image?: string }).image;
           return (
@@ -1088,7 +806,7 @@ function InsightsContent() {
               href={insight.href}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ delay: i * 0.1 }}
               className="group block overflow-hidden rounded-[1.5rem] bg-white"
             >
               {image ? (
@@ -1109,44 +827,29 @@ function InsightsContent() {
             </motion.a>
           );
         })}
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
 function TeamContent() {
   const [hovered, setHovered] = useState<number | null>(null);
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <h3 className="font-black leading-[0.95] tracking-[-0.04em] text-[clamp(3rem,8vw,6rem)]">
-          Meet the <span className="font-serif italic font-medium">team</span>.
-        </h3>
-        <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-700">
-          Engineers, designers, and product people working under one roof in Lagos. Each person owns
-          the work end-to-end.
-        </p>
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-      >
+    <div>
+      <h3 className="font-black leading-[0.95] tracking-[-0.04em] text-[clamp(3rem,8vw,6rem)]">
+        Meet the <span className="font-serif italic font-medium">team</span>.
+      </h3>
+      <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-700">
+        Engineers, designers, and product people working under one roof in Lagos. Each person owns
+        the work end-to-end.
+      </p>
+      <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {teamMembers.map((member, i) => (
           <motion.div
             key={member.name}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
             onMouseEnter={() => setHovered(i)}
             onMouseLeave={() => setHovered(null)}
             className="group relative aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-zinc-100"
@@ -1192,24 +895,15 @@ function TeamContent() {
             </AnimatePresence>
           </motion.div>
         ))}
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 
 function ContactContent() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.6 }}
-      className="grid gap-12 lg:grid-cols-[1fr_1.15fr]"
-    >
-      <motion.div
-        initial={{ opacity: 0, x: -30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      >
+    <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr]">
+      <div>
         <h3 className="font-black leading-[0.95] tracking-[-0.04em] text-[clamp(2.5rem,6vw,5rem)]">
           Let&apos;s build
           <br />
@@ -1218,29 +912,13 @@ function ContactContent() {
         <p className="mt-8 max-w-md text-lg leading-8 text-zinc-700">
           Tell us what you&apos;re building, and we&apos;ll design a plan that moves your product from idea to impact.
         </p>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2 }}
-          className="mt-8 inline-flex items-center gap-3 rounded-full border border-zinc-200 bg-white px-5 py-3 text-sm text-zinc-700"
-        >
+        <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-zinc-200 bg-white px-5 py-3 text-sm text-zinc-700">
           <MapPin className="h-4 w-4" />
           Lagos, Nigeria
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 space-y-4"
-        >
-          {teamMembers.filter((m) => m.phone || m.email).slice(0, 3).map((member, idx) => (
-            <motion.div
-              key={member.name}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4 + idx * 0.1 }}
-              className="rounded-2xl border border-zinc-200 bg-white p-5 transition-colors hover:border-zinc-900"
-            >
+        </div>
+        <div className="mt-8 space-y-4">
+          {teamMembers.filter((m) => m.phone || m.email).slice(0, 3).map((member) => (
+            <div key={member.name} className="rounded-2xl border border-zinc-200 bg-white p-5 transition-colors hover:border-zinc-900">
               <p className="text-sm font-semibold text-zinc-950">{member.name}</p>
               {member.phone && (
                 <p className="mt-3 flex items-center gap-3 text-sm text-zinc-700">
@@ -1254,15 +932,12 @@ function ContactContent() {
                   {member.email.replace("mailto:", "")}
                 </p>
               )}
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
-      </motion.div>
-      <motion.form
+        </div>
+      </div>
+      <form
         aria-label="Contact form"
-        initial={{ opacity: 0, x: 30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         className="rounded-[2rem] border border-zinc-200 bg-white p-8 sm:p-10"
         onSubmit={(e) => e.preventDefault()}
       >
@@ -1271,38 +946,23 @@ function ContactContent() {
             { label: "Name", type: "text", placeholder: "Your name", required: true },
             { label: "Email", type: "email", placeholder: "you@company.com", required: true },
             { label: "Company / Project", type: "text", placeholder: "Optional", required: false },
-          ].map(({ label, type, placeholder, required }, idx) => (
-            <motion.div
-              key={label}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 + idx * 0.08 }}
-            >
+          ].map(({ label, type, placeholder, required }) => (
+            <div key={label}>
               <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-600">{label}</label>
               <input type={type} required={required} placeholder={placeholder} className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-950 outline-none placeholder:text-zinc-400 focus:border-zinc-900" />
-            </motion.div>
+            </div>
           ))}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.76 }}
-          >
+          <div>
             <label className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.18em] text-zinc-600">Message</label>
             <textarea rows={5} required placeholder="What are you building?" className="w-full rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-950 outline-none placeholder:text-zinc-400 focus:border-zinc-900" />
-          </motion.div>
+          </div>
         </div>
-        <motion.button
-          type="submit"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.84 }}
-          className="group mt-8 inline-flex items-center gap-3 rounded-full bg-zinc-950 px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] text-white transition-all hover:bg-zinc-800"
-        >
+        <button type="submit" className="group mt-8 inline-flex items-center gap-3 rounded-full bg-zinc-950 px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] text-white transition-all hover:bg-zinc-800">
           <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
           Send Message
-        </motion.button>
-      </motion.form>
-    </motion.div>
+        </button>
+      </form>
+    </div>
   );
 }
 
