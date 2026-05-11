@@ -11,16 +11,44 @@ export function TestimonialsSection() {
       className="
         relative
         overflow-hidden
-        bg-gradient-to-br
-        from-white
-        via-stone-50
-        to-neutral-100
+        bg-black
         px-5
         py-24
         sm:px-8
         sm:py-32
       "
     >
+      <div
+    aria-hidden
+    className="
+      pointer-events-none
+      absolute
+      -right-32
+      top-32
+      h-96
+      w-96
+      -translate-y-1/2
+      rounded-full
+      bg-white
+      blur-3xl
+     
+    "
+  />
+  <div
+    aria-hidden
+    className="
+      pointer-events-none
+      absolute
+      -left-32
+      top-32
+      h-96
+      w-96
+      -translate-y-1/2
+      rounded-full
+      bg-white
+      blur-3xl     
+    "
+  />
       {/* SOFT BACKGROUND FADES */}
       <div
         aria-hidden
@@ -32,8 +60,8 @@ export function TestimonialsSection() {
           h-[32rem]
           w-[32rem]
           rounded-full
-          bg-white
-          opacity-90
+          bg-zinc-900
+          opacity-30
           blur-3xl
         "
       />
@@ -48,7 +76,7 @@ export function TestimonialsSection() {
           h-[28rem]
           w-[28rem]
           rounded-full
-          bg-stone-200/50
+          bg-zinc-800/20
           blur-3xl
         "
       />
@@ -64,7 +92,7 @@ export function TestimonialsSection() {
           w-[42rem]
           -translate-x-1/2
           rounded-full
-          bg-neutral-200/40
+          bg-zinc-900/15
           blur-3xl
         "
       />
@@ -79,15 +107,15 @@ export function TestimonialsSection() {
                 items-center
                 rounded-full
                 border
-                border-black/10
-                bg-white/80
+                border-white/20
+                bg-white/10
                 px-5
                 py-2
                 text-xs
                 font-semibold
                 uppercase
                 tracking-[0.24em]
-                text-black/70
+                text-white/80
                 backdrop-blur-xl
               "
             >
@@ -101,14 +129,14 @@ export function TestimonialsSection() {
                 font-black
                 leading-[1.05]
                 tracking-tight
-                text-black
+                text-white
                 sm:text-6xl
                 lg:text-7xl
               "
             >
               What Partners Say
               <br />
-              <span className="font-serif italic font-medium text-black/75">
+              <span className="font-serif italic font-medium text-white/75">
                 About Working With AGOM
               </span>
             </h2>
@@ -116,7 +144,7 @@ export function TestimonialsSection() {
 
           {/* RATING */}
           <div className="flex items-center gap-5 lg:self-end">
-            <p className="text-5xl font-bold text-black">4.9</p>
+            <p className="text-5xl font-bold text-white">4.9</p>
 
             <div>
               <div className="flex gap-1 text-amber-500">
@@ -139,7 +167,7 @@ export function TestimonialsSection() {
                   text-xs
                   uppercase
                   tracking-[0.18em]
-                  text-black/50
+                  text-white/50
                 "
               >
                 Average Rating · 24 reviews
@@ -160,16 +188,16 @@ export function TestimonialsSection() {
                 flex-col
                 rounded-[1.75rem]
                 border
-                border-black/5
-                bg-white/80
+                border-white/10
+                bg-white/5
                 p-7
-                shadow-[0_10px_40px_rgba(0,0,0,0.04)]
+                shadow-[0_10px_40px_rgba(0,0,0,0.3)]
                 backdrop-blur-xl
                 transition-all
                 duration-300
                 hover:-translate-y-1
-                hover:border-black/10
-                hover:shadow-[0_16px_50px_rgba(0,0,0,0.08)]
+                hover:border-white/20
+                hover:shadow-[0_16px_50px_rgba(0,0,0,0.5)]
               "
             >
               {/* TOP LIGHT */}
@@ -181,9 +209,9 @@ export function TestimonialsSection() {
                   top-0
                   h-24
                   bg-gradient-to-b
-                  from-white/80
+                  from-white/5
                   to-transparent
-                  opacity-70
+                  opacity-40
                 "
               />
 
@@ -212,7 +240,7 @@ export function TestimonialsSection() {
                   flex-1
                   text-sm
                   leading-7
-                  text-black/75
+                  text-white/75
                 "
               >
                 {item.quote}
@@ -224,7 +252,7 @@ export function TestimonialsSection() {
                   relative
                   mt-8
                   border-t
-                  border-black/8
+                  border-white/10
                   pt-5
                 "
               >
@@ -232,7 +260,7 @@ export function TestimonialsSection() {
                   className="
                     text-base
                     font-bold
-                    text-black
+                    text-white
                     transition-transform
                     duration-300
                     group-hover:-translate-y-0.5
@@ -247,7 +275,7 @@ export function TestimonialsSection() {
                     text-xs
                     uppercase
                     tracking-[0.18em]
-                    text-black/45
+                    text-white/45
                   "
                 >
                   {item.role}
@@ -268,8 +296,8 @@ export function TestimonialsSection() {
                 transition-all
                 ${
                   i === 0
-                    ? "w-6 bg-black"
-                    : "w-2 bg-black/15"
+                    ? "w-6 bg-white"
+                    : "w-2 bg-white/15"
                 }
               `}
             />
