@@ -1,8 +1,8 @@
-# AGORM Website
+# AGOM Website
 
 A premium, animated startup website for AGORM built with Next.js App Router, TypeScript, Tailwind CSS, and Framer Motion.
 
-AGORM is a technology-driven organization that builds robust web and mobile applications while delivering innovative digital solutions across industries.
+AGOM is a technology-driven organization that builds robust web and mobile applications while delivering innovative digital solutions across industries.
 
 ## Stack
 
