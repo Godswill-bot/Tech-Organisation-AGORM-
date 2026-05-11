@@ -1,36 +1,36 @@
 "use client";
 
-import { ModernNavbar } from "@/components/site/modern-navbar";
-import { ModernHero } from "@/components/site/modern-hero";
-import { ModernServices } from "@/components/site/modern-services";
-import { ModernProjects } from "@/components/site/modern-projects";
-import { ModernTeam } from "@/components/site/modern-team";
-import { ModernCTA } from "@/components/site/modern-cta";
-import { ModernFooter } from "@/components/site/modern-footer";
+import MinimalNavbar from "@/components/site/minimal-navbar";
+import MinimalHero from "@/components/site/minimal-hero";
+import MinimalServices from "@/components/site/minimal-services";
+import MinimalProjects from "@/components/site/minimal-projects";
+import MinimalTeam from "@/components/site/minimal-team";
+import MinimalCTA from "@/components/site/minimal-cta";
+import MinimalFooter from "@/components/site/minimal-footer";
 
 
 /* ============================================================
-   SITE PAGE - MODERN REDESIGN
+   SITE PAGE - MINIMAL ELEGANT REDESIGN
    
-   Complete redesign with:
-   - Modern gradient hero section with smooth animations
-   - Services grid with glass morphism
-   - Projects showcase with hover effects
-   - Team section with member cards
-   - CTA section with strong visual hierarchy
-   - Modern footer with comprehensive links
+   Complete redesign inspired by Huy Phan portfolio with:
+   - Clean, light minimal aesthetic
+   - Animated character illustrations with smooth bouncing
+   - Elegant typography and spacing
+   - Smooth transitions and animations
+   - Professional showcase layout
+   - Responsive mobile-first design
    ============================================================ */
 
 export function SitePage() {
   return (
-    <div className="relative w-full overflow-x-hidden bg-slate-950">
-      <ModernNavbar />
-      <ModernHero />
-      <ModernServices />
-      <ModernProjects />
-      <ModernTeam />
-      <ModernCTA />
-      <ModernFooter />
+    <div className="relative w-full overflow-x-hidden bg-white">
+      <MinimalNavbar />
+      <MinimalHero />
+      <MinimalServices />
+      <MinimalProjects />
+      <MinimalTeam />
+      <MinimalCTA />
+      <MinimalFooter />
     </div>
   );
 }
