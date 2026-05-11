@@ -52,11 +52,10 @@ function HeroScrollOut() {
 
   return (
     /*
-     * The wrapper is `100vh` tall — it gives scroll distance for
-     * the animation.  The inner sticky div pins the hero in place
-     * while the wrapper scrolls past.
+     * The wrapper is responsive — 100vh on desktop, smaller on mobile
+     * to prevent excessive scroll distance on small screens
      */
-    <div ref={wrapperRef} style={{ height: "100vh" }}>
+    <div ref={wrapperRef} style={{ height: "clamp(100vh, 120vh, 100vh)" }}>
       <div className="sticky top-0 h-screen overflow-hidden">
         <motion.div
           style={{ scale, opacity, y }}

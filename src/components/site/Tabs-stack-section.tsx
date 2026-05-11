@@ -145,27 +145,13 @@ function Panel({
   onClick: () => void;
 }) {
   const Icon = tab.icon;
-  const [showHoverInfo, setShowHoverInfo] = useState(false);
-
-  const hoverInfoMap: Record<TabId, string> = {
-    about: "Learn our philosophy, values, and approach to solving real problems.",
-    services: "Discover the full range of capabilities we bring to your project.",
-    workflow: "See how we structure delivery for reliability and speed.",
-    suites: "Explore the platforms and tools we've built for operations.",
-    projects: "Review the shipped work and results we've delivered.",
-    insights: "Read our analysis on building systems that stick.",
-    team: "Meet the engineers, designers, and strategists on our team.",
-    contact: "Get in touch to discuss your next project or challenge.",
-  };
 
   return (
     <button
       type="button"
       onClick={onClick}
-      onMouseEnter={() => setShowHoverInfo(true)}
-      onMouseLeave={() => setShowHoverInfo(false)}
       className="group relative h-full w-full cursor-pointer overflow-hidden text-left outline-none"
-      style={{ background: tab.gradient, willChange: "transform" }}
+      style={{ background: tab.gradient }}
     >
       {/* Top-edge shimmer line */}
       <div
@@ -175,24 +161,17 @@ function Panel({
 
       {/* Glass highlight — top-left diagonal sheen */}
       <div
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none absolute inset-0 transition-opacity duration-700"
         style={{
           background: "linear-gradient(135deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.04) 35%, transparent 60%)",
           opacity: isExpanded ? 1 : 0.5,
-          willChange: "opacity",
-          transition: "opacity 0.5s cubic-bezier(0.22,1,0.36,1)",
         }}
       />
 
       {/* Hover inner glow */}
       <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background: "radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.14) 0%, transparent 55%)",
-          opacity: isExpanded ? 1 : 0,
-          willChange: "opacity",
-          transition: "opacity 0.4s cubic-bezier(0.22,1,0.36,1)",
-        }}
+        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-600"
+        style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.14) 0%, transparent 55%)" }}
       />
 
       {/* Bottom vignette so text is always readable */}
@@ -203,12 +182,10 @@ function Panel({
 
       {/* Large floating background icon */}
       <div
-        className="pointer-events-none absolute right-[-20px] top-[10%]"
+        className="pointer-events-none absolute right-[-20px] top-[10%] transition-all duration-700"
         style={{
           opacity: isExpanded ? 0.1 : 0.05,
           transform: isExpanded ? "scale(1.3) rotate(10deg)" : "scale(1) rotate(0deg)",
-          willChange: "transform, opacity",
-          transition: "all 0.5s cubic-bezier(0.22,1,0.36,1)",
         }}
       >
         <Icon size={220} strokeWidth={0.6} className="text-white" />
@@ -230,77 +207,35 @@ function Panel({
           boxShadow: "inset 0 1px 0 rgba(255,255,255,0.3)",
           opacity: isExpanded ? 1 : 0,
           transform: isExpanded ? "scale(1) rotate(0deg)" : "scale(0.5) rotate(-45deg)",
-          willChange: "opacity, transform",
           transition: "opacity 0.4s ease, transform 0.4s cubic-bezier(0.22,1,0.36,1)",
         }}
       >
         <ArrowUpRight className="h-4 w-4 text-white" />
       </div>
 
-      {/* Hover Info Popup */}
-      <AnimatePresence>
-        {showHoverInfo && (
-          <motion.div
-            initial={{ opacity: 0, y: 12, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 12, scale: 0.95 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="pointer-events-none absolute left-5 top-20 z-20 max-w-xs"
-          >
-            <div
-              className="rounded-xl backdrop-blur-xl border p-4 text-sm leading-6"
-              style={{
-                background: "rgba(255,255,255,0.12)",
-                border: "1px solid rgba(255,255,255,0.25)",
-                boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-              }}
-            >
-              <p className="text-white/90 font-medium">{hoverInfoMap[tab.id]}</p>
-              <div className="mt-2 flex items-center gap-1.5 text-[11px] text-white/70">
-                <div className="h-1 w-1 rounded-full bg-white/50" />
-                <span>Click or hover to explore</span>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
       {/* Bottom content — always visible */}
       <div className="absolute inset-x-5 bottom-7">
         {/* Subtitle label */}
         <p
-          className="mb-2 text-[9px] font-bold uppercase tracking-[0.36em] text-white/60"
-          style={{
-            opacity: isExpanded ? 1 : anyExpanded ? 0 : 0.7,
-            willChange: "opacity",
-            transition: "opacity 0.3s cubic-bezier(0.22,1,0.36,1)",
-          }}
+          className="mb-2 text-[9px] font-bold uppercase tracking-[0.36em] text-white/60 transition-opacity duration-300"
+          style={{ opacity: isExpanded ? 1 : anyExpanded ? 0 : 0.7 }}
         >
           {tab.subtitle}
         </p>
 
         {/* Main heading — full text always shown, wraps naturally */}
         <h3
-          className="font-black text-white leading-[0.9] tracking-[-0.03em] whitespace-pre-line"
+          className="font-black text-white leading-[0.9] tracking-[-0.03em] whitespace-pre-line transition-all duration-500"
           style={{
             fontSize: isExpanded ? "clamp(2.2rem, 3.5vw, 4rem)" : "clamp(1rem, 1.6vw, 1.5rem)",
             textShadow: "0 2px 20px rgba(0,0,0,0.3)",
-            willChange: "font-size",
-            transition: "font-size 0.4s cubic-bezier(0.22,1,0.36,1)",
           }}
         >
           {tab.label}
         </h3>
 
         {/* Glass CTA — only when expanded */}
-        <motion.div
-          initial={false}
-          animate={{
-            opacity: isExpanded ? 1 : 0,
-            y: isExpanded ? 0 : 12,
-            pointerEvents: isExpanded ? "auto" : "none",
-          }}
-          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+        <div
           className="mt-6 inline-flex items-center gap-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.28em] text-white"
           style={{
             padding: "0.6rem 1.4rem",
@@ -309,12 +244,15 @@ function Panel({
             WebkitBackdropFilter: "blur(20px)",
             border: "1px solid rgba(255,255,255,0.26)",
             boxShadow: "inset 0 1px 0 rgba(255,255,255,0.32), 0 6px 20px rgba(0,0,0,0.18)",
-            willChange: "opacity, transform",
+            opacity: isExpanded ? 1 : 0,
+            transform: isExpanded ? "translateY(0)" : "translateY(12px)",
+            transition: "opacity 0.45s ease, transform 0.45s cubic-bezier(0.22,1,0.36,1)",
+            pointerEvents: isExpanded ? "auto" : "none",
           }}
         >
           <Icon className="h-3.5 w-3.5" strokeWidth={2} />
           Enter
-        </motion.div>
+        </div>
       </div>
 
       {/* Right hairline divider */}
@@ -333,11 +271,21 @@ function Panel({
 
 function PanelsRail({ onOpen }: { onOpen: (id: TabId) => void }) {
   const [hoveredId, setHoveredId] = useState<TabId | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const railRef = useRef<HTMLDivElement>(null);
   const drag = useRef({ active: false, startX: 0, scrollLeft: 0, moved: false, velX: 0, lastX: 0, lastT: 0 });
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const onPointerDown = (e: React.PointerEvent) => {
-    if (!railRef.current) return;
+    if (!railRef.current || isMobile) return;
     drag.current = { active: true, startX: e.clientX, scrollLeft: railRef.current.scrollLeft, moved: false, velX: 0, lastX: e.clientX, lastT: Date.now() };
     railRef.current.setPointerCapture(e.pointerId);
     railRef.current.style.cursor = "grabbing";
@@ -369,6 +317,32 @@ function PanelsRail({ onOpen }: { onOpen: (id: TabId) => void }) {
 
   const anyExpanded = hoveredId !== null;
 
+  if (isMobile) {
+    // Mobile: Grid layout
+    return (
+      <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 bg-zinc-50">
+        {TABS.map((tab, idx) => (
+          <motion.div
+            key={tab.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.1 }}
+            className="relative h-64 sm:h-72 overflow-hidden rounded-2xl"
+          >
+            <Panel
+              tab={tab}
+              isExpanded={false}
+              anyExpanded={false}
+              onClick={() => onOpen(tab.id)}
+            />
+          </motion.div>
+        ))}
+      </div>
+    );
+  }
+
+  // Desktop: Horizontal scroll layout
   return (
     <div
       ref={railRef}
@@ -384,7 +358,6 @@ function PanelsRail({ onOpen }: { onOpen: (id: TabId) => void }) {
         cursor: "grab",
         scrollbarWidth: "none",
         msOverflowStyle: "none",
-        willChange: "scroll-position",
       } as React.CSSProperties}
     >
       {TABS.map((tab) => {
@@ -398,8 +371,8 @@ function PanelsRail({ onOpen }: { onOpen: (id: TabId) => void }) {
             style={{
               flex: `${flexGrow} 1 0%`,
               minWidth: 0,
-              willChange: "flex",
-              transition: "flex 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+              // Longer, spring-feel easing for the accordion expand
+              transition: "flex 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
             }}
             onMouseEnter={() => setHoveredId(tab.id)}
           >
@@ -532,47 +505,40 @@ function Takeover({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
+      transition={{ duration: 0.3 }}
       className="fixed inset-0 z-[100]"
-      style={{ willChange: "opacity" }}
     >
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.4 }}
         className="absolute inset-0 bg-black/40 backdrop-blur-md"
         onClick={onClose}
-        style={{ willChange: "opacity" }}
       />
 
       <motion.div
         initial={{ y: "100%", borderRadius: "2rem" }}
         animate={{ y: 0, borderRadius: "0rem" }}
         exit={{ y: "100%", borderRadius: "2rem" }}
-        transition={{ 
-          duration: 0.5,
-          ease: [0.22, 1, 0.36, 1],
-          type: "tween",
-        }}
+        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         className="absolute inset-0 overflow-y-auto bg-gradient-to-br from-white via-zinc-50 to-white text-zinc-950"
-        style={{ willChange: "transform", backfaceVisibility: "hidden" }}
       >
         {/* Sticky header */}
         <div className="sticky top-0 z-10 border-b border-zinc-200/70 bg-white/85 backdrop-blur-2xl">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
-            <div className="flex items-center gap-3">
+          <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-4 py-3 sm:flex-row sm:items-center sm:px-8 sm:py-4">
+            <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-3">
               <div
-                className="flex h-9 w-9 items-center justify-center rounded-full text-white"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white"
                 style={{ background: tab.gradient }}
               >
                 <Icon className="h-4 w-4" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-zinc-400">
                   {tab.index} — {tab.subtitle}
                 </p>
-                <h2 className="text-lg font-black tracking-tight text-zinc-950 sm:text-xl leading-tight">
+                <h2 className="text-lg font-black tracking-tight text-zinc-950 sm:text-xl leading-tight truncate">
                   {tab.label.replace("\n", " ")}
                 </h2>
               </div>
@@ -582,24 +548,23 @@ function Takeover({
               type="button"
               onClick={onClose}
               className="
-                group flex items-center gap-2 rounded-full
-                border border-zinc-200 bg-white px-4 py-2 text-[11px]
+                group flex shrink-0 items-center gap-2 rounded-full
+                border border-zinc-200 bg-white px-3 py-2 text-[10px]
                 font-bold uppercase tracking-[0.18em] text-zinc-900
-                transition-all duration-300 hover:bg-zinc-900 hover:text-white
+                transition-colors hover:bg-zinc-900 hover:text-white sm:px-4 sm:py-2
               "
             >
-              <X className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-90" />
-              Close
+              <X className="h-3.5 w-3.5 transition-transform group-hover:rotate-90" />
+              <span className="hidden sm:inline">Close</span>
             </button>
           </div>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-20"
-          style={{ willChange: "opacity, transform" }}
+          transition={{ duration: 0.5, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto max-w-7xl px-4 py-8 sm:px-8 sm:py-14 md:py-20"
         >
           {children}
         </motion.div>
@@ -1042,61 +1007,16 @@ function ContactContent() {
    ============================================================ */
 
 function TakeoverRouter({ tab, onClose }: { tab: TabMeta; onClose: () => void }) {
-  const handleNavigate = (sectionId: string) => {
-    // Close the takeover modal
-    onClose();
-    
-    // Small delay to let modal close, then scroll to section
-    setTimeout(() => {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }, 300);
-  };
-
   return (
     <Takeover tab={tab} onClose={onClose}>
-      {tab.id === "about" && (
-        <div onClick={() => handleNavigate("about")}>
-          <AboutContent />
-        </div>
-      )}
-      {tab.id === "services" && (
-        <div onClick={() => handleNavigate("services")}>
-          <ServicesContent />
-        </div>
-      )}
-      {tab.id === "workflow" && (
-        <div onClick={() => handleNavigate("workflow")}>
-          <WorkflowContent />
-        </div>
-      )}
-      {tab.id === "suites" && (
-        <div onClick={() => handleNavigate("suites")}>
-          <SuitesContent />
-        </div>
-      )}
-      {tab.id === "projects" && (
-        <div onClick={() => handleNavigate("projects")}>
-          <ProjectsContent />
-        </div>
-      )}
-      {tab.id === "insights" && (
-        <div onClick={() => handleNavigate("insights")}>
-          <InsightsContent />
-        </div>
-      )}
-      {tab.id === "team" && (
-        <div onClick={() => handleNavigate("team")}>
-          <TeamContent />
-        </div>
-      )}
-      {tab.id === "contact" && (
-        <div onClick={() => handleNavigate("contact")}>
-          <ContactContent />
-        </div>
-      )}
+      {tab.id === "about" && <AboutContent />}
+      {tab.id === "services" && <ServicesContent />}
+      {tab.id === "workflow" && <WorkflowContent />}
+      {tab.id === "suites" && <SuitesContent />}
+      {tab.id === "projects" && <ProjectsContent />}
+      {tab.id === "insights" && <InsightsContent />}
+      {tab.id === "team" && <TeamContent />}
+      {tab.id === "contact" && <ContactContent />}
     </Takeover>
   );
 }

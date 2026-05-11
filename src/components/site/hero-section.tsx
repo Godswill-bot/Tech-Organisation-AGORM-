@@ -230,33 +230,33 @@ export function HeroSection() {
       className="relative min-h-screen w-full overflow-hidden bg-black text-white"
     >
       {/* ============ NAV ============ */}
-      <nav className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-14 py-7 mix-blend-difference">
+      <nav className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-4 sm:px-8 md:px-14 md:py-7 mix-blend-difference">
         <div className="text-lg font-semibold tracking-[0.25em]">AGOM</div>
         <a
           href="#"
-          className="rounded-full border border-white/40 px-5 py-3 text-[11px] tracking-[0.22em] transition-colors hover:bg-white hover:text-black"
+          className="rounded-full border border-white/40 px-3 py-2 text-[9px] sm:text-[10px] md:text-[11px] md:px-5 md:py-3 tracking-[0.22em] transition-colors hover:bg-white hover:text-black"
         >
           CONTACT
         </a>
       </nav>
 
       {/* ============ HERO GRID ============ */}
-      <div className="grid min-h-screen grid-cols-1 items-center px-14 lg:grid-cols-2">
+      <div className="grid min-h-screen grid-cols-1 items-center px-4 gap-8 sm:px-8 md:px-14 lg:grid-cols-2">
         {/* ============ LEFT: HEADLINE ============ */}
-        <div className="relative pl-32 z-10">
-          {/* Vertical axis with social labels */}
-          <div className="absolute left-[30px] top-0 bottom-0 w-px bg-white/20" />
-          <div className="absolute left-[18px] top-1/2 -translate-y-1/2 flex flex-col gap-12 text-[11px] tracking-[0.2em] text-neutral-500">
+        <div className="relative z-10 md:pl-32">
+          {/* Vertical axis with social labels — hidden on mobile */}
+          <div className="absolute left-[30px] top-0 bottom-0 w-px bg-white/20 hidden md:block" />
+          <div className="absolute left-[18px] top-1/2 -translate-y-1/2 flex flex-col gap-12 text-[11px] tracking-[0.2em] text-neutral-500 hidden md:flex">
             <span>IG</span>
             <span>X</span>
             <span>IN</span>
           </div>
 
-          <div className="reveal mb-7 text-[11px] font-medium tracking-[0.32em] text-neutral-500">
+          <div className="reveal mb-4 md:mb-7 text-[9px] sm:text-[10px] md:text-[11px] font-medium tracking-[0.32em] text-neutral-500">
             AGOM DIGITAL SYSTEMS STUDIO
           </div>
 
-          <h1 className="mb-8 text-[clamp(38px,4.4vw,64px)] font-semibold leading-[1.05] tracking-[-0.02em]">
+          <h1 className="mb-6 md:mb-8 text-[clamp(28px,6vw,64px)] font-semibold leading-[1.05] tracking-[-0.02em]">
             <Word>We</Word> <Word>Build</Word> <Word>Digital</Word>
             <br />
             <Word>Systems</Word> <Word>That</Word>
@@ -266,35 +266,39 @@ export function HeroSection() {
             <Word>Perform.</Word>
           </h1>
 
-          <p className="reveal mb-11 max-w-[440px] text-base leading-[1.6] text-neutral-300">
+          <p className="reveal mb-6 md:mb-11 max-w-[440px] text-sm md:text-base leading-[1.6] text-neutral-300">
             Intelligent software. Scalable platforms.
             <br />
             Modern engineering for the future.
           </p>
 
-          <div className="reveal flex gap-3.5">
+          <div className="reveal flex flex-col gap-3 sm:flex-row sm:gap-3.5">
             <a
               href="#"
-              className="group inline-flex items-center gap-8 rounded-full bg-white px-6 py-4 text-[11px] font-semibold tracking-[0.22em] text-black transition-colors hover:bg-neutral-200"
+              className="group inline-flex items-center justify-center gap-2 sm:gap-8 rounded-full bg-white px-4 sm:px-6 py-3 md:py-4 text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] text-black transition-colors hover:bg-neutral-200 whitespace-nowrap"
             >
               EXPLORE WORK
-              <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRight className="h-3 w-3 sm:h-3.5 sm:w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
             <a
               href="#"
-              className="group inline-flex items-center gap-8 rounded-full border border-white/25 px-6 py-4 text-[11px] font-semibold tracking-[0.22em] text-white transition-colors hover:border-white/60"
+              className="group inline-flex items-center justify-center gap-2 sm:gap-8 rounded-full border border-white/25 px-4 sm:px-6 py-3 md:py-4 text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] text-white transition-colors hover:border-white/60 whitespace-nowrap"
             >
               START PROJECT
-              <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <ArrowUpRight className="h-3 w-3 sm:h-3.5 sm:w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </div>
         </div>
 
         {/* ============ RIGHT: RADIAL SYSTEM ============ */}
-        <div className="relative flex h-screen items-center justify-center">
+        <div className="relative flex h-[400px] sm:h-[500px] md:h-screen items-center justify-center">
           <div
             ref={systemRef}
-            className="relative h-[740px] w-[740px] flex items-center justify-center"
+            className="relative flex items-center justify-center"
+            style={{
+              width: "clamp(280px, 70vw, 740px)",
+              height: "clamp(280px, 70vw, 740px)",
+            }}
           >
             {/* Layered glow */}
             <div
