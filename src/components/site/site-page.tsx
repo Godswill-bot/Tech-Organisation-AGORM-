@@ -5,7 +5,8 @@ import { useRef } from "react";
 
 import { BackgroundDecorations } from "@/components/site/background-decorations";
 import { Footer } from "@/components/site/footer";
-import { HeroSection } from "@/components/site/hero-section";
+import { EnhancedHomepageHero } from "@/components/site/enhanced-hero";
+import { DanglingCharacters } from "@/components/site/cartoon-characters";
 import { Navbar } from "@/components/site/navbar";
 import { TabsStackSection } from "@/components/site/Tabs-stack-section";
 import { TestimonialsSection } from "@/components/site/testimonials-section";
@@ -39,7 +40,6 @@ function HeroScrollOut() {
   });
 
   // Ultra-smooth spring physics for buttery scroll feel
-  // Higher stiffness + lower damping = quick response with less lag
   const smooth = useSpring(scrollYProgress, {
     stiffness: 120,
     damping: 25,
@@ -51,14 +51,8 @@ function HeroScrollOut() {
   const scale   = useTransform(smooth, [0, 1], [1, 0.94]);
   const opacity = useTransform(smooth, [0, 0.5, 0.85], [1, 0.8, 0]);
   const y       = useTransform(smooth, [0, 1], [0, -60]);
-  const blur    = useTransform(smooth, [0, 1], [0, 2]);
 
   return (
-    /*
-     * The wrapper is `100vh` tall — it gives scroll distance for
-     * the animation.  The inner sticky div pins the hero in place
-     * while the wrapper scrolls past.
-     */
     <div ref={wrapperRef} style={{ height: "110vh" }}>
       <div className="sticky top-0 h-screen overflow-hidden">
         <motion.div
@@ -66,11 +60,10 @@ function HeroScrollOut() {
             scale, 
             opacity, 
             y,
-            backdropFilter: blur.get() > 0 ? `blur(${blur.get()}px)` : undefined
           }}
           className="h-full will-change-transform"
         >
-          <HeroSection />
+          <EnhancedHomepageHero />
         </motion.div>
       </div>
     </div>
@@ -83,13 +76,16 @@ function HeroScrollOut() {
 
 export function SitePage() {
   return (
-    <div className="relative min-h-screen overflow-x-clip bg-background text-foreground transition-colors duration-500">
-      {/* Fixed background layers */}
+    <div className="relative min-h-screen overflow-x-clip bg-gradient-to-br from-[#F5F1ED] via-[#FBF7F3] to-[#EFE8E3] text-[#5D4037] transition-colors duration-500">
+      {/* Fixed background layers - warm muted colors */}
       <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 h-96 w-96 rounded-full bg-black/5 blur-3xl" />
-        <div className="absolute top-1/2 right-1/4 h-96 w-96 rounded-full bg-black/5 blur-3xl" />
-        <div className="absolute inset-0 bg-background" />
+        <div className="absolute top-0 left-1/4 h-96 w-96 rounded-full bg-[#D4A574]/10 blur-3xl" />
+        <div className="absolute top-1/2 right-1/4 h-96 w-96 rounded-full bg-[#8B5A8C]/8 blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-[#F5F1ED] via-[#FBF7F3] to-[#EFE8E3]" />
       </div>
+
+      {/* Dangling cartoon characters */}
+      <DanglingCharacters />
 
       <BackgroundDecorations />
 

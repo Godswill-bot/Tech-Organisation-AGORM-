@@ -61,7 +61,7 @@ const TABS: TabMeta[] = [
     label: "Engineering\nwith intent",
     subtitle: "About AGOM",
     icon: Sparkles,
-    gradient: "linear-gradient(160deg, #18181b 0%, #3f3f46 100%)",
+    gradient: "linear-gradient(160deg, #5D4037 0%, #8B6F47 100%)",
     textColor: "#ffffff",
   },
   {
@@ -70,7 +70,7 @@ const TABS: TabMeta[] = [
     label: "Solutions that\ndrive success",
     subtitle: "Services",
     icon: Layers,
-    gradient: "linear-gradient(160deg, #1e3a8a 0%, #3b82f6 100%)",
+    gradient: "linear-gradient(160deg, #8B5A8C 0%, #C4A69D 100%)",
     textColor: "#ffffff",
   },
   {
@@ -79,7 +79,7 @@ const TABS: TabMeta[] = [
     label: "Adaptive\ndelivery",
     subtitle: "How We Build",
     icon: Zap,
-    gradient: "linear-gradient(160deg, #92400e 0%, #f59e0b 100%)",
+    gradient: "linear-gradient(160deg, #A68B7E 0%, #D4A574 100%)",
     textColor: "#ffffff",
   },
   {
@@ -88,7 +88,7 @@ const TABS: TabMeta[] = [
     label: "Tools for real\noperations",
     subtitle: "Product Suites",
     icon: Rocket,
-    gradient: "linear-gradient(160deg, #064e3b 0%, #10b981 100%)",
+    gradient: "linear-gradient(160deg, #6B5344 0%, #9B7653 100%)",
     textColor: "#ffffff",
   },
   {
@@ -97,7 +97,7 @@ const TABS: TabMeta[] = [
     label: "Shipped\nproducts",
     subtitle: "Selected Work",
     icon: ArrowUpRight,
-    gradient: "linear-gradient(160deg, #1c1917 0%, #44403c 100%)",
+    gradient: "linear-gradient(160deg, #4A3728 0%, #7D5D3A 100%)",
     textColor: "#ffffff",
   },
   {
@@ -106,7 +106,7 @@ const TABS: TabMeta[] = [
     label: "Notes from the\nworkshop floor",
     subtitle: "Field Notes",
     icon: Lightbulb,
-    gradient: "linear-gradient(160deg, #4c1d95 0%, #8b5cf6 100%)",
+    gradient: "linear-gradient(160deg, #996D4F 0%, #B8956A 100%)",
     textColor: "#ffffff",
   },
   {
@@ -115,7 +115,7 @@ const TABS: TabMeta[] = [
     label: "Meet the\npeople",
     subtitle: "The Team",
     icon: Users,
-    gradient: "linear-gradient(160deg, #9f1239 0%, #f43f5e 100%)",
+    gradient: "linear-gradient(160deg, #8B5A5A 0%, #C7A8A0 100%)",
     textColor: "#ffffff",
   },
   {
@@ -124,7 +124,7 @@ const TABS: TabMeta[] = [
     label: "Let's build\nsomething",
     subtitle: "Contact",
     icon: Mail,
-    gradient: "linear-gradient(160deg, #155e75 0%, #06b6d4 100%)",
+    gradient: "linear-gradient(160deg, #5D4037 0%, #A0826D 100%)",
     textColor: "#ffffff",
   },
 ];
@@ -459,9 +459,9 @@ export function TabsStackSection() {
 
   return (
     <>
-      <section id="explore" className="relative w-full bg-zinc-50" style={{ isolation: "isolate" }}>
+      <section id="explore" className="relative w-full bg-gradient-to-b from-[#F5F1ED] via-[#FBF7F3] to-[#EFE8E3]" style={{ isolation: "isolate" }}>
         
-        {/* CLOUDY FADING BACKGROUND EFFECT */}
+        {/* CLOUDY FADING BACKGROUND EFFECT - Warm Muted Colors */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -475,12 +475,12 @@ export function TabsStackSection() {
             overflow-hidden
           "
         >
-          {/* Top-left cloud effect */}
+          {/* Top-left cloud effect - Warm brown */}
           <motion.div
             animate={{ 
               x: [0, 20, -10, 0],
               y: [0, -15, 10, 0],
-              opacity: [0.3, 0.5, 0.4, 0.3]
+              opacity: [0.2, 0.35, 0.25, 0.2]
             }}
             transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
             className="
@@ -490,20 +490,20 @@ export function TabsStackSection() {
               w-96
               h-80
               bg-gradient-to-br
-              from-blue-200/30
-              to-purple-200/10
+              from-[#D4A574]/40
+              to-[#A68B7E]/10
               rounded-full
               blur-[120px]
               -translate-x-1/2
             "
           />
 
-          {/* Top-right cloud effect */}
+          {/* Top-right cloud effect - Burgundy */}
           <motion.div
             animate={{ 
               x: [0, -15, 20, 0],
               y: [0, 15, -10, 0],
-              opacity: [0.25, 0.45, 0.35, 0.25]
+              opacity: [0.15, 0.3, 0.2, 0.15]
             }}
             transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 2 }}
             className="
@@ -513,18 +513,18 @@ export function TabsStackSection() {
               w-80
               h-72
               bg-gradient-to-bl
-              from-indigo-200/25
-              to-pink-200/10
+              from-[#8B5A8C]/35
+              to-[#C7A88B]/10
               rounded-full
               blur-[140px]
             "
           />
 
-          {/* Bottom center cloud effect */}
+          {/* Bottom center cloud effect - Warm earth tone */}
           <motion.div
             animate={{ 
               x: [0, 25, -20, 0],
-              opacity: [0.2, 0.4, 0.3, 0.2]
+              opacity: [0.15, 0.3, 0.2, 0.15]
             }}
             transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 4 }}
             className="
@@ -535,7 +535,7 @@ export function TabsStackSection() {
               w-full
               h-96
               bg-gradient-to-t
-              from-cyan-200/20
+              from-[#9B7653]/25
               to-transparent
               blur-[150px]
             "
@@ -663,23 +663,23 @@ function Takeover({
         animate={{ y: 0, borderRadius: "0rem" }}
         exit={{ y: "100%", borderRadius: "2rem" }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute inset-0 overflow-y-auto bg-gradient-to-br from-white via-zinc-50 to-white text-zinc-950"
+        className="absolute inset-0 overflow-y-auto bg-gradient-to-br from-[#F5F1ED] via-[#FBF7F3] to-[#EFE8E3] text-[#5D4037]"
       >
         {/* Sticky header */}
-        <div className="sticky top-0 z-10 border-b border-zinc-200/70 bg-white/85 backdrop-blur-2xl">
+        <div className="sticky top-0 z-10 border-b border-[#D4A574]/30 bg-white/70 backdrop-blur-2xl">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
             <div className="flex items-center gap-3">
               <div
-                className="flex h-9 w-9 items-center justify-center rounded-full text-white"
+                className="flex h-9 w-9 items-center justify-center rounded-full text-white shadow-lg"
                 style={{ background: tab.gradient }}
               >
                 <Icon className="h-4 w-4" />
               </div>
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-zinc-400">
+                <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#8B6F47]">
                   {tab.index} — {tab.subtitle}
                 </p>
-                <h2 className="text-lg font-black tracking-tight text-zinc-950 sm:text-xl leading-tight">
+                <h2 className="text-lg font-black tracking-tight text-[#5D4037] sm:text-xl leading-tight">
                   {tab.label.replace("\n", " ")}
                 </h2>
               </div>
@@ -690,9 +690,9 @@ function Takeover({
               onClick={onClose}
               className="
                 group flex items-center gap-2 rounded-full
-                border border-zinc-200 bg-white px-4 py-2 text-[11px]
-                font-bold uppercase tracking-[0.18em] text-zinc-900
-                transition-colors hover:bg-zinc-900 hover:text-white
+                border border-[#D4A574]/40 bg-white/60 backdrop-blur-sm px-4 py-2 text-[11px]
+                font-bold uppercase tracking-[0.18em] text-[#5D4037]
+                transition-all hover:bg-[#8B5A8C] hover:text-white hover:border-[#8B5A8C]
               "
             >
               <X className="h-3.5 w-3.5 transition-transform group-hover:rotate-90" />
@@ -705,7 +705,7 @@ function Takeover({
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-20"
+          className="mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-20 text-[#5D4037]"
         >
           {children}
         </motion.div>
