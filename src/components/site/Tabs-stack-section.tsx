@@ -63,6 +63,7 @@ const TABS: TabMeta[] = [
     icon: Sparkles,
     gradient: "linear-gradient(160deg, #18181b 0%, #3f3f46 100%)",
     textColor: "#ffffff",
+    image: "/blue design.jpg",
   },
   {
     id: "services",
@@ -72,6 +73,7 @@ const TABS: TabMeta[] = [
     icon: Layers,
     gradient: "linear-gradient(160deg, #1e3a8a 0%, #3b82f6 100%)",
     textColor: "#ffffff",
+    image: "/BUSINESS ON LAPTOP.jpg",
   },
   {
     id: "workflow",
@@ -81,6 +83,7 @@ const TABS: TabMeta[] = [
     icon: Zap,
     gradient: "linear-gradient(160deg, #92400e 0%, #f59e0b 100%)",
     textColor: "#ffffff",
+    image: "/cool laptop code.jpg",
   },
   {
     id: "suites",
@@ -90,6 +93,7 @@ const TABS: TabMeta[] = [
     icon: Rocket,
     gradient: "linear-gradient(160deg, #064e3b 0%, #10b981 100%)",
     textColor: "#ffffff",
+    image: "/UIUX.jpg",
   },
   {
     id: "projects",
@@ -99,6 +103,7 @@ const TABS: TabMeta[] = [
     icon: ArrowUpRight,
     gradient: "linear-gradient(160deg, #1c1917 0%, #44403c 100%)",
     textColor: "#ffffff",
+    image: "/siwes-system-project-updated.png",
   },
   {
     id: "insights",
@@ -108,6 +113,7 @@ const TABS: TabMeta[] = [
     icon: Lightbulb,
     gradient: "linear-gradient(160deg, #4c1d95 0%, #8b5cf6 100%)",
     textColor: "#ffffff",
+    image: "/PASSION.jpg",
   },
   {
     id: "team",
@@ -117,6 +123,7 @@ const TABS: TabMeta[] = [
     icon: Users,
     gradient: "linear-gradient(160deg, #9f1239 0%, #f43f5e 100%)",
     textColor: "#ffffff",
+    image: "/TEAM.jpg",
   },
   {
     id: "contact",
@@ -126,6 +133,7 @@ const TABS: TabMeta[] = [
     icon: Mail,
     gradient: "linear-gradient(160deg, #155e75 0%, #06b6d4 100%)",
     textColor: "#ffffff",
+    image: "/CONTACT.jpg",
   },
 ];
 
@@ -180,16 +188,40 @@ function Panel({
         style={{ background: "linear-gradient(to top, rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.12) 40%, transparent 65%)" }}
       />
 
-      {/* Large floating background icon */}
-      <div
-        className="pointer-events-none absolute right-[-20px] top-[10%] transition-all duration-700"
-        style={{
-          opacity: isExpanded ? 0.1 : 0.05,
-          transform: isExpanded ? "scale(1.3) rotate(10deg)" : "scale(1) rotate(0deg)",
-        }}
-      >
-        <Icon size={220} strokeWidth={0.6} className="text-white" />
-      </div>
+      {/* Large floating background image */}
+      {tab.image && (
+        <div
+          className="pointer-events-none absolute right-[-30px] top-[-10%] transition-all duration-700 overflow-hidden"
+          style={{
+            width: "280px",
+            height: "320px",
+            opacity: isExpanded ? 0.25 : 0.1,
+            transform: isExpanded ? "scale(1.2) rotate(8deg)" : "scale(1) rotate(0deg)",
+          }}
+        >
+          <Image
+            src={tab.image}
+            alt={tab.label}
+            fill
+            className="object-cover"
+            quality={85}
+            sizes="300px"
+          />
+        </div>
+      )}
+      
+      {/* Fallback icon if no image */}
+      {!tab.image && (
+        <div
+          className="pointer-events-none absolute right-[-20px] top-[10%] transition-all duration-700"
+          style={{
+            opacity: isExpanded ? 0.1 : 0.05,
+            transform: isExpanded ? "scale(1.3) rotate(10deg)" : "scale(1) rotate(0deg)",
+          }}
+        >
+          <Icon size={220} strokeWidth={0.6} className="text-white" />
+        </div>
+      )}
 
       {/* Index — top left */}
       <span className="absolute left-5 top-6 font-mono text-[10px] tracking-[0.35em] text-white/40">
