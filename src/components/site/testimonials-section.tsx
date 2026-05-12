@@ -12,9 +12,7 @@ export function TestimonialsSection() {
         relative
         overflow-hidden
         bg-black
-        px-5
         py-24
-        sm:px-8
         sm:py-32
       "
     >
@@ -97,7 +95,7 @@ export function TestimonialsSection() {
         "
       />
 
-      <div className="relative mx-auto max-w-7xl">
+      <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         {/* HEADER */}
         <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>

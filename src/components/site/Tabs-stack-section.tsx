@@ -429,7 +429,7 @@ export function TabsStackSection() {
 
   return (
     <>
-      <section id="explore" className="relative w-full bg-zinc-50" style={{ isolation: "isolate" }}>
+      <section id="explore" className="relative w-full overflow-hidden bg-zinc-50" style={{ isolation: "isolate" }}>
 
         {/* ── "Pick a door" header ── */}
         <div className="mx-auto max-w-7xl px-5 pb-10 pt-20 sm:px-10 sm:pt-28">
