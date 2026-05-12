@@ -1,8 +1,60 @@
 "use client";
 
-import { Quote, Star } from "lucide-react";
+import { Quote, Star, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 import { testimonials } from "@/data/site-content";
+
+// Instagram Icon component
+function InstagramIcon() {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <circle cx="17.5" cy="6.5" r="1.5" />
+    </svg>
+  );
+}
+
+// Twitter Icon component
+function TwitterIcon() {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.627l-5.1-6.694-5.867 6.694h-3.306l7.73-8.835L2.601 2.25h6.8l4.612 6.05L18.244 2.25zM17.55 19.5h1.828L6.982 4.07H5.084l12.466 15.43z" />
+    </svg>
+  );
+}
+
+// LinkedIn Icon component
+function LinkedInIcon() {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.731-2.004 1.438-.103.249-.129.597-.129.946v5.421h-3.554s.05-8.789 0-9.514h3.554v1.347c.42-.649 1.175-1.574 2.847-1.574 2.081 0 3.641 1.361 3.641 4.285v5.456zM5.337 8.855c-1.144 0-1.915-.759-1.915-1.71 0-.951.77-1.71 1.916-1.71 1.144 0 1.915.759 1.915 1.71 0 .951-.771 1.71-1.916 1.71zm1.6 11.597H3.738V9.938h3.199v10.514zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+    </svg>
+  );
+}
 
 export function TestimonialsSection() {
   return (
@@ -300,6 +352,72 @@ export function TestimonialsSection() {
               `}
             />
           ))}
+        </div>
+
+        {/* SOCIAL LINKS - RIGHT SIDE */}
+        <div className="mt-16 flex items-center justify-end gap-8 lg:gap-12">
+          {/* Text */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="flex flex-col items-end gap-3"
+          >
+            <p className="text-sm md:text-base font-semibold text-white tracking-[0.08em] uppercase">
+              Explore our socials
+            </p>
+            <motion.div
+              animate={{ x: [0, 8, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="flex items-center gap-1 text-white/60"
+            >
+              <ArrowRight className="h-4 w-4 md:h-5 md:w-5" />
+            </motion.div>
+          </motion.div>
+
+          {/* Social Icons */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="flex items-center gap-4 md:gap-6"
+          >
+            {/* Instagram */}
+            <motion.a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full border border-white/20 text-white transition-all duration-300 hover:bg-white/10 hover:border-white/40"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <InstagramIcon />
+            </motion.a>
+
+            {/* Twitter/X */}
+            <motion.a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full border border-white/20 text-white transition-all duration-300 hover:bg-white/10 hover:border-white/40"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <TwitterIcon />
+            </motion.a>
+
+            {/* LinkedIn */}
+            <motion.a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full border border-white/20 text-white transition-all duration-300 hover:bg-white/10 hover:border-white/40"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <LinkedInIcon />
+            </motion.a>
+          </motion.div>
         </div>
       </div>
     </section>

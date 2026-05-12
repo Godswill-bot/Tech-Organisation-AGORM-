@@ -244,14 +244,6 @@ export function HeroSection() {
       <div className="grid min-h-screen grid-cols-1 items-center px-4 gap-8 sm:px-8 md:px-14 lg:grid-cols-2">
         {/* ============ LEFT: HEADLINE ============ */}
         <div className="relative z-10 md:pl-32">
-          {/* Vertical axis with social labels — hidden on mobile */}
-          <div className="absolute left-[30px] top-0 bottom-0 w-px bg-white/20 hidden md:block" />
-          <div className="absolute left-[18px] top-1/2 -translate-y-1/2 flex flex-col gap-12 text-[11px] tracking-[0.2em] text-neutral-500 hidden md:flex">
-            <span>IG</span>
-            <span>X</span>
-            <span>IN</span>
-          </div>
-
           <div className="reveal mb-4 md:mb-7 text-[9px] sm:text-[10px] md:text-[11px] font-medium tracking-[0.32em] text-neutral-500">
             AGOM DIGITAL SYSTEMS STUDIO
           </div>
