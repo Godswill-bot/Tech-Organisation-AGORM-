@@ -69,6 +69,79 @@ function HeroScrollOut() {
 }
 
 /* ============================================================
+   TABS STACK OVERLAP WRAPPER
+   
+   Makes the TabsStackSection overlap the hero with a smooth
+   scroll-triggered animation. As the user scrolls, the section
+   moves up with negative margin creating a layered effect.
+   ============================================================ */
+
+function TabsStackOverlapWrapper() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end start"],
+  });
+
+  const smooth = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  // As user scrolls, pull the section up (negative margin effect)
+  const marginTop = useTransform(smooth, [0, 1], [0, -120]);
+
+  return (
+    <motion.div
+      ref={containerRef}
+      style={{ marginTop }}
+      className="relative z-10 will-change-transform"
+    >
+      <TabsStackSection />
+    </motion.div>
+  );
+}
+
+/* ============================================================
+   TESTIMONIALS OVERLAP WRAPPER
+   
+   Makes the TestimonialsSection overlap the TabsStackSection
+   with a smooth scroll-triggered animation.
+   ============================================================ */
+
+function TestimonialsOverlapWrapper() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end start"],
+  });
+
+  const smooth = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  // As user scrolls, pull the section up with scale effect
+  const marginTop = useTransform(smooth, [0, 1], [0, -100]);
+  const scale = useTransform(smooth, [0, 1], [0.98, 1]);
+  const opacity = useTransform(smooth, [0, 0.3, 1], [0.9, 0.95, 1]);
+
+  return (
+    <motion.div
+      ref={containerRef}
+      style={{ marginTop, scale, opacity }}
+      className="relative will-change-transform origin-top"
+    >
+      <TestimonialsSection />
+    </motion.div>
+  );
+}
+
+/* ============================================================
    SITE PAGE
    ============================================================ */
 
@@ -97,20 +170,21 @@ export function SitePage() {
         <HeroScrollOut />
 
         {/*
-         * EXPLORE SECTION — sits directly below the hero.
+         * EXPLORE SECTION — overlaps hero with scroll animation
          * z-10 ensures it layers on top of the fading hero.
-         * The background color on TabsStackSection means it
-         * naturally covers the hero as it scrolls into view.
+         * The background color means it naturally covers the hero.
          */}
-        <div className="relative z-10">
-          <TabsStackSection />
-        </div>
+        <TabsStackOverlapWrapper />
 
         {/* NOTE: ProjectsSection is intentionally removed from here.
             It lives exclusively inside the "Shipped products" panel
             takeover in TabsStackSection. */}
 
-        <TestimonialsSection />
+        {/*
+         * TESTIMONIALS SECTION — overlaps tabs with scroll animation
+         * Creates a smooth layered effect as user scrolls down.
+         */}
+        <TestimonialsOverlapWrapper />
       </motion.main>
 
       <Footer />
