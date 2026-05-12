@@ -28,6 +28,7 @@ import {
   teamMembers,
   workflowSteps,
 } from "@/data/site-content";
+import { usePanel } from "@/context/PanelContext";
 
 /* ============================================================
    TAB DEFINITIONS
@@ -424,7 +425,7 @@ function PanelsRail({ onOpen }: { onOpen: (id: TabId) => void }) {
    ============================================================ */
 
 export function TabsStackSection() {
-  const [activeTab, setActiveTab] = useState<TabId | null>(null);
+  const { activeTab, openPanel, closePanel } = usePanel();
   const activeTabMeta = TABS.find((t) => t.id === activeTab) ?? null;
 
   return (
@@ -480,7 +481,7 @@ export function TabsStackSection() {
         </div>
 
         {/* ── Panels — full bleed ── */}
-        <PanelsRail onOpen={(id) => setActiveTab(id)} />
+        <PanelsRail onOpen={(id) => openPanel(id)} />
 
         {/* ── Hint below (mobile only) ── */}
         <div className="bg-zinc-50 px-5 py-4 sm:px-10 lg:hidden">
@@ -494,7 +495,7 @@ export function TabsStackSection() {
         {activeTabMeta && (
           <TakeoverRouter
             tab={activeTabMeta}
-            onClose={() => setActiveTab(null)}
+            onClose={() => closePanel()}
           />
         )}
       </AnimatePresence>

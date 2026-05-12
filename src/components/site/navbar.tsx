@@ -2,16 +2,53 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { useEffect, useState, useCallback } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { navLinks, services } from "@/data/site-content";
+import { usePanel } from "@/context/PanelContext";
+import type { TabId } from "@/context/PanelContext";
 
 export function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { openPanel } = usePanel();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showNavbar, setShowNavbar] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+
+  const mapLabelToTabId = (label: string): TabId | null => {
+    const mapping: Record<string, TabId> = {
+      "About": "about",
+      "Services": "services",
+      "Projects": "projects",
+      "Contact": "contact",
+    };
+    return mapping[label] ?? null;
+  };
+
+  const handleNavLinkClick = useCallback((label: string) => {
+    if (label === "Team") {
+      // Navigate to team page
+      router.push("/team");
+      return;
+    }
+
+    if (label === "Trust") {
+      // Testimonials is not a panel, just scroll to it
+      const section = document.getElementById("testimonials");
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+      return;
+    }
+
+    // For other links, open the corresponding panel
+    const tabId = mapLabelToTabId(label);
+    if (tabId) {
+      openPanel(tabId);
+    }
+  }, [openPanel, router]);
 
   const resolveHref = (href: string, label?: string) => {
     if (pathname === "/team" && label === "Contact") {
@@ -73,6 +110,7 @@ export function Navbar() {
               >
                 <button
                   type="button"
+                  onClick={() => handleNavLinkClick("Services")}
                   className="group inline-flex items-center gap-1 text-sm font-medium text-slate-700 transition-colors duration-300 hover:text-slate-950"
                 >
                   {link.label}
@@ -90,13 +128,13 @@ export function Navbar() {
                       <p className="mb-3 text-xs uppercase tracking-[0.22em] text-slate-500">Capability Menu</p>
                       <div className="grid grid-cols-2 gap-3">
                         {services.map((service) => (
-                          <a
+                          <button
                             key={service.title}
-                            href={resolveHref("#services")}
-                            className="px-1 py-2 text-sm text-slate-700 transition-colors duration-300 hover:text-slate-950"
+                            onClick={() => handleNavLinkClick("Services")}
+                            className="block px-1 py-2 text-left text-sm text-slate-700 transition-colors duration-300 hover:text-slate-950"
                           >
                             {service.title}
-                          </a>
+                          </button>
                         ))}
                       </div>
                     </motion.div>
@@ -104,9 +142,9 @@ export function Navbar() {
                 </AnimatePresence>
               </div>
             ) : (
-              <motion.a
+              <motion.button
                 key={link.href}
-                href={resolveHref(link.href, link.label)}
+                onClick={() => handleNavLinkClick(link.label)}
                 className="group relative text-sm font-medium text-slate-700 transition-colors duration-300 hover:text-slate-950"
                 whileHover="hover"
               >
@@ -119,19 +157,30 @@ export function Navbar() {
                   }}
                   transition={{ duration: 0.25 }}
                 />
-              </motion.a>
+              </motion.button>
             )
           ))}
         </div>
 
-        <motion.a
-          href={pathname === "/team" ? "#lets-talk" : resolveHref("#contact", "Contact")}
-          className="hidden rounded-full bg-[#09100f] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(16,55,47,0.22)] transition-all duration-300 md:inline-flex"
-          whileHover={{ scale: 1.04, boxShadow: "0 20px 50px rgba(16, 55, 47, 0.28)" }}
-          whileTap={{ scale: 0.98 }}
-        >
-          Contact Us
-        </motion.a>
+        {pathname === "/team" ? (
+          <motion.a
+            href="#lets-talk"
+            className="hidden rounded-full bg-[#09100f] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(16,55,47,0.22)] transition-all duration-300 md:inline-flex"
+            whileHover={{ scale: 1.04, boxShadow: "0 20px 50px rgba(16, 55, 47, 0.28)" }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Contact Us
+          </motion.a>
+        ) : (
+          <motion.button
+            onClick={() => handleNavLinkClick("Contact")}
+            className="hidden rounded-full bg-[#09100f] px-5 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(16,55,47,0.22)] transition-all duration-300 md:inline-flex"
+            whileHover={{ scale: 1.04, boxShadow: "0 20px 50px rgba(16, 55, 47, 0.28)" }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Contact Us
+          </motion.button>
+        )}
 
         <button
           type="button"
